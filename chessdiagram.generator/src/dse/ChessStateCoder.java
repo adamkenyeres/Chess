@@ -24,6 +24,7 @@ import chessdiagram.King;
 import chessdiagram.Pawn;
 import chessdiagram.Piece;
 import chessdiagram.Rook;
+import model.transformation.WhitePawnMovesRule;
 
 public class ChessStateCoder implements IStateCoder {
 	Chess model;
@@ -55,6 +56,7 @@ public class ChessStateCoder implements IStateCoder {
 		sb.append(piece.getColour());
 		sb.append(",");
 		sb.append(piece.getPos());
+
 		switch (piece.getPieceType()) {
 		case PAWN:
 			Pawn pawn = (Pawn) piece;
@@ -104,37 +106,50 @@ public class ChessStateCoder implements IStateCoder {
 	@Override
 	public Object createActivationCode(IPatternMatch match) {
 		// TODO Auto-generated method stub
+		
 		if (match instanceof WhitePawnMovesMatch) {
 			WhitePawnMovesMatch m = (WhitePawnMovesMatch) match;
 			return ("WhitePawnMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			
 		} else if (match instanceof WhiteKnightMovesMatch) {
 			WhiteKnightMovesMatch m = (WhiteKnightMovesMatch) match;
 			return ("WhiteKnightMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			
 		} else if (match instanceof BlackPawnMovesMatch) {
 			BlackPawnMovesMatch m = (BlackPawnMovesMatch) match;
+			System.out.println(m.getClass().getName());
 			return ("BlackPawnMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			
 		} else if (match instanceof BlackKnightMovesMatch) {
 			BlackKnightMovesMatch m = (BlackKnightMovesMatch) match;
 			return ("BlackKnightMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			
 		} else if (match instanceof RookMovesMatch) {
 			RookMovesMatch m = (RookMovesMatch) match;
 			return ("RookMoves:{" + getPieceStateCode(m.getRook()).toString() + "}").intern();
+			
 		} else if (match instanceof BishopMovesMatch) {
 			BishopMovesMatch m = (BishopMovesMatch) match;
 			return ("BishopMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			
 		} else if (match instanceof QueenMovesMatch) {
 			QueenMovesMatch m = (QueenMovesMatch) match;
 			return ("QueenMoves:{" + getPieceStateCode(m.getQueen()).toString() + "}").intern();
+			
 		} else if (match instanceof KingMovesMatch) {
 			KingMovesMatch m = (KingMovesMatch) match;
 			return ("KingMovesMatch:{" + getPieceStateCode(m.getKing()).toString() + "}").intern();
+			
 		} else if (match instanceof InChessWhiteMatch) {
 			InChessWhiteMatch m = (InChessWhiteMatch) match;
-			return "InChessWhite:{" + getPieceStateCode(m.getKing()).toString() + getPieceStateCode(m.getPiece()).toString()
-					+ "}".intern();
-		}else if(match instanceof InChessBlackMatch){
+			return "InChessWhite:{" + getPieceStateCode(m.getKing()).toString()
+					+ getPieceStateCode(m.getPiece()).toString() + "}".intern();
+			
+		} else if (match instanceof InChessBlackMatch) {
 			InChessBlackMatch m = (InChessBlackMatch) match;
-			return ("InchessBlack:{"+getPieceStateCode(m.getKing()).toString() + getPieceStateCode(m.getPiece()).toString()+"}").intern();
+			return ("InchessBlack:{" + getPieceStateCode(m.getKing()).toString()
+					+ getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			
 		} else {
 			throw new DSEException("Unsupported rule.");
 		}

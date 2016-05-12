@@ -66,6 +66,8 @@ public class BoardVisualizer implements ActionListener {
 	private JButton New;
 	private JButton exit;
 	private JButton back;
+	
+	
 	Square clickedSquare;
 	public JButton btn[][];
 	private final String COLS = "ABCDEFGH";
