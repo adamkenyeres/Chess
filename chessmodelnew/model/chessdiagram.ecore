@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="chessdiagram" nsURI="http://example.com/chessdiagram" nsPrefix="chessdiagram">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="org.eclipse.viatra.query.querybasedfeature"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Chess">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whitePlayer" lowerBound="1"
+        eType="#//Player" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blackPlayer" lowerBound="1"
+        eType="#//Player" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="square" lowerBound="64"
+        upperBound="64" eType="#//Square" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="whitePlayerTurn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Player">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="piece" upperBound="16"
+        eType="#//Piece" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colour" eType="#//Colour"
+        defaultValueLiteral="White"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Knight" eSuperTypes="#//Piece"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Square">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="piece" eType="#//Piece"
+        changeable="false" volatile="true" transient="true" derived="true" eOpposite="#//Piece/square">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.piece"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colour" eType="#//Colour"
+        defaultValueLiteral="White"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="W" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.W"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="N" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.N"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="S" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.S"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="NW" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.NW"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="NE" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.NE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SE" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.SE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SW" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.SW"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="E" eType="#//Square" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.E"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="square" lowerBound="1"
+        eType="#//Square" changeable="false" volatile="true" transient="true" derived="true"
+        eOpposite="#//Square/piece">
+      <eAnnotations source="org.eclipse.viatra.query.querybasedfeature">
+        <details key="patternFQN" value="chess.queries.square"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colour" eType="#//Colour"
+        defaultValueLiteral="White"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pieceType" eType="#//PieceType"
+        defaultValueLiteral="Pawn"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bishop" eSuperTypes="#//Piece"/>
+  <eClassifiers xsi:type="ecore:EClass" name="King" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstMove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="True"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Queen" eSuperTypes="#//Piece"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Rook" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstMove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pawn" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstMove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="True"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enPassantEnabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Colour">
+    <eLiterals name="White"/>
+    <eLiterals name="Black" value="1"/>
+    <eLiterals name="Red" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PieceType">
+    <eLiterals name="Queen"/>
+    <eLiterals name="King" value="1"/>
+    <eLiterals name="Rook" value="2"/>
+    <eLiterals name="Knight" value="3"/>
+    <eLiterals name="Bishop" value="4"/>
+    <eLiterals name="Pawn" value="5"/>
+  </eClassifiers>
+</ecore:EPackage>

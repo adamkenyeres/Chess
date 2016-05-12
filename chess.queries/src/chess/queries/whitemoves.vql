@@ -1,0 +1,21 @@
+package chess.queries
+import "http://example.com/chessdiagram"
+pattern whiteMoves(piece : Piece, square : Square){
+	Piece.colour(piece, ::White);
+	find whitePawnMoves(piece, square);
+}or{
+	Piece.colour(piece, ::White);
+	find whiteKnightMoves(piece, square);
+}or{
+	Piece.colour(piece, ::White);
+	find rookMoves(piece, square);
+}or{
+	Piece.colour(piece, ::White);
+	find bishopMoves(piece, square);
+}or{
+	Piece.colour(piece, ::White);
+	find queenMoves(piece, square);
+}or{
+	Piece.colour(piece, ::White);
+	find kingMoves(piece, square);
+}

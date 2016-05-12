@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="extension.derived.chess.queries.piece" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="piece" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.NW" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="NW" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.SW" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="SW" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.N" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="N" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.S" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="S" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.W" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="W" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.NE" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="NE" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.square" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Piece" feature-name="square" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.SE" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="SE" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="extension.derived.chess.queries.E" point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Square" feature-name="E" package-nsUri="http://example.com/chessdiagram"/>
+  </extension>
+  <extension id="chess.queries.Rookmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Rookmoves" id="chess.queries.Rookmoves"/>
+  </extension>
+  <extension id="chess.queries.Allmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Allmoves" id="chess.queries.Allmoves"/>
+  </extension>
+  <extension id="chess.queries.Pawnmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Pawnmoves" id="chess.queries.Pawnmoves"/>
+  </extension>
+  <extension id="chess.queries.Blackmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Blackmoves" id="chess.queries.Blackmoves"/>
+  </extension>
+  <extension id="chess.queries.Kingmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Kingmoves" id="chess.queries.Kingmoves"/>
+  </extension>
+  <extension id="chess.queries.Chess" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Chess" id="chess.queries.Chess"/>
+  </extension>
+  <extension id="chess.queries.Whitemoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Whitemoves" id="chess.queries.Whitemoves"/>
+  </extension>
+  <extension id="chess.queries.Queenmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Queenmoves" id="chess.queries.Queenmoves"/>
+  </extension>
+  <extension id="chess.queries.Knightmoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Knightmoves" id="chess.queries.Knightmoves"/>
+  </extension>
+  <extension id="chess.queries.Transitiveclousure" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Transitiveclousure" id="chess.queries.Transitiveclousure"/>
+  </extension>
+  <extension id="chess.queries.Querybasedfeatures" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Querybasedfeatures" id="chess.queries.Querybasedfeatures"/>
+  </extension>
+  <extension id="chess.queries.BishopMoves" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.BishopMoves" id="chess.queries.BishopMoves"/>
+  </extension>
+  <extension id="chess.queries.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:chess.queries.Queries" id="chess.queries.Queries"/>
+  </extension>
+</plugin>

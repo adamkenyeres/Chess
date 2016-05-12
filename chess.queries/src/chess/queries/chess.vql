@@ -1,0 +1,27 @@
+package chess.queries
+import "http://example.com/chessdiagram"
+
+pattern allMovesNoChess(piece : Piece, square : Square) {
+	find whiteMoves(piece, square);
+
+} or {
+	find blackMoves(piece, square);
+}
+pattern inChess(king : King, piece : Piece){
+	find square(king, kingSquare);
+	find allMovesNoChess(piece, kingSquare);	
+}
+pattern inChessWhite(king: King, piece : Piece){
+	King.colour(king, ::White);
+	find square(king, kingSquare);
+	find blackMoves(piece, kingSquare);
+}
+pattern inChessBlack(king : King, piece : Piece){
+	King.colour(king, ::Black);
+	find square(king, kingSquare);
+	find whiteMoves(piece, kingSquare);
+}
+pattern whiteCheckmate(king : King, piece : Piece){
+	find inChessWhite(king, piece);
+	neg find whiteMoves(_,_);
+}

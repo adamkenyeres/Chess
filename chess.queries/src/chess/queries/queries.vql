@@ -1,0 +1,68 @@
+package chess.queries
+
+import "http://example.com/chessdiagram"
+
+pattern pieceOnSquaree(square : Square) {
+	find pieceOnSquare(square, _p);
+}
+pattern sameColorPiece(piece1 : Piece, piece2 : Piece){
+	Piece.colour(piece1, colour);
+	Piece.colour(piece2, colour);
+}
+pattern canAttack(piece1 : Piece, piece2 : Piece) {
+	neg find sameColorPiece(piece1, piece2);
+	
+	/*Piece.colour(piece1, colour1);
+	Piece.colour(piece2, colour2);
+	check(colour1 != colour2);*/
+}
+
+pattern piecesOnBoard(piece : Piece) {
+	Piece(piece);
+}
+
+pattern piecesOfBlackPlayer(piece : Piece) {
+	Piece.colour(piece, ::Black);
+}
+
+pattern piecesOfWhitePlayer(piece : Piece) {
+	Piece.colour(piece, ::White);
+}
+
+pattern squareContainsWhitePiece(square : Square) {
+	find piece(square, p);
+	Piece.colour(p, ::White);
+}
+
+pattern squareContainsBlackPiece(square : Square) {
+	find piece(square, p);
+	Piece.colour(p, ::Black);
+}
+
+pattern squareForPiece(piece : Piece, square : Square) {
+	//Piece.colour(piece, _colour);
+	find square(piece, square);
+}
+
+/*
+@QueryExplorer(checked = false)
+pattern getStartIdEndId(start : Square, end : Square,startId, endId){
+	Square.id(start, startId);
+	Square.id(end, endId);
+}
+@QueryExplorer(checked = false)
+pattern getStartIdEndIdSquareId(start : Square, end : Square, square : Square, startId, endId, squareId){
+	find getStartIdEndId(start, end, startId, endId);
+	Square.id(square, squareId);
+}
+
+*/
+
+
+
+
+
+
+
+
+

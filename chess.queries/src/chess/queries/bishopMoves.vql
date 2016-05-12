@@ -1,0 +1,66 @@
+package chess.queries
+
+import "http://example.com/chessdiagram"
+
+pattern southDiagonalMoves(bishop : Piece, square : Square) {
+	find square(bishop, bishopSquare); //SouthEast moves
+	find movesSouthEast(bishopSquare, _sq, square);
+	neg find pieceOnSquaree(square);
+} or {
+	find square(bishop, bishopSquare); //South East moves atacking
+	find movesSouthEast(bishopSquare, _sq, square);
+	find pieceOnSquare(square, piece);
+	find canAttack(bishop, piece);
+} or {
+	find square(bishop, bishopSquare); //SouthEast moves
+	find movesSouthWest(bishopSquare, _sq, square);
+	neg find pieceOnSquaree(square);
+} or {
+	find square(bishop, bishopSquare); //South East moves atacking
+	find movesSouthWest(bishopSquare, _sq, square);
+	find pieceOnSquare(square, piece);
+	find canAttack(bishop, piece);
+}
+
+pattern northDiagonalMoves(bishop : Piece, square : Square) {
+	find square(bishop, bishopSquare); //NorthEst moves
+	find movesNorthEast(bishopSquare, _sq, square);
+	neg find pieceOnSquaree(square);
+} or {
+	find square(bishop, bishopSquare); //NorthEst moves
+	find movesNorthEast(bishopSquare, _sq, square);
+	find pieceOnSquaree(square);
+	find pieceOnSquare(square, piece);
+	find canAttack(bishop, piece);
+}or{
+	find square(bishop, bishopSquare); //NorthWest moves
+	find movesNorthWest(bishopSquare, _sq, square);
+	neg find pieceOnSquaree(square);
+}or{
+	find square(bishop, bishopSquare); //NorthEst moves
+	find movesNorthWest(bishopSquare, _sq, square);
+	find pieceOnSquaree(square);
+	find pieceOnSquare(square, piece);
+	find canAttack(bishop, piece);
+}
+
+pattern diagonalMoves(piece : Piece, square : Square){
+	find northDiagonalMoves(piece, square);
+}or{
+	find southDiagonalMoves(piece, square);
+}
+
+pattern bishopMoves(piece : Bishop, square : Square){
+	find diagonalMoves(piece, square);
+}
+
+pattern whiteBishopMoves(piece : Bishop, square : Square){
+	Bishop.colour(piece, ::White);
+	find bishopMoves(piece, square);
+}
+
+pattern blackBishopMoves(piece : Bishop, square : Square){
+	Bishop.colour(piece, ::Black);
+	find bishopMoves(piece, square);
+}
+

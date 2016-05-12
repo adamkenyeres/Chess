@@ -1,0 +1,53 @@
+package chess.queries
+import "http://example.com/chessdiagram"
+
+pattern verticalRookMoves(rook : Piece, square :Square){
+	find square(rook, rookSquare);
+	find movesSouth(rookSquare,_sq, square);
+	neg find pieceOnSquaree(square);
+}or{
+	find square(rook, rookSquare);
+	find movesSouth(rookSquare,_sq, square);//Something added at this line
+	find pieceOnSquare(square, piece);
+	find canAttack(rook, piece);
+}or{
+	find square(rook, rookSquare);
+	find movesNorth(rookSquare,_sq, square);
+	neg find pieceOnSquaree(square);
+}or{
+	find square(rook, rookSquare);
+	find movesNorth(rookSquare,_sq, square);
+	find pieceOnSquare(square, piece);
+	find canAttack(rook, piece);
+}	//comment added
+
+pattern horizontalRookMoves(rook : Piece, square :Square){
+	find square(rook, rookSquare);
+	find movesEast(rookSquare,_sq, square);
+	neg find pieceOnSquaree(square);
+}or{
+	find square(rook, rookSquare);
+	find movesEast(rookSquare,_sq, square);
+	find pieceOnSquare(square, piece);
+	find canAttack(rook, piece);
+}or{
+	find square(rook, rookSquare);
+	find movesWest(rookSquare,_sq, square);
+	neg find pieceOnSquaree(square);
+}or{
+	find square(rook, rookSquare);
+	find movesWest(rookSquare,_sq, square);
+	find pieceOnSquare(square, piece);
+	find canAttack(rook, piece);
+}
+pattern horizontalOrVerticalMoves(piece : Piece, square : Square){
+	find horizontalRookMoves(piece, square);
+}or{
+	find verticalRookMoves(piece, square);
+}
+
+pattern rookMoves(rook : Rook, square : Square){
+	find verticalRookMoves(rook, square);
+}or{
+	find horizontalRookMoves(rook, square);
+}

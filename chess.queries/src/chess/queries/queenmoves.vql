@@ -1,0 +1,8 @@
+package chess.queries
+import "http://example.com/chessdiagram"
+
+pattern queenMoves(queen : Queen, square : Square){
+	find diagonalMoves(queen, square);
+}or{
+	find horizontalOrVerticalMoves(queen, square);
+}

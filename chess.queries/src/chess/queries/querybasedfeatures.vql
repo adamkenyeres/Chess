@@ -1,0 +1,89 @@
+package chess.queries
+import "http://example.com/chessdiagram"
+
+pattern north(squareS : Square, squareN : Square) {
+	Square.id(squareS, id);
+	otherId == eval(id-8);
+	Square.id(squareN, otherId);
+}
+pattern pieceOnSquare(square : Square, piece : Piece) {
+	Square.id(square, id);
+	Piece.pos(piece, id);
+}
+pattern east(squareE : Square, squareW : Square){
+	Square.id(squareW, id);
+	otherId == eval(id-1);
+	check(otherId/8 == id/8);
+	Square.id(squareE, otherId);
+}
+
+pattern asdasd(squareE : Square, squareW : Square){
+	Square.id(squareW, id);
+	//otherId == eval(id-1);
+	//check(otherId/8 == id/8);
+	otherId == eval(((id-1)/8));
+	check( otherId == (id/8) );
+	Square.id(squareE, otherId);
+}
+pattern northWest(squareSE : Square, squareNW : Square){
+	Square.id(squareSE, id);
+	//otherId == eval(id-9);
+	//check( ( (otherId/8)+1) == (id/8) );
+	otherId == eval(id-9);
+	otherIdRow == eval(((id-9)/8)+1);
+	check( otherIdRow == (id/8) );
+	Square.id(squareNW,otherId);
+}
+pattern northEast(squareSW : Square, squareNE : Square){
+	Square.id(squareSW, id);
+	otherId == eval(id-7);
+	otherIdRow == eval(((id-7)/8)+1);
+	check( otherIdRow == (id/8) );
+	Square.id(squareNE, otherId);
+}
+
+@QueryBasedFeature
+pattern E(source:Square, target:Square){
+	find east(source, target);
+}
+@QueryBasedFeature
+pattern W(source:Square, target:Square){
+	find east(target, source);
+}
+@QueryBasedFeature
+pattern N(source : Square, target : Square) {
+	find north(source, target);
+}
+
+@QueryBasedFeature
+pattern S(source : Square, target : Square) {
+	find north(target, source);
+}
+
+@QueryBasedFeature
+pattern NW(source : Square, target : Square) {
+	find northWest(source, target);
+}
+
+@QueryBasedFeature
+pattern SE(source : Square, target : Square) {
+	find northWest(target, source);
+}
+
+@QueryBasedFeature
+pattern NE(source : Square, target : Square) {
+	find northEast(source, target);
+}
+@QueryBasedFeature
+pattern SW(source : Square, target : Square) {
+	find northEast(target, source);
+}
+
+@QueryBasedFeature
+pattern square(source : Piece, target : Square) {
+	find pieceOnSquare(target, source);
+}
+@QueryBasedFeature
+pattern piece(source: Square, target: Piece) {
+	find pieceOnSquare(source, target);
+}

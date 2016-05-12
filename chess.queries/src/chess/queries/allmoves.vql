@@ -1,0 +1,13 @@
+package chess.queries
+
+import "http://example.com/chessdiagram"
+
+pattern allMovess(piece : Piece, square : Square) {
+	find whiteMoves(piece, square);
+	//neg find inChessWhite(king, pieceBlack);
+
+} or {
+	find blackMoves(piece, square);
+	//King.colour(king, ::Black);
+	//neg find inChess(king, _whitePiece);
+}

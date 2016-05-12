@@ -1,0 +1,91 @@
+package chess.queries
+
+import "http://example.com/chessdiagram"
+
+pattern blackPawnMoves(piece : Pawn, square : Square) {
+	Pawn.colour(piece, ::Black);
+	find squareForPiece(piece, squarePiece);
+	find S(squarePiece, square);
+	neg find pieceOnSquaree(square);
+} or {
+	Pawn.colour(piece, ::Black); //Two steps 
+	find squareForPiece(piece, squarePiece);
+	find S(squarePiece, squareNorth);
+	find S(squareNorth, square);
+	neg find pieceOnSquaree(squareNorth);
+	neg find pieceOnSquaree(square);
+	Pawn.firstMove(piece, bool);
+	check(bool == true);
+} or {
+	Pawn.colour(piece, ::Black);
+	find squareForPiece(piece, squarePiece);
+	find SW(squarePiece, square);
+	find squareContainsWhitePiece(square);
+} or {
+	Pawn.colour(piece, ::Black);
+	find squareForPiece(piece, squarePiece);
+	find SE(squarePiece, square);
+	find squareContainsWhitePiece(square);
+} or {
+	Pawn.colour(piece, ::Black);
+	find squareForPiece(piece, pieceSquare);
+	find W(pieceSquare, atackingSquare);
+	find pieceOnSquare(atackingSquare, atackingPawn);
+	find canAttack(piece, atackingPawn);
+	Pawn.enPassantEnabled(atackingPawn, bool);
+	check(bool == true);
+	find S(atackingSquare, square);
+} or {
+	Pawn.colour(piece, ::Black);
+	find squareForPiece(piece, pieceSquare);
+	find E(pieceSquare, atackingSquare);
+	find pieceOnSquare(atackingSquare, atackingPawn);
+	find canAttack(piece, atackingPawn);
+	Pawn.enPassantEnabled(atackingPawn, bool);
+	check(bool == true);
+	find S(atackingSquare, square);
+}
+
+pattern whitePawnMoves(piece : Pawn, square : Square) {
+	Pawn.colour(piece, ::White);
+	find squareForPiece(piece, squarePiece);
+	find N(squarePiece, square);
+	neg find pieceOnSquaree(square);
+} or {
+	Pawn.colour(piece, ::White); //Two steps
+	find squareForPiece(piece, squarePiece);
+	find N(squarePiece, squareNorth);
+	find N(squareNorth, square);
+	neg find pieceOnSquaree(squareNorth);
+	neg find pieceOnSquaree(square);
+	Pawn.firstMove(piece, bool);
+	check(bool == true);
+} or {
+	Pawn.colour(piece, ::White);
+	find squareForPiece(piece, squarePiece);
+	find NW(squarePiece, square);
+	find squareContainsBlackPiece(square);
+} or {
+	Pawn.colour(piece, ::White);
+	find squareForPiece(piece, squarePiece);
+	find NE(squarePiece, square);
+	find squareContainsBlackPiece(square);
+} or {
+	Pawn.colour(piece, ::White);
+	find squareForPiece(piece, pieceSquare);
+	find W(pieceSquare, atackingSquare);
+	find pieceOnSquare(atackingSquare, atackingPawn);
+	find canAttack(piece, atackingPawn);
+	Pawn.enPassantEnabled(atackingPawn, bool);
+	check(bool == true);
+	find N(atackingSquare, square);
+} or {
+	Pawn.colour(piece, ::White);
+	find squareForPiece(piece, pieceSquare);
+	find E(pieceSquare, atackingSquare);
+	find pieceOnSquare(atackingSquare, atackingPawn);
+	find canAttack(piece, atackingPawn);
+	Pawn.enPassantEnabled(atackingPawn, bool);
+	check(bool == true);
+	find N(atackingSquare, square);
+}

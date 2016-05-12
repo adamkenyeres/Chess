@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/chessmodelnew/src" modelPluginID="chessmodelnew"
+    modelName="Chessdiagram" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>chessdiagram.ecore</foreignModel>
+  <genPackages prefix="Chessdiagram" disposableProviderFactory="true" ecorePackage="chessdiagram.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="chessdiagram.ecore#//Colour">
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//Colour/White"/>
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//Colour/Black"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="chessdiagram.ecore#//PieceType">
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//PieceType/Queen"/>
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//PieceType/King"/>
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//PieceType/Rook"/>
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//PieceType/Knight"/>
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//PieceType/Bishop"/>
+      <genEnumLiterals ecoreEnumLiteral="chessdiagram.ecore#//PieceType/Pawn"/>
+    </genEnums>
+    <genClasses ecoreClass="chessdiagram.ecore#//Chess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Chess/whitePlayer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Chess/blackPlayer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Chess/square"/>
+    </genClasses>
+    <genClasses ecoreClass="chessdiagram.ecore#//Player">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Player/piece"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chessdiagram.ecore#//Player/colour"/>
+    </genClasses>
+    <genClasses ecoreClass="chessdiagram.ecore#//Knight"/>
+    <genClasses ecoreClass="chessdiagram.ecore#//Square">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chessdiagram.ecore#//Square/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/piece"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chessdiagram.ecore#//Square/colour"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/W"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/N"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/S"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/NW"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/NE"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/SE"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/SW"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chessdiagram.ecore#//Square/E"/>
+    </genClasses>
+    <genClasses ecoreClass="chessdiagram.ecore#//Piece">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chessdiagram.ecore#//Piece/pos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference chessdiagram.ecore#//Piece/square"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chessdiagram.ecore#//Piece/colour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chessdiagram.ecore#//Piece/pieceType"/>
+    </genClasses>
+    <genClasses ecoreClass="chessdiagram.ecore#//Bishop"/>
+    <genClasses ecoreClass="chessdiagram.ecore#//King"/>
+    <genClasses ecoreClass="chessdiagram.ecore#//Queen"/>
+    <genClasses ecoreClass="chessdiagram.ecore#//Rook"/>
+    <genClasses ecoreClass="chessdiagram.ecore#//Pawn"/>
+    <genClasses ecoreClass="chessdiagram.ecore#//NewEClass11"/>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,250 @@
+package chess.queries
+
+import "http://example.com/chessdiagram"
+
+pattern vNorth(s1 : Square, s2 : Square) {
+	find N +(s1, s2);
+}
+
+pattern vSouth(s1 : Square, s2 : Square) { // Returns all the south squares
+	find S +(s1, s2);
+}
+
+pattern hEast(s1 : Square, s2 : Square) {
+	find E +(s1, s2);
+}
+
+pattern hWest(s1 : Square, s2 : Square) {
+	find W +(s1, s2);
+}
+
+pattern northWestTransitiveClouser(s1 : Square, s2 : Square) {
+	find NW +(s1, s2);
+}
+
+pattern southWestTransitiveClouser(s1 : Square, s2 : Square) {
+	find SW +(s1, s2);
+}
+
+pattern northEastTransitiveClouser(s1 : Square, s2 : Square) {
+	find NE +(s1, s2);
+}
+
+pattern southEastTransitiveClouser(s1 : Square, s2 : Square) {
+	find SE +(s1, s2);
+}
+
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureNorthWestWithPieces(start : Square, end : Square, square : Square) {
+	find NW +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId < startId);
+	check(squareId > endId);
+	check(startId > endId);
+	find pieceOnSquaree(square);
+}
+
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureNorthEastWithPieces(start : Square, end : Square, square : Square) {
+	find NE +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId < startId);
+	check(squareId > endId);
+	check(startId > endId);
+	find pieceOnSquaree(square);
+}
+
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureSouthWestWithPieces(start : Square, end : Square, square : Square) {
+	find SW +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId > startId);
+	check(squareId < endId);
+	check(startId < endId);
+	find pieceOnSquaree(square);
+}
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureSouthEastWithPieces(start : Square, end : Square, square : Square) {
+	find SE +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId > startId);
+	check(squareId < endId);
+	check(startId < endId);
+	find pieceOnSquaree(square);
+}
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureNorthWithPieces(start : Square, end : Square, square : Square) {
+	find N +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId < startId);
+	check(squareId > endId);
+	check(startId > endId);
+	find pieceOnSquaree(square);
+}
+
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureSouthWithPieces(start : Square, end : Square, square : Square) {
+	find S +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId > startId);
+	check(squareId < endId);
+	find pieceOnSquaree(square);
+}
+
+@QueryExplorer(checked = false)
+pattern
+transitiveClosureWestWithPieces(start : Square, end : Square, square : Square) {
+	find W +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId < startId);
+	check(squareId > endId);
+	find pieceOnSquaree(square);
+}
+@QueryExplorer(checked = false)
+pattern transitiveClosureEastWithPieces(start : Square, end : Square, square : Square){
+	find E +(start, square);
+	Square.id(start, startId);
+	Square.id(end, endId);
+	Square.id(square, squareId);
+	check(squareId>startId);
+	check(squareId<endId);
+	find pieceOnSquaree(square);
+}
+@QueryExplorer(checked = false)
+pattern
+movesSouthEast(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId < endId);
+	check((endId / 8 - startId / 8)
+	==(endId % 8 - startId % 8));
+	find southEastTransitiveClouser(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId <= endId);
+	C == count find
+	transitiveClosureNorthWestWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+
+@QueryExplorer(checked = false)
+pattern
+movesNorthEast(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId > endId);
+	check(Math.abs(endId / 8 - startId / 8)
+	== Math.abs((startId % 8 - endId % 8)));
+	find northEastTransitiveClouser(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId >= endId);
+	C == count find
+	transitiveClosureSouthWestWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+@QueryExplorer(checked = false)
+pattern
+movesNorthWest(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId > endId);
+	check(Math.abs(endId / 8 - startId / 8)
+	== Math.abs((startId % 8 - endId % 8)));
+	find northWestTransitiveClouser(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId >= endId);
+	C == count find
+	transitiveClosureSouthEastWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+pattern
+movesSouthWest(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId < endId);
+	check(Math.abs(endId / 8 - startId / 8)
+	== Math.abs((startId % 8 - endId % 8)));
+	find southWestTransitiveClouser(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId <= endId);
+	C == count find
+	transitiveClosureNorthEastWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+
+@QueryExplorer(checked = false)
+pattern
+movesSouth(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId < endId);
+	check(startId % 8 == endId % 8);
+	find vSouth(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId <= endId);
+	C == count find
+	transitiveClosureNorthWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+
+@QueryExplorer(checked = false)
+pattern
+movesNorth(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId > endId);
+	check(startId % 8 == endId % 8);
+	find vNorth(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId >= endId);
+	C == count find
+	transitiveClosureSouthWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+
+@QueryExplorer(checked = false)
+pattern
+movesEast(squareStart : Square, squareEnd : Square, squareMiddle : Square) {
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);
+	check(startId < endId);
+	check(startId / 8 == endId / 8);
+	find hEast(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId <= endId);
+	C == count find
+	transitiveClosureWestWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
+
+@QueryExplorer(checked = false)
+pattern movesWest(squareStart : Square, squareEnd : Square, squareMiddle : Square){	
+	Square.id(squareStart, startId);
+	Square.id(squareEnd, endId);							
+	check(startId>endId);
+	check(startId/8 == endId/8);
+	find hWest(squareStart, squareMiddle);
+	Square.id(squareMiddle, middleId);
+	check(middleId>=endId);
+	C == count find transitiveClosureEastWithPieces(squareMiddle, squareStart, _);
+	check(C == 0);
+}
