@@ -1,10 +1,22 @@
 package model.transformation
 
+import chess.queries.BishopMovesMatcher
+import chess.queries.BlackKnightMovesMatcher
+import chess.queries.BlackPawnMovesMatcher
+import chess.queries.KingMovesMatcher
+import chess.queries.QueenMovesMatcher
+import chess.queries.RookMovesMatcher
+import chessdiagram.Bishop
 import chessdiagram.Chess
 import chessdiagram.ChessdiagramFactory
 import chessdiagram.Colour
+import chessdiagram.King
+import chessdiagram.Knight
+import chessdiagram.Pawn
 import chessdiagram.Piece
 import chessdiagram.PieceType
+import chessdiagram.Queen
+import chessdiagram.Rook
 import chessdiagram.Square
 import java.util.ArrayList
 import java.util.Random
@@ -14,24 +26,9 @@ import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine
 import org.eclipse.viatra.query.runtime.emf.EMFScope
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.IModelManipulations
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.SimpleModelManipulations
-import org.eclipse.viatra.transformation.runtime.emf.rules.batch.BatchTransformationRule
+import org.eclipse.viatra.transformation.runtime.emf.rules.BatchTransformationRuleGroup
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformation
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformationStatements
-import org.eclipse.viatra.transformation.runtime.emf.rules.BatchTransformationRuleGroup
-import chess.queries.BlackPawnMovesMatch
-import chessdiagram.Pawn
-import chess.queries.BlackPawnMovesMatcher
-import chessdiagram.Rook
-import chess.queries.RookMovesMatcher
-import chessdiagram.Knight
-import chess.queries.BlackKnightMovesMatcher
-import java.util.function.BiConsumer
-import chessdiagram.Bishop
-import chess.queries.BishopMovesMatcher
-import chessdiagram.Queen
-import chess.queries.QueenMovesMatcher
-import chessdiagram.King
-import chess.queries.KingMovesMatcher
 
 class ModelTransformation {
 
@@ -59,15 +56,15 @@ class ModelTransformation {
 	val queenMovesColourRule = QueenMovesRule.getQueenMovesColourRule()
 	val kingMovesColourRule = KingMovesRule.getKingMovesColourRule()
 	/*Moving the pieces */
-	var whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule(chess)
-	var blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule(chess)
-	var rookMovesRule = RookMovesRule.getRookMovesRule(chess)
-	var whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule(chess)
-	var blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule(chess)
-	var bishopMovesRule = BishopMovesRule.getBishopMovesRule(chess)
-	var queenMovesRule = QueenMovesRule.getQueenMovesRule(chess)
-	var kingMovesRule = KingMovesRule.getKingMovesRule(chess)
-	var blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule(chess);
+	var whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule()
+	var blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule()
+	var rookMovesRule = RookMovesRule.getRookMovesRule()
+	var whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule()
+	var blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule()
+	var bishopMovesRule = BishopMovesRule.getBishopMovesRule()
+	var queenMovesRule = QueenMovesRule.getQueenMovesRule()
+	var kingMovesRule = KingMovesRule.getKingMovesRule()
+	var blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule();
 	var ruleGroup = new ArrayList
 	var ruleGroups = new BatchTransformationRuleGroup
 
@@ -211,14 +208,14 @@ class ModelTransformation {
 			case PieceType.PAWN: {
 				var pawn = p as Pawn
 				var matcher = BlackPawnMovesMatcher.on(engine)
-				val match = matcher.getOneArbitraryMatch(pawn, null)
+				val match = matcher.getOneArbitraryMatch(pawn, null, null)
 				if (match != null)
 					blackPawnMovesRule.fireOne(new Pair("piece", p), new Pair("square", match.square))
 			}
 			case PieceType.ROOK: {
 				var rook = p as Rook
 				var matcher = RookMovesMatcher.on(engine)
-				val match = matcher.getOneArbitraryMatch(rook, null)
+				val match = matcher.getOneArbitraryMatch(rook, null, null)
 				if (match != null)
 					rookMovesRule.fireOne(new Pair("rook", rook), new Pair("square", match.square))
 
@@ -226,7 +223,7 @@ class ModelTransformation {
 			case PieceType.KNIGHT: {
 				var knight = p as Knight
 				var matcher = BlackKnightMovesMatcher.on(engine)
-				var match = matcher.getOneArbitraryMatch(knight, null)
+				var match = matcher.getOneArbitraryMatch(knight, null, null)
 				if (match != null)
 					blackKnightMovesRule.fireOne(new Pair("piece", knight), new Pair("square", match.square))
 
@@ -234,7 +231,7 @@ class ModelTransformation {
 			case PieceType.BISHOP: {
 				var bishop = p as Bishop
 				var matcher = BishopMovesMatcher.on(engine)
-				var match = matcher.getOneArbitraryMatch(bishop, null)
+				var match = matcher.getOneArbitraryMatch(bishop, null, null)
 				if (match != null)
 					bishopMovesRule.fireOne(new Pair("piece", bishop), new Pair("square", match.square))
 
@@ -242,7 +239,7 @@ class ModelTransformation {
 			case PieceType.QUEEN: {
 				var queen = p as Queen
 				var matcher = QueenMovesMatcher.on(engine)
-				var match = matcher.getOneArbitraryMatch(queen, null)
+				var match = matcher.getOneArbitraryMatch(queen, null, null)
 				if (match != null)
 					queenMovesRule.fireOne(new Pair("queen", queen), new Pair("square", match.square))
 
@@ -250,7 +247,7 @@ class ModelTransformation {
 			case PieceType.KING: {
 				var king = p as King
 				var matcher = KingMovesMatcher.on(engine)
-				var match = matcher.getOneArbitraryMatch(king, null)
+				var match = matcher.getOneArbitraryMatch(king, null, null)
 				if (match != null)
 					kingMovesRule.fireOne(new Pair("king", king), new Pair("square", match.square))
 			}
@@ -298,16 +295,16 @@ class ModelTransformation {
 		engine = ViatraQueryEngine.on(scope);
 		clickedSquare = null
 		this.chess = chess
-
-		whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule(chess)
-		blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule(chess)
-		rookMovesRule = RookMovesRule.getRookMovesRule(chess)
-		whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule(chess)
-		blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule(chess)
-		bishopMovesRule = BishopMovesRule.getBishopMovesRule(chess)
-		queenMovesRule = QueenMovesRule.getQueenMovesRule(chess)
-		kingMovesRule = KingMovesRule.getKingMovesRule(chess)
-		blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule(chess);
+//
+//		whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule(chess)
+//		blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule(chess)
+//		rookMovesRule = RookMovesRule.getRookMovesRule(chess)
+//		whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule(chess)
+//		blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule(chess)
+//		bishopMovesRule = BishopMovesRule.getBishopMovesRule(chess)
+//		queenMovesRule = QueenMovesRule.getQueenMovesRule(chess)
+//		kingMovesRule = KingMovesRule.getKingMovesRule(chess)
+//		blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule(chess);
 		ruleGroups.add(blackPawnMovesRule)
 		ruleGroups.add(blackKnightMovesRule)
 

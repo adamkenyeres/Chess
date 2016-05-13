@@ -1,21 +1,21 @@
 package chess.queries
 import "http://example.com/chessdiagram"
-pattern blackMoves(piece : Piece, square : Square){
+pattern blackMoves(piece : Piece, square : Square, chess : Chess){
 	Piece.colour(piece, ::Black);
-	find blackPawnMoves(piece, square);
+	find blackPawnMoves(piece, square, chess);
 }or{
 	Piece.colour(piece, ::Black);
-	find blackKnightMoves(piece, square);
+	find blackKnightMoves(piece, square, chess);
 }or{
 	Piece.colour(piece, ::Black);
-	find rookMoves(piece, square);
+	find rookMoves(piece, square, chess);
 }or{
 	Piece.colour(piece, ::Black);
-	find bishopMoves(piece, square);
+	find bishopMoves(piece, square, chess);
 }or{
 	Piece.colour(piece, ::Black);
-	find queenMoves(piece, square);
+	find queenMoves(piece, square, chess);
 }or{
 	Piece.colour(piece, ::Black);
-	find kingMoves(piece, square);
+	find kingMoves(piece, square, chess);
 }

@@ -3,6 +3,7 @@ package chess.queries;
 import chess.queries.WhiteBishopMovesMatch;
 import chess.queries.util.WhiteBishopMovesQuerySpecification;
 import chessdiagram.Bishop;
+import chessdiagram.Chess;
 import chessdiagram.Square;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,9 +28,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern whiteBishopMoves(piece : Bishop, square : Square){
+ * pattern whiteBishopMoves(piece : Bishop, square : Square, chess : Chess){
  * 	Bishop.colour(piece, ::White);
- * 	find bishopMoves(piece, square);
+ * 	find bishopMoves(piece, square, chess);
  * }
  * </pre></code>
  * 
@@ -62,6 +63,8 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
   
   private final static int POSITION_SQUARE = 1;
   
+  private final static int POSITION_CHESS = 2;
+  
   private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(WhiteBishopMovesMatcher.class);
   
   /**
@@ -80,11 +83,12 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return matches represented as a WhiteBishopMovesMatch object.
    * 
    */
-  public Collection<WhiteBishopMovesMatch> getAllMatches(final Bishop pPiece, final Square pSquare) {
-    return rawGetAllMatches(new Object[]{pPiece, pSquare});
+  public Collection<WhiteBishopMovesMatch> getAllMatches(final Bishop pPiece, final Square pSquare, final Chess pChess) {
+    return rawGetAllMatches(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
@@ -92,11 +96,12 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return a match represented as a WhiteBishopMovesMatch object, or null if no match is found.
    * 
    */
-  public WhiteBishopMovesMatch getOneArbitraryMatch(final Bishop pPiece, final Square pSquare) {
-    return rawGetOneArbitraryMatch(new Object[]{pPiece, pSquare});
+  public WhiteBishopMovesMatch getOneArbitraryMatch(final Bishop pPiece, final Square pSquare, final Chess pChess) {
+    return rawGetOneArbitraryMatch(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
@@ -104,33 +109,36 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * under any possible substitution of the unspecified parameters (if any).
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final Bishop pPiece, final Square pSquare) {
-    return rawHasMatch(new Object[]{pPiece, pSquare});
+  public boolean hasMatch(final Bishop pPiece, final Square pSquare, final Chess pChess) {
+    return rawHasMatch(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
    * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final Bishop pPiece, final Square pSquare) {
-    return rawCountMatches(new Object[]{pPiece, pSquare});
+  public int countMatches(final Bishop pPiece, final Square pSquare, final Chess pChess) {
+    return rawCountMatches(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
    * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final Bishop pPiece, final Square pSquare, final IMatchProcessor<? super WhiteBishopMovesMatch> processor) {
-    rawForEachMatch(new Object[]{pPiece, pSquare}, processor);
+  public void forEachMatch(final Bishop pPiece, final Square pSquare, final Chess pChess, final IMatchProcessor<? super WhiteBishopMovesMatch> processor) {
+    rawForEachMatch(new Object[]{pPiece, pSquare, pChess}, processor);
   }
   
   /**
@@ -138,12 +146,13 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process the selected match.
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final Bishop pPiece, final Square pSquare, final IMatchProcessor<? super WhiteBishopMovesMatch> processor) {
-    return rawForOneArbitraryMatch(new Object[]{pPiece, pSquare}, processor);
+  public boolean forOneArbitraryMatch(final Bishop pPiece, final Square pSquare, final Chess pChess, final IMatchProcessor<? super WhiteBishopMovesMatch> processor) {
+    return rawForOneArbitraryMatch(new Object[]{pPiece, pSquare, pChess}, processor);
   }
   
   /**
@@ -152,11 +161,12 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public WhiteBishopMovesMatch newMatch(final Bishop pPiece, final Square pSquare) {
-    return WhiteBishopMovesMatch.newMatch(pPiece, pSquare);
+  public WhiteBishopMovesMatch newMatch(final Bishop pPiece, final Square pSquare, final Chess pChess) {
+    return WhiteBishopMovesMatch.newMatch(pPiece, pSquare, pChess);
   }
   
   /**
@@ -193,10 +203,11 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Bishop> getAllValuesOfpiece(final Square pSquare) {
+  public Set<Bishop> getAllValuesOfpiece(final Square pSquare, final Chess pChess) {
     return rawAccumulateAllValuesOfpiece(new Object[]{
     null, 
-    pSquare
+    pSquare, 
+    pChess
     });
   }
   
@@ -234,9 +245,52 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Square> getAllValuesOfsquare(final Bishop pPiece) {
+  public Set<Square> getAllValuesOfsquare(final Bishop pPiece, final Chess pChess) {
     return rawAccumulateAllValuesOfsquare(new Object[]{
     pPiece, 
+    null, 
+    pChess
+    });
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  protected Set<Chess> rawAccumulateAllValuesOfchess(final Object[] parameters) {
+    Set<Chess> results = new HashSet<Chess>();
+    rawAccumulateAllValues(POSITION_CHESS, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess() {
+    return rawAccumulateAllValuesOfchess(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final WhiteBishopMovesMatch partialMatch) {
+    return rawAccumulateAllValuesOfchess(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final Bishop pPiece, final Square pSquare) {
+    return rawAccumulateAllValuesOfchess(new Object[]{
+    pPiece, 
+    pSquare, 
     null
     });
   }
@@ -244,7 +298,7 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
   @Override
   protected WhiteBishopMovesMatch tupleToMatch(final Tuple t) {
     try {
-    	return WhiteBishopMovesMatch.newMatch((Bishop) t.get(POSITION_PIECE), (Square) t.get(POSITION_SQUARE));
+    	return WhiteBishopMovesMatch.newMatch((Bishop) t.get(POSITION_PIECE), (Square) t.get(POSITION_SQUARE), (Chess) t.get(POSITION_CHESS));
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in tuple not properly typed!",e);
     	return null;
@@ -254,7 +308,7 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
   @Override
   protected WhiteBishopMovesMatch arrayToMatch(final Object[] match) {
     try {
-    	return WhiteBishopMovesMatch.newMatch((Bishop) match[POSITION_PIECE], (Square) match[POSITION_SQUARE]);
+    	return WhiteBishopMovesMatch.newMatch((Bishop) match[POSITION_PIECE], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;
@@ -264,7 +318,7 @@ public class WhiteBishopMovesMatcher extends BaseMatcher<WhiteBishopMovesMatch> 
   @Override
   protected WhiteBishopMovesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return WhiteBishopMovesMatch.newMutableMatch((Bishop) match[POSITION_PIECE], (Square) match[POSITION_SQUARE]);
+    	return WhiteBishopMovesMatch.newMutableMatch((Bishop) match[POSITION_PIECE], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;

@@ -97,24 +97,26 @@ public class TestingClass {
 	public void test() throws ViatraQueryException, IOException, ExecutionException {
 		initialize();
 		board.refresh();
-		DSETransformationRule<?, ?> blackPawnRule = BlackPawnMovesRule.getBlackPawnMovesRule(chess);
+		
+		
 		DesignSpaceExplorer dse = new DesignSpaceExplorer();
 		dse.setInitialModel(chess);
+		DSETransformationRule<?, ?> blackPawnRule = BlackPawnMovesRule.getBlackPawnMovesRule();
 		dse.addTransformationRule(blackPawnRule);
 		dse.addObjective(new ConstraintsObjective("MyHardObjective")
-				.withHardConstraint(InChessWhiteQuerySpecification.instance())
-				.withSoftConstraint(InChessWhiteQuerySpecification.instance(), 0.2));
+				.withHardConstraint(InChessWhiteQuerySpecification.instance()));
 		dse.addMetaModelPackage(ChessdiagramPackage.eINSTANCE);
-//		dse.setStateCoderFactory(new SimpleStateCoderFactory(dse.getMetaModelPackages()));
-		dse.setStateCoderFactory(new ChessStateCoderFactory());
+		dse.setStateCoderFactory(new SimpleStateCoderFactory(dse.getMetaModelPackages()));
+//		dse.setStateCoderFactory(new ChessStateCoderFactory());
 		dse.startExploration(Strategies.createBfsStrategy(4));
 		Collection<Solution> solutions = dse.getSolutions();
+		System.out.println("size: "+solutions.size());
 		if (!solutions.isEmpty()) {
 			System.out.println(dse.toStringSolutions());
-//			Solution sol = solutions.iterator().next();
-//			tra = sol.getArbitraryTrajectory();
-//			tra.setModel(chess);
-//			startTimer();
+			Solution sol = solutions.iterator().next();
+			tra = sol.getArbitraryTrajectory();
+			tra.setModel(chess);
+			startTimer();
 		}
 		System.in.read();
 	}

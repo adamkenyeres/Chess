@@ -227,20 +227,20 @@ public class BoardVisualizer implements ActionListener {
 		}
 	}
 
-	public void showMoves(Piece p) throws ViatraQueryException {
-		AllMovessMatcher matcher = AllMovessMatcher.on(engine);
-
-		matcher.forEachMatch(matcher.newMatch(p, null), new AllMovessProcessor() {
-
-			@Override
-			public void process(Piece pPiece, Square pSquare) { // TODO
-				// Auto-generated method stub //
-				// pSquare.setColour(Colour.RED);
-			}
-		});
-
-		colourRedSquares();
-	}
+//	public void showMoves(Piece p) throws ViatraQueryException {
+//		AllMovessMatcher matcher = AllMovessMatcher.on(engine);
+//
+//		matcher.forEachMatch(matcher.newMatch(p, null), new AllMovessProcessor() {
+//
+//			@Override
+//			public void process(Piece pPiece, Square pSquare) { // TODO
+//				// Auto-generated method stub //
+//				// pSquare.setColour(Colour.RED);
+//			}
+//		});
+//
+//		colourRedSquares();
+//	}
 
 	public void castling(chessdiagram.Piece king, chessdiagram.Piece rook) {
 		int kingPos = king.getPos();

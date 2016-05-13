@@ -1,6 +1,7 @@
 package chess.queries.util;
 
 import chess.queries.KnightMovesMatch;
+import chessdiagram.Chess;
 import chessdiagram.Knight;
 import chessdiagram.Square;
 import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
@@ -17,12 +18,13 @@ public abstract class KnightMovesProcessor implements IMatchProcessor<KnightMove
    * Defines the action that is to be executed on each match.
    * @param pKnight the value of pattern parameter knight in the currently processed match
    * @param pSquare the value of pattern parameter square in the currently processed match
+   * @param pChess the value of pattern parameter chess in the currently processed match
    * 
    */
-  public abstract void process(final Knight pKnight, final Square pSquare);
+  public abstract void process(final Knight pKnight, final Square pSquare, final Chess pChess);
   
   @Override
   public void process(final KnightMovesMatch match) {
-    process(match.getKnight(), match.getSquare());
+    process(match.getKnight(), match.getSquare(), match.getChess());
   }
 }

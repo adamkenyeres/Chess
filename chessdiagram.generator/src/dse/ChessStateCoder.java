@@ -43,7 +43,7 @@ public class ChessStateCoder implements IStateCoder {
 			public int compare(Piece o1, Piece o2) {
 				// TODO Auto-generated method stub
 
-				return o1.getColour().compareTo(o2.getColour());
+				return o1.getPos()-o2.getPos();
 			}
 
 		});
@@ -106,48 +106,49 @@ public class ChessStateCoder implements IStateCoder {
 	@Override
 	public Object createActivationCode(IPatternMatch match) {
 		// TODO Auto-generated method stub
-		
+		StringBuilder sb = new StringBuilder();
+		 String[] tokens = match.specification().getFullyQualifiedName().split("\\.");
+	        sb.append(tokens[tokens.length - 1]);
 		if (match instanceof WhitePawnMovesMatch) {
 			WhitePawnMovesMatch m = (WhitePawnMovesMatch) match;
-			return ("WhitePawnMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else if (match instanceof WhiteKnightMovesMatch) {
 			WhiteKnightMovesMatch m = (WhiteKnightMovesMatch) match;
-			return ("WhiteKnightMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else if (match instanceof BlackPawnMovesMatch) {
 			BlackPawnMovesMatch m = (BlackPawnMovesMatch) match;
-			System.out.println(m.getClass().getName());
-			return ("BlackPawnMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else if (match instanceof BlackKnightMovesMatch) {
 			BlackKnightMovesMatch m = (BlackKnightMovesMatch) match;
-			return ("BlackKnightMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else if (match instanceof RookMovesMatch) {
 			RookMovesMatch m = (RookMovesMatch) match;
-			return ("RookMoves:{" + getPieceStateCode(m.getRook()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getRook()).toString() + "}").intern();
 			
 		} else if (match instanceof BishopMovesMatch) {
 			BishopMovesMatch m = (BishopMovesMatch) match;
-			return ("BishopMoves:{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else if (match instanceof QueenMovesMatch) {
 			QueenMovesMatch m = (QueenMovesMatch) match;
-			return ("QueenMoves:{" + getPieceStateCode(m.getQueen()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getQueen()).toString() + "}").intern();
 			
 		} else if (match instanceof KingMovesMatch) {
 			KingMovesMatch m = (KingMovesMatch) match;
-			return ("KingMovesMatch:{" + getPieceStateCode(m.getKing()).toString() + "}").intern();
+			return (sb+":{" + getPieceStateCode(m.getKing()).toString() + "}").intern();
 			
 		} else if (match instanceof InChessWhiteMatch) {
 			InChessWhiteMatch m = (InChessWhiteMatch) match;
-			return "InChessWhite:{" + getPieceStateCode(m.getKing()).toString()
-					+ getPieceStateCode(m.getPiece()).toString() + "}".intern();
+			return (sb+":{" + getPieceStateCode(m.getKing()).toString()
+					+ getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else if (match instanceof InChessBlackMatch) {
 			InChessBlackMatch m = (InChessBlackMatch) match;
-			return ("InchessBlack:{" + getPieceStateCode(m.getKing()).toString()
+			return (sb+":{" + getPieceStateCode(m.getKing()).toString()
 					+ getPieceStateCode(m.getPiece()).toString() + "}").intern();
 			
 		} else {

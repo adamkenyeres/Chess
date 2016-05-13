@@ -23,7 +23,7 @@ public class BlackPawnMovesRule {
 				BlackPawnMovesQuerySpecification.instance(), new BlackPawnMovesProcessor() {
 
 					@Override
-					public void process(Pawn pPiece, Square pSquare) {
+					public void process(Pawn pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -32,29 +32,28 @@ public class BlackPawnMovesRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> getBlackPawnMovesRule(Chess chess)
+	public static DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> getBlackPawnMovesRule()
 			throws ViatraQueryException {
 
 		DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> rule = new DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher>(
 				BlackPawnMovesQuerySpecification.instance(), new BlackPawnMovesProcessor() {
 
 					@Override
-					public void process(Pawn pPiece, Square pSquare) {
+					public void process(Pawn pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
 
-						
 						// If we moved 2 rows en passant is enabled
 						if (pPiece.getSquare().getSE() == pSquare || pPiece.getSquare().getSW() == pSquare) {
 							Pawn attackingPawn = (Pawn) pSquare.getN().getPiece();
 							if (attackingPawn != null && attackingPawn.getPieceType() == PieceType.PAWN
 									&& attackingPawn.isEnPassantEnabled())
-								Generator.removePiece(chess, pSquare.getN().getPiece());
+								Generator.removePiece(pChess, pSquare.getN().getPiece());
 						}
-						Generator.setEnpassantFalse(chess);
-						System.out.println("pos: " + pPiece.getPos()+" square: "+pSquare.getId());
+						Generator.setEnpassantFalse(pChess);
+						System.out.println("pos: " + pPiece.getPos() + " square: " + pSquare.getId());
 						if ((Math.abs(pPiece.getPos() / 8 - pSquare.getId() / 8) == 2)) {
 							System.out.println("Enpassant is enabled");
 							pPiece.setEnPassantEnabled(true);
@@ -67,8 +66,8 @@ public class BlackPawnMovesRule {
 							q.setPos(pPiece.getPos());
 							q.setColour(Colour.BLACK);
 							q.setPieceType(PieceType.QUEEN);
-							chess.getBlackPlayer().getPiece().remove(pPiece);
-							chess.getBlackPlayer().getPiece().add(q);
+							pChess.getBlackPlayer().getPiece().remove(pPiece);
+							pChess.getBlackPlayer().getPiece().add(q);
 
 						}
 					}

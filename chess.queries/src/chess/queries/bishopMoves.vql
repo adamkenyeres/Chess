@@ -50,17 +50,18 @@ pattern diagonalMoves(piece : Piece, square : Square){
 	find southDiagonalMoves(piece, square);
 }
 
-pattern bishopMoves(piece : Bishop, square : Square){
+pattern bishopMoves(piece : Bishop, square : Square, chess : Chess){
 	find diagonalMoves(piece, square);
+	Chess(chess);
 }
 
-pattern whiteBishopMoves(piece : Bishop, square : Square){
+pattern whiteBishopMoves(piece : Bishop, square : Square, chess : Chess){
 	Bishop.colour(piece, ::White);
-	find bishopMoves(piece, square);
+	find bishopMoves(piece, square, chess);
 }
 
-pattern blackBishopMoves(piece : Bishop, square : Square){
+pattern blackBishopMoves(piece : Bishop, square : Square, chess : Chess){
 	Bishop.colour(piece, ::Black);
-	find bishopMoves(piece, square);
+	find bishopMoves(piece, square, chess);
 }
 

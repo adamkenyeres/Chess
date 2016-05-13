@@ -1,67 +1,76 @@
 package chess.queries
+
 import "http://example.com/chessdiagram"
 
-pattern knightMoves(knight : Knight, square : Square){
+pattern knightMoves(knight : Knight, square : Square, chess : Chess) {
 	find square(knight, knightSquare);
 	find N(knightSquare, N1);
 	find N(N1, N2);
 	find W(N2, square);
-}or{
+	Chess(chess);
+} or {
 	find square(knight, knightSquare);
 	find N(knightSquare, N1);
 	find N(N1, N2);
 	find E(N2, square);
-}or{
+	Chess(chess);
+} or {
 	find square(knight, knightSquare);
 	find N(knightSquare, N1);
 	find W(N1, W1);
 	find W(W1, square);
-}or{
+	Chess(chess);
+} or {
 	find square(knight, knightSquare);
 	find N(knightSquare, N1);
 	find E(N1, E1);
 	find E(E1, square);
-}or{
+	Chess(chess);
+} or {
 	find square(knight, knightSquare);
 	find S(knightSquare, S1);
 	find S(S1, S2);
 	find W(S2, square);
-	
-}or{
+	Chess(chess);
+
+} or {
 	find square(knight, knightSquare);
 	find S(knightSquare, S1);
 	find S(S1, S2);
 	find E(S2, square);
-}or{
+	Chess(chess);
+} or {
 	find square(knight, knightSquare);
 	find S(knightSquare, S1);
 	find W(S1, W1);
 	find W(W1, square);
-}or{
+	Chess(chess);
+} or {
 	find square(knight, knightSquare);
 	find S(knightSquare, S1);
 	find E(S1, E1);
 	find E(E1, square);
+	Chess(chess);
 }
 
-pattern whiteKnightMoves(piece : Knight, square : Square) {
+pattern whiteKnightMoves(piece : Knight, square : Square, chess : Chess) {
 	Knight.colour(piece, ::White);
-	find knightMoves(piece, square);
+	find knightMoves(piece, square, chess);
 	find pieceOnSquare(square, atackingPiece);
 	find canAttack(piece, atackingPiece);
-}or{
+} or {
 	Knight.colour(piece, ::White);
-	find knightMoves(piece, square);
+	find knightMoves(piece, square, chess);
 	neg find pieceOnSquare(square, _);
 }
 
-pattern blackKnightMoves(piece : Knight, square : Square) {
+pattern blackKnightMoves(piece : Knight, square : Square, chess : Chess) {
 	Knight.colour(piece, ::Black);
-	find knightMoves(piece, square);
+	find knightMoves(piece, square, chess);
 	find pieceOnSquare(square, atackingPiece);
 	find canAttack(piece, atackingPiece);
-}or{
+} or {
 	Knight.colour(piece, ::Black);
-	find knightMoves(piece, square);
+	find knightMoves(piece, square, chess);
 	neg find pieceOnSquare(square, _);
 }

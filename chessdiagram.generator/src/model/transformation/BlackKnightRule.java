@@ -20,27 +20,28 @@ public class BlackKnightRule {
 				BlackKnightMovesQuerySpecification.instance(), new BlackKnightMovesProcessor() {
 
 					@Override
-					public void process(Knight pPiece, Square pSquare) {
+					public void process(Knight pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
+
 					}
 				});
 		return rule;
 	}
 
-	public static DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> getBlackKnightMovesRule(
-			Chess chess) throws ViatraQueryException {
+	public static DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> getBlackKnightMovesRule()
+			throws ViatraQueryException {
 		DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> rule = new DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher>(
 				BlackKnightMovesQuerySpecification.instance(), new BlackKnightMovesProcessor() {
 
 					@Override
-					public void process(Knight pPiece, Square pSquare) {
+					public void process(Knight pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
 						pPiece.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(chess);
+						Generator.setEnpassantFalse(pChess);
 					}
 				});
 		return rule;

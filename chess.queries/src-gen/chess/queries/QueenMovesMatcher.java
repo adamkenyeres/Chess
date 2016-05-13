@@ -2,6 +2,7 @@ package chess.queries;
 
 import chess.queries.QueenMovesMatch;
 import chess.queries.util.QueenMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.Queen;
 import chessdiagram.Square;
 import java.util.Collection;
@@ -27,10 +28,14 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern queenMoves(queen : Queen, square : Square){
+ * pattern queenMoves(queen : Queen, square : Square, chess : Chess){
+ * 	All the diagonal moves 
  * 	find diagonalMoves(queen, square);
+ * 	Chess(chess);
  * }or{
+ * 	All the horizontal moves 
  * 	find horizontalOrVerticalMoves(queen, square);
+ * 	Chess(chess);
  * }
  * </pre></code>
  * 
@@ -63,6 +68,8 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
   
   private final static int POSITION_SQUARE = 1;
   
+  private final static int POSITION_CHESS = 2;
+  
   private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(QueenMovesMatcher.class);
   
   /**
@@ -81,11 +88,12 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return matches represented as a QueenMovesMatch object.
    * 
    */
-  public Collection<QueenMovesMatch> getAllMatches(final Queen pQueen, final Square pSquare) {
-    return rawGetAllMatches(new Object[]{pQueen, pSquare});
+  public Collection<QueenMovesMatch> getAllMatches(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return rawGetAllMatches(new Object[]{pQueen, pSquare, pChess});
   }
   
   /**
@@ -93,11 +101,12 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return a match represented as a QueenMovesMatch object, or null if no match is found.
    * 
    */
-  public QueenMovesMatch getOneArbitraryMatch(final Queen pQueen, final Square pSquare) {
-    return rawGetOneArbitraryMatch(new Object[]{pQueen, pSquare});
+  public QueenMovesMatch getOneArbitraryMatch(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return rawGetOneArbitraryMatch(new Object[]{pQueen, pSquare, pChess});
   }
   
   /**
@@ -105,33 +114,36 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * under any possible substitution of the unspecified parameters (if any).
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final Queen pQueen, final Square pSquare) {
-    return rawHasMatch(new Object[]{pQueen, pSquare});
+  public boolean hasMatch(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return rawHasMatch(new Object[]{pQueen, pSquare, pChess});
   }
   
   /**
    * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final Queen pQueen, final Square pSquare) {
-    return rawCountMatches(new Object[]{pQueen, pSquare});
+  public int countMatches(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return rawCountMatches(new Object[]{pQueen, pSquare, pChess});
   }
   
   /**
    * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final Queen pQueen, final Square pSquare, final IMatchProcessor<? super QueenMovesMatch> processor) {
-    rawForEachMatch(new Object[]{pQueen, pSquare}, processor);
+  public void forEachMatch(final Queen pQueen, final Square pSquare, final Chess pChess, final IMatchProcessor<? super QueenMovesMatch> processor) {
+    rawForEachMatch(new Object[]{pQueen, pSquare, pChess}, processor);
   }
   
   /**
@@ -139,12 +151,13 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process the selected match.
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final Queen pQueen, final Square pSquare, final IMatchProcessor<? super QueenMovesMatch> processor) {
-    return rawForOneArbitraryMatch(new Object[]{pQueen, pSquare}, processor);
+  public boolean forOneArbitraryMatch(final Queen pQueen, final Square pSquare, final Chess pChess, final IMatchProcessor<? super QueenMovesMatch> processor) {
+    return rawForOneArbitraryMatch(new Object[]{pQueen, pSquare, pChess}, processor);
   }
   
   /**
@@ -153,11 +166,12 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public QueenMovesMatch newMatch(final Queen pQueen, final Square pSquare) {
-    return QueenMovesMatch.newMatch(pQueen, pSquare);
+  public QueenMovesMatch newMatch(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return QueenMovesMatch.newMatch(pQueen, pSquare, pChess);
   }
   
   /**
@@ -194,10 +208,11 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Queen> getAllValuesOfqueen(final Square pSquare) {
+  public Set<Queen> getAllValuesOfqueen(final Square pSquare, final Chess pChess) {
     return rawAccumulateAllValuesOfqueen(new Object[]{
     null, 
-    pSquare
+    pSquare, 
+    pChess
     });
   }
   
@@ -235,9 +250,52 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Square> getAllValuesOfsquare(final Queen pQueen) {
+  public Set<Square> getAllValuesOfsquare(final Queen pQueen, final Chess pChess) {
     return rawAccumulateAllValuesOfsquare(new Object[]{
     pQueen, 
+    null, 
+    pChess
+    });
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  protected Set<Chess> rawAccumulateAllValuesOfchess(final Object[] parameters) {
+    Set<Chess> results = new HashSet<Chess>();
+    rawAccumulateAllValues(POSITION_CHESS, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess() {
+    return rawAccumulateAllValuesOfchess(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final QueenMovesMatch partialMatch) {
+    return rawAccumulateAllValuesOfchess(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final Queen pQueen, final Square pSquare) {
+    return rawAccumulateAllValuesOfchess(new Object[]{
+    pQueen, 
+    pSquare, 
     null
     });
   }
@@ -245,7 +303,7 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
   @Override
   protected QueenMovesMatch tupleToMatch(final Tuple t) {
     try {
-    	return QueenMovesMatch.newMatch((Queen) t.get(POSITION_QUEEN), (Square) t.get(POSITION_SQUARE));
+    	return QueenMovesMatch.newMatch((Queen) t.get(POSITION_QUEEN), (Square) t.get(POSITION_SQUARE), (Chess) t.get(POSITION_CHESS));
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in tuple not properly typed!",e);
     	return null;
@@ -255,7 +313,7 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
   @Override
   protected QueenMovesMatch arrayToMatch(final Object[] match) {
     try {
-    	return QueenMovesMatch.newMatch((Queen) match[POSITION_QUEEN], (Square) match[POSITION_SQUARE]);
+    	return QueenMovesMatch.newMatch((Queen) match[POSITION_QUEEN], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;
@@ -265,7 +323,7 @@ public class QueenMovesMatcher extends BaseMatcher<QueenMovesMatch> {
   @Override
   protected QueenMovesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return QueenMovesMatch.newMutableMatch((Queen) match[POSITION_QUEEN], (Square) match[POSITION_SQUARE]);
+    	return QueenMovesMatch.newMutableMatch((Queen) match[POSITION_QUEEN], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;

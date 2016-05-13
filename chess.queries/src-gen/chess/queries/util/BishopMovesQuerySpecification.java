@@ -60,7 +60,7 @@ public final class BishopMovesQuerySpecification extends BaseGeneratedEMFQuerySp
   
   @Override
   public BishopMovesMatch newMatch(final Object... parameters) {
-    return BishopMovesMatch.newMatch((chessdiagram.Bishop) parameters[0], (chessdiagram.Square) parameters[1]);
+    return BishopMovesMatch.newMatch((chessdiagram.Bishop) parameters[0], (chessdiagram.Square) parameters[1], (chessdiagram.Chess) parameters[2]);
   }
   
   /**
@@ -99,14 +99,15 @@ public final class BishopMovesQuerySpecification extends BaseGeneratedEMFQuerySp
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("piece","square");
+      return Arrays.asList("piece","square","chess");
     }
     
     @Override
     public List<PParameter> getParameters() {
       return Arrays.asList(
       			 new PParameter("piece", "chessdiagram.Bishop", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Bishop"))),
-      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square")))
+      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square"))),
+      			 new PParameter("chess", "chessdiagram.Chess", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Chess")))
       			);
     }
     
@@ -118,14 +119,19 @@ public final class BishopMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Bishop")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find diagonalMoves(piece, square)
       		new PositivePatternCall(body, new FlatTuple(var_piece, var_square), DiagonalMovesQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	// to silence compiler error

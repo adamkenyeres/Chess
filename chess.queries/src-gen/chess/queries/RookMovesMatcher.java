@@ -2,6 +2,7 @@ package chess.queries;
 
 import chess.queries.RookMovesMatch;
 import chess.queries.util.RookMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.Rook;
 import chessdiagram.Square;
 import java.util.Collection;
@@ -27,10 +28,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern rookMoves(rook : Rook, square : Square){
+ * pattern rookMoves(rook : Rook, square : Square, chess : Chess){
  * 	find verticalRookMoves(rook, square);
+ * 	Chess(chess);
  * }or{
  * 	find horizontalRookMoves(rook, square);
+ * 	Chess(chess);
  * }
  * </pre></code>
  * 
@@ -63,6 +66,8 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
   
   private final static int POSITION_SQUARE = 1;
   
+  private final static int POSITION_CHESS = 2;
+  
   private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(RookMovesMatcher.class);
   
   /**
@@ -81,11 +86,12 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return matches represented as a RookMovesMatch object.
    * 
    */
-  public Collection<RookMovesMatch> getAllMatches(final Rook pRook, final Square pSquare) {
-    return rawGetAllMatches(new Object[]{pRook, pSquare});
+  public Collection<RookMovesMatch> getAllMatches(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return rawGetAllMatches(new Object[]{pRook, pSquare, pChess});
   }
   
   /**
@@ -93,11 +99,12 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return a match represented as a RookMovesMatch object, or null if no match is found.
    * 
    */
-  public RookMovesMatch getOneArbitraryMatch(final Rook pRook, final Square pSquare) {
-    return rawGetOneArbitraryMatch(new Object[]{pRook, pSquare});
+  public RookMovesMatch getOneArbitraryMatch(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return rawGetOneArbitraryMatch(new Object[]{pRook, pSquare, pChess});
   }
   
   /**
@@ -105,33 +112,36 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * under any possible substitution of the unspecified parameters (if any).
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final Rook pRook, final Square pSquare) {
-    return rawHasMatch(new Object[]{pRook, pSquare});
+  public boolean hasMatch(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return rawHasMatch(new Object[]{pRook, pSquare, pChess});
   }
   
   /**
    * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final Rook pRook, final Square pSquare) {
-    return rawCountMatches(new Object[]{pRook, pSquare});
+  public int countMatches(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return rawCountMatches(new Object[]{pRook, pSquare, pChess});
   }
   
   /**
    * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final Rook pRook, final Square pSquare, final IMatchProcessor<? super RookMovesMatch> processor) {
-    rawForEachMatch(new Object[]{pRook, pSquare}, processor);
+  public void forEachMatch(final Rook pRook, final Square pSquare, final Chess pChess, final IMatchProcessor<? super RookMovesMatch> processor) {
+    rawForEachMatch(new Object[]{pRook, pSquare, pChess}, processor);
   }
   
   /**
@@ -139,12 +149,13 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process the selected match.
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final Rook pRook, final Square pSquare, final IMatchProcessor<? super RookMovesMatch> processor) {
-    return rawForOneArbitraryMatch(new Object[]{pRook, pSquare}, processor);
+  public boolean forOneArbitraryMatch(final Rook pRook, final Square pSquare, final Chess pChess, final IMatchProcessor<? super RookMovesMatch> processor) {
+    return rawForOneArbitraryMatch(new Object[]{pRook, pSquare, pChess}, processor);
   }
   
   /**
@@ -153,11 +164,12 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public RookMovesMatch newMatch(final Rook pRook, final Square pSquare) {
-    return RookMovesMatch.newMatch(pRook, pSquare);
+  public RookMovesMatch newMatch(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return RookMovesMatch.newMatch(pRook, pSquare, pChess);
   }
   
   /**
@@ -194,10 +206,11 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Rook> getAllValuesOfrook(final Square pSquare) {
+  public Set<Rook> getAllValuesOfrook(final Square pSquare, final Chess pChess) {
     return rawAccumulateAllValuesOfrook(new Object[]{
     null, 
-    pSquare
+    pSquare, 
+    pChess
     });
   }
   
@@ -235,9 +248,52 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Square> getAllValuesOfsquare(final Rook pRook) {
+  public Set<Square> getAllValuesOfsquare(final Rook pRook, final Chess pChess) {
     return rawAccumulateAllValuesOfsquare(new Object[]{
     pRook, 
+    null, 
+    pChess
+    });
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  protected Set<Chess> rawAccumulateAllValuesOfchess(final Object[] parameters) {
+    Set<Chess> results = new HashSet<Chess>();
+    rawAccumulateAllValues(POSITION_CHESS, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess() {
+    return rawAccumulateAllValuesOfchess(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final RookMovesMatch partialMatch) {
+    return rawAccumulateAllValuesOfchess(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final Rook pRook, final Square pSquare) {
+    return rawAccumulateAllValuesOfchess(new Object[]{
+    pRook, 
+    pSquare, 
     null
     });
   }
@@ -245,7 +301,7 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
   @Override
   protected RookMovesMatch tupleToMatch(final Tuple t) {
     try {
-    	return RookMovesMatch.newMatch((Rook) t.get(POSITION_ROOK), (Square) t.get(POSITION_SQUARE));
+    	return RookMovesMatch.newMatch((Rook) t.get(POSITION_ROOK), (Square) t.get(POSITION_SQUARE), (Chess) t.get(POSITION_CHESS));
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in tuple not properly typed!",e);
     	return null;
@@ -255,7 +311,7 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
   @Override
   protected RookMovesMatch arrayToMatch(final Object[] match) {
     try {
-    	return RookMovesMatch.newMatch((Rook) match[POSITION_ROOK], (Square) match[POSITION_SQUARE]);
+    	return RookMovesMatch.newMatch((Rook) match[POSITION_ROOK], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;
@@ -265,7 +321,7 @@ public class RookMovesMatcher extends BaseMatcher<RookMovesMatch> {
   @Override
   protected RookMovesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return RookMovesMatch.newMutableMatch((Rook) match[POSITION_ROOK], (Square) match[POSITION_SQUARE]);
+    	return RookMovesMatch.newMutableMatch((Rook) match[POSITION_ROOK], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;

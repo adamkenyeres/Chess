@@ -1,6 +1,7 @@
 package chess.queries;
 
 import chess.queries.util.RookMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.Rook;
 import chessdiagram.Square;
 import java.util.Arrays;
@@ -28,17 +29,21 @@ public abstract class RookMovesMatch extends BasePatternMatch {
   
   private Square fSquare;
   
-  private static List<String> parameterNames = makeImmutableList("rook", "square");
+  private Chess fChess;
   
-  private RookMovesMatch(final Rook pRook, final Square pSquare) {
+  private static List<String> parameterNames = makeImmutableList("rook", "square", "chess");
+  
+  private RookMovesMatch(final Rook pRook, final Square pSquare, final Chess pChess) {
     this.fRook = pRook;
     this.fSquare = pSquare;
+    this.fChess = pChess;
   }
   
   @Override
   public Object get(final String parameterName) {
     if ("rook".equals(parameterName)) return this.fRook;
     if ("square".equals(parameterName)) return this.fSquare;
+    if ("chess".equals(parameterName)) return this.fChess;
     return null;
   }
   
@@ -50,6 +55,10 @@ public abstract class RookMovesMatch extends BasePatternMatch {
     return this.fSquare;
   }
   
+  public Chess getChess() {
+    return this.fChess;
+  }
+  
   @Override
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -59,6 +68,10 @@ public abstract class RookMovesMatch extends BasePatternMatch {
     }
     if ("square".equals(parameterName) ) {
     	this.fSquare = (Square) newValue;
+    	return true;
+    }
+    if ("chess".equals(parameterName) ) {
+    	this.fChess = (Chess) newValue;
     	return true;
     }
     return false;
@@ -74,6 +87,11 @@ public abstract class RookMovesMatch extends BasePatternMatch {
     this.fSquare = pSquare;
   }
   
+  public void setChess(final Chess pChess) {
+    if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+    this.fChess = pChess;
+  }
+  
   @Override
   public String patternName() {
     return "chess.queries.rookMoves";
@@ -86,12 +104,12 @@ public abstract class RookMovesMatch extends BasePatternMatch {
   
   @Override
   public Object[] toArray() {
-    return new Object[]{fRook, fSquare};
+    return new Object[]{fRook, fSquare, fChess};
   }
   
   @Override
   public RookMovesMatch toImmutable() {
-    return isMutable() ? newMatch(fRook, fSquare) : this;
+    return isMutable() ? newMatch(fRook, fSquare, fChess) : this;
   }
   
   @Override
@@ -99,7 +117,9 @@ public abstract class RookMovesMatch extends BasePatternMatch {
     StringBuilder result = new StringBuilder();
     result.append("\"rook\"=" + prettyPrintValue(fRook) + ", ");
     
-    result.append("\"square\"=" + prettyPrintValue(fSquare)
+    result.append("\"square\"=" + prettyPrintValue(fSquare) + ", ");
+    
+    result.append("\"chess\"=" + prettyPrintValue(fChess)
     );
     return result.toString();
   }
@@ -110,6 +130,7 @@ public abstract class RookMovesMatch extends BasePatternMatch {
     int result = 1;
     result = prime * result + ((fRook == null) ? 0 : fRook.hashCode());
     result = prime * result + ((fSquare == null) ? 0 : fSquare.hashCode());
+    result = prime * result + ((fChess == null) ? 0 : fChess.hashCode());
     return result;
   }
   
@@ -134,6 +155,8 @@ public abstract class RookMovesMatch extends BasePatternMatch {
     else if (!fRook.equals(other.fRook)) return false;
     if (fSquare == null) {if (other.fSquare != null) return false;}
     else if (!fSquare.equals(other.fSquare)) return false;
+    if (fChess == null) {if (other.fChess != null) return false;}
+    else if (!fChess.equals(other.fChess)) return false;
     return true;
   }
   
@@ -155,7 +178,7 @@ public abstract class RookMovesMatch extends BasePatternMatch {
    * 
    */
   public static RookMovesMatch newEmptyMatch() {
-    return new Mutable(null, null);
+    return new Mutable(null, null, null);
   }
   
   /**
@@ -164,11 +187,12 @@ public abstract class RookMovesMatch extends BasePatternMatch {
    * 
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static RookMovesMatch newMutableMatch(final Rook pRook, final Square pSquare) {
-    return new Mutable(pRook, pSquare);
+  public static RookMovesMatch newMutableMatch(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return new Mutable(pRook, pSquare, pChess);
   }
   
   /**
@@ -177,16 +201,17 @@ public abstract class RookMovesMatch extends BasePatternMatch {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pRook the fixed value of pattern parameter rook, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public static RookMovesMatch newMatch(final Rook pRook, final Square pSquare) {
-    return new Immutable(pRook, pSquare);
+  public static RookMovesMatch newMatch(final Rook pRook, final Square pSquare, final Chess pChess) {
+    return new Immutable(pRook, pSquare, pChess);
   }
   
   private static final class Mutable extends RookMovesMatch {
-    Mutable(final Rook pRook, final Square pSquare) {
-      super(pRook, pSquare);
+    Mutable(final Rook pRook, final Square pSquare, final Chess pChess) {
+      super(pRook, pSquare, pChess);
     }
     
     @Override
@@ -196,8 +221,8 @@ public abstract class RookMovesMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends RookMovesMatch {
-    Immutable(final Rook pRook, final Square pSquare) {
-      super(pRook, pSquare);
+    Immutable(final Rook pRook, final Square pSquare, final Chess pChess) {
+      super(pRook, pSquare, pChess);
     }
     
     @Override

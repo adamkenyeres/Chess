@@ -1,6 +1,7 @@
 package chess.queries;
 
 import chess.queries.util.InChessQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.King;
 import chessdiagram.Piece;
 import java.util.Arrays;
@@ -28,17 +29,21 @@ public abstract class InChessMatch extends BasePatternMatch {
   
   private Piece fPiece;
   
-  private static List<String> parameterNames = makeImmutableList("king", "piece");
+  private Chess fChess;
   
-  private InChessMatch(final King pKing, final Piece pPiece) {
+  private static List<String> parameterNames = makeImmutableList("king", "piece", "chess");
+  
+  private InChessMatch(final King pKing, final Piece pPiece, final Chess pChess) {
     this.fKing = pKing;
     this.fPiece = pPiece;
+    this.fChess = pChess;
   }
   
   @Override
   public Object get(final String parameterName) {
     if ("king".equals(parameterName)) return this.fKing;
     if ("piece".equals(parameterName)) return this.fPiece;
+    if ("chess".equals(parameterName)) return this.fChess;
     return null;
   }
   
@@ -50,6 +55,10 @@ public abstract class InChessMatch extends BasePatternMatch {
     return this.fPiece;
   }
   
+  public Chess getChess() {
+    return this.fChess;
+  }
+  
   @Override
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -59,6 +68,10 @@ public abstract class InChessMatch extends BasePatternMatch {
     }
     if ("piece".equals(parameterName) ) {
     	this.fPiece = (Piece) newValue;
+    	return true;
+    }
+    if ("chess".equals(parameterName) ) {
+    	this.fChess = (Chess) newValue;
     	return true;
     }
     return false;
@@ -74,6 +87,11 @@ public abstract class InChessMatch extends BasePatternMatch {
     this.fPiece = pPiece;
   }
   
+  public void setChess(final Chess pChess) {
+    if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+    this.fChess = pChess;
+  }
+  
   @Override
   public String patternName() {
     return "chess.queries.inChess";
@@ -86,12 +104,12 @@ public abstract class InChessMatch extends BasePatternMatch {
   
   @Override
   public Object[] toArray() {
-    return new Object[]{fKing, fPiece};
+    return new Object[]{fKing, fPiece, fChess};
   }
   
   @Override
   public InChessMatch toImmutable() {
-    return isMutable() ? newMatch(fKing, fPiece) : this;
+    return isMutable() ? newMatch(fKing, fPiece, fChess) : this;
   }
   
   @Override
@@ -99,7 +117,9 @@ public abstract class InChessMatch extends BasePatternMatch {
     StringBuilder result = new StringBuilder();
     result.append("\"king\"=" + prettyPrintValue(fKing) + ", ");
     
-    result.append("\"piece\"=" + prettyPrintValue(fPiece)
+    result.append("\"piece\"=" + prettyPrintValue(fPiece) + ", ");
+    
+    result.append("\"chess\"=" + prettyPrintValue(fChess)
     );
     return result.toString();
   }
@@ -110,6 +130,7 @@ public abstract class InChessMatch extends BasePatternMatch {
     int result = 1;
     result = prime * result + ((fKing == null) ? 0 : fKing.hashCode());
     result = prime * result + ((fPiece == null) ? 0 : fPiece.hashCode());
+    result = prime * result + ((fChess == null) ? 0 : fChess.hashCode());
     return result;
   }
   
@@ -134,6 +155,8 @@ public abstract class InChessMatch extends BasePatternMatch {
     else if (!fKing.equals(other.fKing)) return false;
     if (fPiece == null) {if (other.fPiece != null) return false;}
     else if (!fPiece.equals(other.fPiece)) return false;
+    if (fChess == null) {if (other.fChess != null) return false;}
+    else if (!fChess.equals(other.fChess)) return false;
     return true;
   }
   
@@ -155,7 +178,7 @@ public abstract class InChessMatch extends BasePatternMatch {
    * 
    */
   public static InChessMatch newEmptyMatch() {
-    return new Mutable(null, null);
+    return new Mutable(null, null, null);
   }
   
   /**
@@ -164,11 +187,12 @@ public abstract class InChessMatch extends BasePatternMatch {
    * 
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static InChessMatch newMutableMatch(final King pKing, final Piece pPiece) {
-    return new Mutable(pKing, pPiece);
+  public static InChessMatch newMutableMatch(final King pKing, final Piece pPiece, final Chess pChess) {
+    return new Mutable(pKing, pPiece, pChess);
   }
   
   /**
@@ -177,16 +201,17 @@ public abstract class InChessMatch extends BasePatternMatch {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public static InChessMatch newMatch(final King pKing, final Piece pPiece) {
-    return new Immutable(pKing, pPiece);
+  public static InChessMatch newMatch(final King pKing, final Piece pPiece, final Chess pChess) {
+    return new Immutable(pKing, pPiece, pChess);
   }
   
   private static final class Mutable extends InChessMatch {
-    Mutable(final King pKing, final Piece pPiece) {
-      super(pKing, pPiece);
+    Mutable(final King pKing, final Piece pPiece, final Chess pChess) {
+      super(pKing, pPiece, pChess);
     }
     
     @Override
@@ -196,8 +221,8 @@ public abstract class InChessMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends InChessMatch {
-    Immutable(final King pKing, final Piece pPiece) {
-      super(pKing, pPiece);
+    Immutable(final King pKing, final Piece pPiece, final Chess pChess) {
+      super(pKing, pPiece, pChess);
     }
     
     @Override

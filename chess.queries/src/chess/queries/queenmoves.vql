@@ -1,8 +1,12 @@
 package chess.queries
 import "http://example.com/chessdiagram"
 
-pattern queenMoves(queen : Queen, square : Square){
+pattern queenMoves(queen : Queen, square : Square, chess : Chess){
+	/*All the diagonal moves */
 	find diagonalMoves(queen, square);
+	Chess(chess);
 }or{
+	/*All the horizontal moves */
 	find horizontalOrVerticalMoves(queen, square);
+	Chess(chess);
 }

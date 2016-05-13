@@ -2,6 +2,7 @@ package chess.queries;
 
 import chess.queries.KingMovesMatch;
 import chess.queries.util.KingMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.King;
 import chessdiagram.Square;
 import java.util.Collection;
@@ -27,78 +28,94 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern kingMoves(king : King, square : Square){
+ * pattern kingMoves(king : King, square : Square, chess : Chess){
  * 	find square(king, kingSquare);
  * 	find N(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find NE(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find E(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find SE(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find S(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find SW(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find W(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, kingSquare);
  * 	find NW(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * }or{///////////////
+ * 	Chess(chess);
+ * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find N(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find NE(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find E(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find SE(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find S(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find SW(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find W(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find NW(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
+ * 	Chess(chess);
  * }or{
  * 	King.firstMove(king, firsMoveKing);	//Casting All for possible ways
  * 	check(firsMoveKing == true);
@@ -108,6 +125,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesWest(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
+ * 	Chess(chess);
  * }or{
  * 	King.firstMove(king, firsMoveKing);
  * 	check(firsMoveKing == true);
@@ -117,6 +135,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesEast(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
+ * 	Chess(chess);
  * }or{
  * 	King.firstMove(king, firsMoveKing);	//Casting for black king
  * 	check(firsMoveKing == true);
@@ -126,6 +145,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesWest(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
+ * 	Chess(chess);
  * }or{
  * 	King.firstMove(king, firsMoveKing);	
  * 	check(firsMoveKing == true);
@@ -135,6 +155,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesEast(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
+ * 	Chess(chess);
  * }
  * </pre></code>
  * 
@@ -167,6 +188,8 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
   
   private final static int POSITION_SQUARE = 1;
   
+  private final static int POSITION_CHESS = 2;
+  
   private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(KingMovesMatcher.class);
   
   /**
@@ -185,11 +208,12 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return matches represented as a KingMovesMatch object.
    * 
    */
-  public Collection<KingMovesMatch> getAllMatches(final King pKing, final Square pSquare) {
-    return rawGetAllMatches(new Object[]{pKing, pSquare});
+  public Collection<KingMovesMatch> getAllMatches(final King pKing, final Square pSquare, final Chess pChess) {
+    return rawGetAllMatches(new Object[]{pKing, pSquare, pChess});
   }
   
   /**
@@ -197,11 +221,12 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return a match represented as a KingMovesMatch object, or null if no match is found.
    * 
    */
-  public KingMovesMatch getOneArbitraryMatch(final King pKing, final Square pSquare) {
-    return rawGetOneArbitraryMatch(new Object[]{pKing, pSquare});
+  public KingMovesMatch getOneArbitraryMatch(final King pKing, final Square pSquare, final Chess pChess) {
+    return rawGetOneArbitraryMatch(new Object[]{pKing, pSquare, pChess});
   }
   
   /**
@@ -209,33 +234,36 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * under any possible substitution of the unspecified parameters (if any).
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final King pKing, final Square pSquare) {
-    return rawHasMatch(new Object[]{pKing, pSquare});
+  public boolean hasMatch(final King pKing, final Square pSquare, final Chess pChess) {
+    return rawHasMatch(new Object[]{pKing, pSquare, pChess});
   }
   
   /**
    * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final King pKing, final Square pSquare) {
-    return rawCountMatches(new Object[]{pKing, pSquare});
+  public int countMatches(final King pKing, final Square pSquare, final Chess pChess) {
+    return rawCountMatches(new Object[]{pKing, pSquare, pChess});
   }
   
   /**
    * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final King pKing, final Square pSquare, final IMatchProcessor<? super KingMovesMatch> processor) {
-    rawForEachMatch(new Object[]{pKing, pSquare}, processor);
+  public void forEachMatch(final King pKing, final Square pSquare, final Chess pChess, final IMatchProcessor<? super KingMovesMatch> processor) {
+    rawForEachMatch(new Object[]{pKing, pSquare, pChess}, processor);
   }
   
   /**
@@ -243,12 +271,13 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process the selected match.
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final King pKing, final Square pSquare, final IMatchProcessor<? super KingMovesMatch> processor) {
-    return rawForOneArbitraryMatch(new Object[]{pKing, pSquare}, processor);
+  public boolean forOneArbitraryMatch(final King pKing, final Square pSquare, final Chess pChess, final IMatchProcessor<? super KingMovesMatch> processor) {
+    return rawForOneArbitraryMatch(new Object[]{pKing, pSquare, pChess}, processor);
   }
   
   /**
@@ -257,11 +286,12 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pKing the fixed value of pattern parameter king, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public KingMovesMatch newMatch(final King pKing, final Square pSquare) {
-    return KingMovesMatch.newMatch(pKing, pSquare);
+  public KingMovesMatch newMatch(final King pKing, final Square pSquare, final Chess pChess) {
+    return KingMovesMatch.newMatch(pKing, pSquare, pChess);
   }
   
   /**
@@ -298,10 +328,11 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<King> getAllValuesOfking(final Square pSquare) {
+  public Set<King> getAllValuesOfking(final Square pSquare, final Chess pChess) {
     return rawAccumulateAllValuesOfking(new Object[]{
     null, 
-    pSquare
+    pSquare, 
+    pChess
     });
   }
   
@@ -339,9 +370,52 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Square> getAllValuesOfsquare(final King pKing) {
+  public Set<Square> getAllValuesOfsquare(final King pKing, final Chess pChess) {
     return rawAccumulateAllValuesOfsquare(new Object[]{
     pKing, 
+    null, 
+    pChess
+    });
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  protected Set<Chess> rawAccumulateAllValuesOfchess(final Object[] parameters) {
+    Set<Chess> results = new HashSet<Chess>();
+    rawAccumulateAllValues(POSITION_CHESS, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess() {
+    return rawAccumulateAllValuesOfchess(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final KingMovesMatch partialMatch) {
+    return rawAccumulateAllValuesOfchess(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final King pKing, final Square pSquare) {
+    return rawAccumulateAllValuesOfchess(new Object[]{
+    pKing, 
+    pSquare, 
     null
     });
   }
@@ -349,7 +423,7 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
   @Override
   protected KingMovesMatch tupleToMatch(final Tuple t) {
     try {
-    	return KingMovesMatch.newMatch((King) t.get(POSITION_KING), (Square) t.get(POSITION_SQUARE));
+    	return KingMovesMatch.newMatch((King) t.get(POSITION_KING), (Square) t.get(POSITION_SQUARE), (Chess) t.get(POSITION_CHESS));
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in tuple not properly typed!",e);
     	return null;
@@ -359,7 +433,7 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
   @Override
   protected KingMovesMatch arrayToMatch(final Object[] match) {
     try {
-    	return KingMovesMatch.newMatch((King) match[POSITION_KING], (Square) match[POSITION_SQUARE]);
+    	return KingMovesMatch.newMatch((King) match[POSITION_KING], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;
@@ -369,7 +443,7 @@ public class KingMovesMatcher extends BaseMatcher<KingMovesMatch> {
   @Override
   protected KingMovesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return KingMovesMatch.newMutableMatch((King) match[POSITION_KING], (Square) match[POSITION_SQUARE]);
+    	return KingMovesMatch.newMutableMatch((King) match[POSITION_KING], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;

@@ -1,6 +1,7 @@
 package chess.queries;
 
 import chess.queries.util.BlackKnightMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.Knight;
 import chessdiagram.Square;
 import java.util.Arrays;
@@ -28,17 +29,21 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
   
   private Square fSquare;
   
-  private static List<String> parameterNames = makeImmutableList("piece", "square");
+  private Chess fChess;
   
-  private BlackKnightMovesMatch(final Knight pPiece, final Square pSquare) {
+  private static List<String> parameterNames = makeImmutableList("piece", "square", "chess");
+  
+  private BlackKnightMovesMatch(final Knight pPiece, final Square pSquare, final Chess pChess) {
     this.fPiece = pPiece;
     this.fSquare = pSquare;
+    this.fChess = pChess;
   }
   
   @Override
   public Object get(final String parameterName) {
     if ("piece".equals(parameterName)) return this.fPiece;
     if ("square".equals(parameterName)) return this.fSquare;
+    if ("chess".equals(parameterName)) return this.fChess;
     return null;
   }
   
@@ -50,6 +55,10 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
     return this.fSquare;
   }
   
+  public Chess getChess() {
+    return this.fChess;
+  }
+  
   @Override
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -59,6 +68,10 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
     }
     if ("square".equals(parameterName) ) {
     	this.fSquare = (Square) newValue;
+    	return true;
+    }
+    if ("chess".equals(parameterName) ) {
+    	this.fChess = (Chess) newValue;
     	return true;
     }
     return false;
@@ -74,6 +87,11 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
     this.fSquare = pSquare;
   }
   
+  public void setChess(final Chess pChess) {
+    if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+    this.fChess = pChess;
+  }
+  
   @Override
   public String patternName() {
     return "chess.queries.blackKnightMoves";
@@ -86,12 +104,12 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
   
   @Override
   public Object[] toArray() {
-    return new Object[]{fPiece, fSquare};
+    return new Object[]{fPiece, fSquare, fChess};
   }
   
   @Override
   public BlackKnightMovesMatch toImmutable() {
-    return isMutable() ? newMatch(fPiece, fSquare) : this;
+    return isMutable() ? newMatch(fPiece, fSquare, fChess) : this;
   }
   
   @Override
@@ -99,7 +117,9 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
     StringBuilder result = new StringBuilder();
     result.append("\"piece\"=" + prettyPrintValue(fPiece) + ", ");
     
-    result.append("\"square\"=" + prettyPrintValue(fSquare)
+    result.append("\"square\"=" + prettyPrintValue(fSquare) + ", ");
+    
+    result.append("\"chess\"=" + prettyPrintValue(fChess)
     );
     return result.toString();
   }
@@ -110,6 +130,7 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
     int result = 1;
     result = prime * result + ((fPiece == null) ? 0 : fPiece.hashCode());
     result = prime * result + ((fSquare == null) ? 0 : fSquare.hashCode());
+    result = prime * result + ((fChess == null) ? 0 : fChess.hashCode());
     return result;
   }
   
@@ -134,6 +155,8 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
     else if (!fPiece.equals(other.fPiece)) return false;
     if (fSquare == null) {if (other.fSquare != null) return false;}
     else if (!fSquare.equals(other.fSquare)) return false;
+    if (fChess == null) {if (other.fChess != null) return false;}
+    else if (!fChess.equals(other.fChess)) return false;
     return true;
   }
   
@@ -155,7 +178,7 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
    * 
    */
   public static BlackKnightMovesMatch newEmptyMatch() {
-    return new Mutable(null, null);
+    return new Mutable(null, null, null);
   }
   
   /**
@@ -164,11 +187,12 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
    * 
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static BlackKnightMovesMatch newMutableMatch(final Knight pPiece, final Square pSquare) {
-    return new Mutable(pPiece, pSquare);
+  public static BlackKnightMovesMatch newMutableMatch(final Knight pPiece, final Square pSquare, final Chess pChess) {
+    return new Mutable(pPiece, pSquare, pChess);
   }
   
   /**
@@ -177,16 +201,17 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public static BlackKnightMovesMatch newMatch(final Knight pPiece, final Square pSquare) {
-    return new Immutable(pPiece, pSquare);
+  public static BlackKnightMovesMatch newMatch(final Knight pPiece, final Square pSquare, final Chess pChess) {
+    return new Immutable(pPiece, pSquare, pChess);
   }
   
   private static final class Mutable extends BlackKnightMovesMatch {
-    Mutable(final Knight pPiece, final Square pSquare) {
-      super(pPiece, pSquare);
+    Mutable(final Knight pPiece, final Square pSquare, final Chess pChess) {
+      super(pPiece, pSquare, pChess);
     }
     
     @Override
@@ -196,8 +221,8 @@ public abstract class BlackKnightMovesMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends BlackKnightMovesMatch {
-    Immutable(final Knight pPiece, final Square pSquare) {
-      super(pPiece, pSquare);
+    Immutable(final Knight pPiece, final Square pSquare, final Chess pChess) {
+      super(pPiece, pSquare, pChess);
     }
     
     @Override

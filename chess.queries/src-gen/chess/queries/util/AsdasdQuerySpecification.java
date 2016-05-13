@@ -2,6 +2,7 @@ package chess.queries.util;
 
 import chess.queries.AsdasdMatch;
 import chess.queries.AsdasdMatcher;
+import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
 import java.util.Arrays;
 import java.util.List;
@@ -195,7 +196,8 @@ public final class AsdasdQuerySpecification extends BaseGeneratedEMFQuerySpecifi
     return (((id).intValue() - 1) / 8);
   }
   
-  private static boolean evaluateExpression_1_2(final Integer id, final Integer otherId) {
-    return ((otherId).intValue() == ((id).intValue() / 8));
+  private static boolean evaluateExpression_1_2(final Integer id, final Object otherId) {
+    boolean _equals = Objects.equal(otherId, Integer.valueOf(((id).intValue() / 8)));
+    return _equals;
   }
 }

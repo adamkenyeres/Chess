@@ -64,7 +64,7 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
   
   @Override
   public KnightMovesMatch newMatch(final Object... parameters) {
-    return KnightMovesMatch.newMatch((chessdiagram.Knight) parameters[0], (chessdiagram.Square) parameters[1]);
+    return KnightMovesMatch.newMatch((chessdiagram.Knight) parameters[0], (chessdiagram.Square) parameters[1], (chessdiagram.Chess) parameters[2]);
   }
   
   /**
@@ -103,14 +103,15 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("knight","square");
+      return Arrays.asList("knight","square","chess");
     }
     
     @Override
     public List<PParameter> getParameters() {
       return Arrays.asList(
       			 new PParameter("knight", "chessdiagram.Knight", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Knight"))),
-      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square")))
+      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square"))),
+      			 new PParameter("chess", "chessdiagram.Chess", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Chess")))
       			);
     }
     
@@ -122,14 +123,17 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_N1 = body.getOrCreateVariableByName("N1");
       		PVariable var_N2 = body.getOrCreateVariableByName("N2");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -139,20 +143,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_N1, var_N2), NQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find W(N2, square)
       		new PositivePatternCall(body, new FlatTuple(var_N2, var_square), WQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_N1 = body.getOrCreateVariableByName("N1");
       		PVariable var_N2 = body.getOrCreateVariableByName("N2");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -162,20 +171,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_N1, var_N2), NQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find E(N2, square)
       		new PositivePatternCall(body, new FlatTuple(var_N2, var_square), EQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_N1 = body.getOrCreateVariableByName("N1");
       		PVariable var_W1 = body.getOrCreateVariableByName("W1");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -185,20 +199,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_N1, var_W1), WQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find W(W1, square)
       		new PositivePatternCall(body, new FlatTuple(var_W1, var_square), WQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_N1 = body.getOrCreateVariableByName("N1");
       		PVariable var_E1 = body.getOrCreateVariableByName("E1");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -208,20 +227,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_N1, var_E1), EQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find E(E1, square)
       		new PositivePatternCall(body, new FlatTuple(var_E1, var_square), EQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_S1 = body.getOrCreateVariableByName("S1");
       		PVariable var_S2 = body.getOrCreateVariableByName("S2");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -231,20 +255,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_S1, var_S2), SQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find W(S2, square)
       		new PositivePatternCall(body, new FlatTuple(var_S2, var_square), WQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_S1 = body.getOrCreateVariableByName("S1");
       		PVariable var_S2 = body.getOrCreateVariableByName("S2");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -254,20 +283,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_S1, var_S2), SQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find E(S2, square)
       		new PositivePatternCall(body, new FlatTuple(var_S2, var_square), EQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_S1 = body.getOrCreateVariableByName("S1");
       		PVariable var_W1 = body.getOrCreateVariableByName("W1");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -277,20 +311,25 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_S1, var_W1), WQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find W(W1, square)
       		new PositivePatternCall(body, new FlatTuple(var_W1, var_square), WQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_knight = body.getOrCreateVariableByName("knight");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_knightSquare = body.getOrCreateVariableByName("knightSquare");
       		PVariable var_S1 = body.getOrCreateVariableByName("S1");
       		PVariable var_E1 = body.getOrCreateVariableByName("E1");
       		new TypeConstraint(body, new FlatTuple(var_knight), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_knight, "knight"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	find square(knight, knightSquare)
       		new PositivePatternCall(body, new FlatTuple(var_knight, var_knightSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
@@ -300,6 +339,8 @@ public final class KnightMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		new PositivePatternCall(body, new FlatTuple(var_S1, var_E1), EQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find E(E1, square)
       		new PositivePatternCall(body, new FlatTuple(var_E1, var_square), EQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	// to silence compiler error

@@ -20,7 +20,7 @@ public class WhiteKnightRule {
 				WhiteKnightMovesQuerySpecification.instance(), new WhiteKnightMovesProcessor() {
 
 					@Override
-					public void process(Knight pPiece, Square pSquare) {
+					public void process(Knight pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -29,19 +29,19 @@ public class WhiteKnightRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> getWhiteKnightMovesRule(
-			Chess chess) throws ViatraQueryException {
+	public static DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> getWhiteKnightMovesRule()
+			throws ViatraQueryException {
 		DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> rule = new DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher>(
 				WhiteKnightMovesQuerySpecification.instance(), new WhiteKnightMovesProcessor() {
 
 					@Override
-					public void process(Knight pPiece, Square pSquare) {
+					public void process(Knight pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
 						pPiece.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(chess);
+						Generator.setEnpassantFalse(pChess);
 					}
 
 				});

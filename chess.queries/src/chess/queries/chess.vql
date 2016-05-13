@@ -1,27 +1,27 @@
 package chess.queries
 import "http://example.com/chessdiagram"
 
-pattern allMovesNoChess(piece : Piece, square : Square) {
-	find whiteMoves(piece, square);
+pattern allMovesNoChess(piece : Piece, square : Square, chess : Chess) {
+	find whiteMoves(piece, square, chess);
 
 } or {
-	find blackMoves(piece, square);
+	find blackMoves(piece, square, chess);
 }
-pattern inChess(king : King, piece : Piece){
+pattern inChess(king : King, piece : Piece, chess : Chess){
 	find square(king, kingSquare);
-	find allMovesNoChess(piece, kingSquare);	
+	find allMovesNoChess(piece, kingSquare, chess);	
 }
-pattern inChessWhite(king: King, piece : Piece){
+pattern inChessWhite(king: King, piece : Piece, chess : Chess){
 	King.colour(king, ::White);
 	find square(king, kingSquare);
-	find blackMoves(piece, kingSquare);
+	find blackMoves(piece, kingSquare, chess);
 }
-pattern inChessBlack(king : King, piece : Piece){
+pattern inChessBlack(king : King, piece : Piece, chess : Chess){
 	King.colour(king, ::Black);
 	find square(king, kingSquare);
-	find whiteMoves(piece, kingSquare);
+	find whiteMoves(piece, kingSquare, chess);
 }
-pattern whiteCheckmate(king : King, piece : Piece){
-	find inChessWhite(king, piece);
-	neg find whiteMoves(_,_);
+pattern whiteCheckmate(king : King, piece : Piece, chess : Chess){
+	find inChessWhite(king, piece, chess);
+	neg find whiteMoves(_,_, chess);
 }

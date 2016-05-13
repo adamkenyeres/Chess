@@ -1,6 +1,7 @@
 package chess.queries;
 
 import chess.queries.util.QueenMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.Queen;
 import chessdiagram.Square;
 import java.util.Arrays;
@@ -28,17 +29,21 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
   
   private Square fSquare;
   
-  private static List<String> parameterNames = makeImmutableList("queen", "square");
+  private Chess fChess;
   
-  private QueenMovesMatch(final Queen pQueen, final Square pSquare) {
+  private static List<String> parameterNames = makeImmutableList("queen", "square", "chess");
+  
+  private QueenMovesMatch(final Queen pQueen, final Square pSquare, final Chess pChess) {
     this.fQueen = pQueen;
     this.fSquare = pSquare;
+    this.fChess = pChess;
   }
   
   @Override
   public Object get(final String parameterName) {
     if ("queen".equals(parameterName)) return this.fQueen;
     if ("square".equals(parameterName)) return this.fSquare;
+    if ("chess".equals(parameterName)) return this.fChess;
     return null;
   }
   
@@ -50,6 +55,10 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
     return this.fSquare;
   }
   
+  public Chess getChess() {
+    return this.fChess;
+  }
+  
   @Override
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
@@ -59,6 +68,10 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
     }
     if ("square".equals(parameterName) ) {
     	this.fSquare = (Square) newValue;
+    	return true;
+    }
+    if ("chess".equals(parameterName) ) {
+    	this.fChess = (Chess) newValue;
     	return true;
     }
     return false;
@@ -74,6 +87,11 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
     this.fSquare = pSquare;
   }
   
+  public void setChess(final Chess pChess) {
+    if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+    this.fChess = pChess;
+  }
+  
   @Override
   public String patternName() {
     return "chess.queries.queenMoves";
@@ -86,12 +104,12 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
   
   @Override
   public Object[] toArray() {
-    return new Object[]{fQueen, fSquare};
+    return new Object[]{fQueen, fSquare, fChess};
   }
   
   @Override
   public QueenMovesMatch toImmutable() {
-    return isMutable() ? newMatch(fQueen, fSquare) : this;
+    return isMutable() ? newMatch(fQueen, fSquare, fChess) : this;
   }
   
   @Override
@@ -99,7 +117,9 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
     StringBuilder result = new StringBuilder();
     result.append("\"queen\"=" + prettyPrintValue(fQueen) + ", ");
     
-    result.append("\"square\"=" + prettyPrintValue(fSquare)
+    result.append("\"square\"=" + prettyPrintValue(fSquare) + ", ");
+    
+    result.append("\"chess\"=" + prettyPrintValue(fChess)
     );
     return result.toString();
   }
@@ -110,6 +130,7 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
     int result = 1;
     result = prime * result + ((fQueen == null) ? 0 : fQueen.hashCode());
     result = prime * result + ((fSquare == null) ? 0 : fSquare.hashCode());
+    result = prime * result + ((fChess == null) ? 0 : fChess.hashCode());
     return result;
   }
   
@@ -134,6 +155,8 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
     else if (!fQueen.equals(other.fQueen)) return false;
     if (fSquare == null) {if (other.fSquare != null) return false;}
     else if (!fSquare.equals(other.fSquare)) return false;
+    if (fChess == null) {if (other.fChess != null) return false;}
+    else if (!fChess.equals(other.fChess)) return false;
     return true;
   }
   
@@ -155,7 +178,7 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
    * 
    */
   public static QueenMovesMatch newEmptyMatch() {
-    return new Mutable(null, null);
+    return new Mutable(null, null, null);
   }
   
   /**
@@ -164,11 +187,12 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
    * 
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static QueenMovesMatch newMutableMatch(final Queen pQueen, final Square pSquare) {
-    return new Mutable(pQueen, pSquare);
+  public static QueenMovesMatch newMutableMatch(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return new Mutable(pQueen, pSquare, pChess);
   }
   
   /**
@@ -177,16 +201,17 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pQueen the fixed value of pattern parameter queen, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public static QueenMovesMatch newMatch(final Queen pQueen, final Square pSquare) {
-    return new Immutable(pQueen, pSquare);
+  public static QueenMovesMatch newMatch(final Queen pQueen, final Square pSquare, final Chess pChess) {
+    return new Immutable(pQueen, pSquare, pChess);
   }
   
   private static final class Mutable extends QueenMovesMatch {
-    Mutable(final Queen pQueen, final Square pSquare) {
-      super(pQueen, pSquare);
+    Mutable(final Queen pQueen, final Square pSquare, final Chess pChess) {
+      super(pQueen, pSquare, pChess);
     }
     
     @Override
@@ -196,8 +221,8 @@ public abstract class QueenMovesMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends QueenMovesMatch {
-    Immutable(final Queen pQueen, final Square pSquare) {
-      super(pQueen, pSquare);
+    Immutable(final Queen pQueen, final Square pSquare, final Chess pChess) {
+      super(pQueen, pSquare, pChess);
     }
     
     @Override

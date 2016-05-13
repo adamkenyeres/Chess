@@ -46,8 +46,10 @@ pattern horizontalOrVerticalMoves(piece : Piece, square : Square){
 	find verticalRookMoves(piece, square);
 }
 
-pattern rookMoves(rook : Rook, square : Square){
+pattern rookMoves(rook : Rook, square : Square, chess : Chess){
 	find verticalRookMoves(rook, square);
+	Chess(chess);
 }or{
 	find horizontalRookMoves(rook, square);
+	Chess(chess);
 }

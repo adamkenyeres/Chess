@@ -21,7 +21,7 @@ public class QueenMovesRule {
 				QueenMovesQuerySpecification.instance(), new QueenMovesProcessor() {
 
 					@Override
-					public void process(Queen pQueen, Square pSquare) {
+					public void process(Queen pQueen, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -29,19 +29,19 @@ public class QueenMovesRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> getQueenMovesRule(Chess chess)
+	public static DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> getQueenMovesRule()
 			throws ViatraQueryException {
 		DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> rule = new DSETransformationRule<QueenMovesMatch, QueenMovesMatcher>(
 				QueenMovesQuerySpecification.instance(), new QueenMovesProcessor() {
 
 					@Override
-					public void process(Queen pQueen, Square pSquare) {
+					public void process(Queen pQueen, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
 						pQueen.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(chess);
+						Generator.setEnpassantFalse(pChess);
 					}
 				});
 		return rule;

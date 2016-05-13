@@ -66,7 +66,7 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
   
   @Override
   public BlackKnightMovesMatch newMatch(final Object... parameters) {
-    return BlackKnightMovesMatch.newMatch((chessdiagram.Knight) parameters[0], (chessdiagram.Square) parameters[1]);
+    return BlackKnightMovesMatch.newMatch((chessdiagram.Knight) parameters[0], (chessdiagram.Square) parameters[1], (chessdiagram.Chess) parameters[2]);
   }
   
   /**
@@ -105,14 +105,15 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("piece","square");
+      return Arrays.asList("piece","square","chess");
     }
     
     @Override
     public List<PParameter> getParameters() {
       return Arrays.asList(
       			 new PParameter("piece", "chessdiagram.Knight", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Knight"))),
-      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square")))
+      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square"))),
+      			 new PParameter("chess", "chessdiagram.Chess", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Chess")))
       			);
     }
     
@@ -124,12 +125,15 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_atackingPiece = body.getOrCreateVariableByName("atackingPiece");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Knight.colour(piece, ::Black)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -138,8 +142,8 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
       		new TypeConstraint(body, new FlatTuple(var_piece, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
       		new Equality(body, var__virtual_1_, var__virtual_0_);
-      		// 	find knightMoves(piece, square)
-      		new PositivePatternCall(body, new FlatTuple(var_piece, var_square), KnightMovesQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	find knightMoves(piece, square, chess)
+      		new PositivePatternCall(body, new FlatTuple(var_piece, var_square, var_chess), KnightMovesQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find pieceOnSquare(square, atackingPiece)
       		new PositivePatternCall(body, new FlatTuple(var_square, var_atackingPiece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(piece, atackingPiece)
@@ -150,12 +154,15 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Knight.colour(piece, ::Black)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -164,8 +171,8 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
       		new TypeConstraint(body, new FlatTuple(var_piece, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
       		new Equality(body, var__virtual_1_, var__virtual_0_);
-      		// 	find knightMoves(piece, square)
-      		new PositivePatternCall(body, new FlatTuple(var_piece, var_square), KnightMovesQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	find knightMoves(piece, square, chess)
+      		new PositivePatternCall(body, new FlatTuple(var_piece, var_square, var_chess), KnightMovesQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquare(square, _)
       		new NegativePatternCall(body, new FlatTuple(var_square, var___0_), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		bodies.add(body);

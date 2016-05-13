@@ -21,7 +21,7 @@ public class KingMovesRule {
 				KingMovesQuerySpecification.instance(), new KingMovesProcessor() {
 
 					@Override
-					public void process(King pKing, Square pSquare) {
+					public void process(King pKing, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -29,13 +29,13 @@ public class KingMovesRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<KingMovesMatch, KingMovesMatcher> getKingMovesRule(Chess chess)
+	public static DSETransformationRule<KingMovesMatch, KingMovesMatcher> getKingMovesRule()
 			throws ViatraQueryException {
 		DSETransformationRule<KingMovesMatch, KingMovesMatcher> rule = new DSETransformationRule<KingMovesMatch, KingMovesMatcher>(
 				KingMovesQuerySpecification.instance(), new KingMovesProcessor() {
 
 					@Override
-					public void process(King pKing, Square pSquare) {
+					public void process(King pKing, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
 							/* Castling */
@@ -50,7 +50,7 @@ public class KingMovesRule {
 								}
 
 							} /* Hitting a piece */ else {
-								Generator.removePiece(chess, pSquare.getPiece());
+								Generator.removePiece(pChess, pSquare.getPiece());
 								pKing.setPos(pSquare.getId());
 
 							}
@@ -59,7 +59,7 @@ public class KingMovesRule {
 						}
 						if (pKing.isFirstMove())
 							pKing.setFirstMove(false);
-						Generator.setEnpassantFalse(chess);
+						Generator.setEnpassantFalse(pChess);
 					}
 				});
 		return rule;

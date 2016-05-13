@@ -24,7 +24,7 @@ public class WhitePawnMovesRule {
 				WhitePawnMovesQuerySpecification.instance(), new WhitePawnMovesProcessor() {
 
 					@Override
-					public void process(Pawn ppPiece, Square pSquare) {
+					public void process(Pawn pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -33,18 +33,18 @@ public class WhitePawnMovesRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> getWhitePawnMovesRule(Chess chess)
+	public static DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> getWhitePawnMovesRule()
 			throws ViatraQueryException {
 
 		DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> rule = new DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher>(
 				WhitePawnMovesQuerySpecification.instance(), new WhitePawnMovesProcessor() {
 
 					@Override
-					public void process(Pawn pPiece, Square pSquare) {
+					public void process(Pawn pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						//If we are hitting a piece
+						// If we are hitting a piece
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
 
 						// //Checking if we want to hit a pawn with enpassant
@@ -52,13 +52,13 @@ public class WhitePawnMovesRule {
 							Pawn attackingPawn = (Pawn) pSquare.getS().getPiece();
 							if (attackingPawn != null && attackingPawn.getPieceType() == PieceType.PAWN
 									&& attackingPawn.isEnPassantEnabled())
-								Generator.removePiece(chess, pSquare.getS().getPiece());
+								Generator.removePiece(pChess, pSquare.getS().getPiece());
 						}
-						//We moved so all enpassants are false
-						Generator.setEnpassantFalse(chess);
-						//if we moved 2 en passant is true
+						// We moved so all enpassants are false
+						Generator.setEnpassantFalse(pChess);
+						// if we moved 2 en passant is true
 						if (Math.abs(pPiece.getPos() / 8 - pSquare.getId() / 8) == 2) {
-							//pPiece.setEnPassantEnabled(true);
+							// pPiece.setEnPassantEnabled(true);
 							System.out.println("En passant is true");
 							pPiece.setEnPassantEnabled(true);
 						}
@@ -72,8 +72,8 @@ public class WhitePawnMovesRule {
 							q.setPos(pPiece.getPos());
 							q.setColour(Colour.WHITE);
 							q.setPieceType(PieceType.QUEEN);
-							chess.getWhitePlayer().getPiece().remove(pPiece);
-							chess.getWhitePlayer().getPiece().add(q);
+							pChess.getWhitePlayer().getPiece().remove(pPiece);
+							pChess.getWhitePlayer().getPiece().add(q);
 
 						}
 					}

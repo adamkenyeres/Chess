@@ -64,7 +64,7 @@ public final class InChessBlackQuerySpecification extends BaseGeneratedEMFQueryS
   
   @Override
   public InChessBlackMatch newMatch(final Object... parameters) {
-    return InChessBlackMatch.newMatch((chessdiagram.King) parameters[0], (chessdiagram.Piece) parameters[1]);
+    return InChessBlackMatch.newMatch((chessdiagram.King) parameters[0], (chessdiagram.Piece) parameters[1], (chessdiagram.Chess) parameters[2]);
   }
   
   /**
@@ -103,14 +103,15 @@ public final class InChessBlackQuerySpecification extends BaseGeneratedEMFQueryS
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("king","piece");
+      return Arrays.asList("king","piece","chess");
     }
     
     @Override
     public List<PParameter> getParameters() {
       return Arrays.asList(
       			 new PParameter("king", "chessdiagram.King", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "King"))),
-      			 new PParameter("piece", "chessdiagram.Piece", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Piece")))
+      			 new PParameter("piece", "chessdiagram.Piece", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Piece"))),
+      			 new PParameter("chess", "chessdiagram.Chess", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Chess")))
       			);
     }
     
@@ -122,12 +123,15 @@ public final class InChessBlackQuerySpecification extends BaseGeneratedEMFQueryS
       		PBody body = new PBody(this);
       		PVariable var_king = body.getOrCreateVariableByName("king");
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_kingSquare = body.getOrCreateVariableByName("kingSquare");
       		new TypeConstraint(body, new FlatTuple(var_king), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "King")));
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Piece")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_king, "king"),
-      		   new ExportedParameter(body, var_piece, "piece")
+      		   new ExportedParameter(body, var_piece, "piece"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	King.colour(king, ::Black)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -138,8 +142,8 @@ public final class InChessBlackQuerySpecification extends BaseGeneratedEMFQueryS
       		new Equality(body, var__virtual_1_, var__virtual_0_);
       		// 	find square(king, kingSquare)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_kingSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	find whiteMoves(piece, kingSquare)
-      		new PositivePatternCall(body, new FlatTuple(var_piece, var_kingSquare), WhiteMovesQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	find whiteMoves(piece, kingSquare, chess)
+      		new PositivePatternCall(body, new FlatTuple(var_piece, var_kingSquare, var_chess), WhiteMovesQuerySpecification.instance().getInternalQueryRepresentation());
       		bodies.add(body);
       	}
       	// to silence compiler error

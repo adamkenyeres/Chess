@@ -76,7 +76,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
   
   @Override
   public WhitePawnMovesMatch newMatch(final Object... parameters) {
-    return WhitePawnMovesMatch.newMatch((chessdiagram.Pawn) parameters[0], (chessdiagram.Square) parameters[1]);
+    return WhitePawnMovesMatch.newMatch((chessdiagram.Pawn) parameters[0], (chessdiagram.Square) parameters[1], (chessdiagram.Chess) parameters[2]);
   }
   
   /**
@@ -115,14 +115,15 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("piece","square");
+      return Arrays.asList("piece","square","chess");
     }
     
     @Override
     public List<PParameter> getParameters() {
       return Arrays.asList(
       			 new PParameter("piece", "chessdiagram.Pawn", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Pawn"))),
-      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square")))
+      			 new PParameter("square", "chessdiagram.Square", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Square"))),
+      			 new PParameter("chess", "chessdiagram.Chess", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://example.com/chessdiagram", "Chess")))
       			);
     }
     
@@ -134,12 +135,15 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Pawn.colour(piece, ::White)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -154,20 +158,25 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
       		PVariable var_squareNorth = body.getOrCreateVariableByName("squareNorth");
       		PVariable var_bool = body.getOrCreateVariableByName("bool");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Pawn.colour(piece, ::White)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -210,19 +219,23 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		                                    return evaluateExpression_2_1(bool);
       		                                }
       		
-      		                        },  null); 
+      		                        },  null); // 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Pawn.colour(piece, ::White)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -237,18 +250,23 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NWQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find squareContainsBlackPiece(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), SquareContainsBlackPieceQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Pawn.colour(piece, ::White)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -263,21 +281,26 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NEQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find squareContainsBlackPiece(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), SquareContainsBlackPieceQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_pieceSquare = body.getOrCreateVariableByName("pieceSquare");
       		PVariable var_atackingSquare = body.getOrCreateVariableByName("atackingSquare");
       		PVariable var_atackingPawn = body.getOrCreateVariableByName("atackingPawn");
       		PVariable var_bool = body.getOrCreateVariableByName("bool");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Pawn.colour(piece, ::White)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -320,21 +343,26 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		
       		                        },  null); // 	find N(atackingSquare, square)
       		new PositivePatternCall(body, new FlatTuple(var_atackingSquare, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	{
       		PBody body = new PBody(this);
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
+      		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_pieceSquare = body.getOrCreateVariableByName("pieceSquare");
       		PVariable var_atackingSquare = body.getOrCreateVariableByName("atackingSquare");
       		PVariable var_atackingPawn = body.getOrCreateVariableByName("atackingPawn");
       		PVariable var_bool = body.getOrCreateVariableByName("bool");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
       		   new ExportedParameter(body, var_piece, "piece"),
-      		   new ExportedParameter(body, var_square, "square")
+      		   new ExportedParameter(body, var_square, "square"),
+      		   new ExportedParameter(body, var_chess, "chess")
       		));
       		// 	Pawn.colour(piece, ::White)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -377,6 +405,8 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		
       		                        },  null); // 	find N(atackingSquare, square)
       		new PositivePatternCall(body, new FlatTuple(var_atackingSquare, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess(chess)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		bodies.add(body);
       	}
       	// to silence compiler error

@@ -2,12 +2,12 @@ package chess.queries
 
 import "http://example.com/chessdiagram"
 
-pattern allMovess(piece : Piece, square : Square) {
-	find whiteMoves(piece, square);
+pattern allMovess(piece : Piece, square : Square, chess : Chess) {
+	find whiteMoves(piece, square, chess);
 	//neg find inChessWhite(king, pieceBlack);
 
 } or {
-	find blackMoves(piece, square);
+	find blackMoves(piece, square, chess);
 	//King.colour(king, ::Black);
 	//neg find inChess(king, _whitePiece);
 }

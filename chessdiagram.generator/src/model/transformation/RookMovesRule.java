@@ -20,7 +20,7 @@ public class RookMovesRule {
 				RookMovesQuerySpecification.instance(), new RookMovesProcessor() {
 
 					@Override
-					public void process(Rook pRook, Square pSquare) {
+					public void process(Rook pRook, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -29,21 +29,21 @@ public class RookMovesRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<RookMovesMatch, RookMovesMatcher> getRookMovesRule(Chess chess)
+	public static DSETransformationRule<RookMovesMatch, RookMovesMatcher> getRookMovesRule()
 			throws ViatraQueryException {
 		DSETransformationRule<RookMovesMatch, RookMovesMatcher> rule = new DSETransformationRule<RookMovesMatch, RookMovesMatcher>(
 				RookMovesQuerySpecification.instance(), new RookMovesProcessor() {
 
 					@Override
-					public void process(Rook pRook, Square pSquare) {
+					public void process(Rook pRook, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if(pSquare.getPiece() != null) {
-							Generator.removePiece(chess,pSquare.getPiece());
+						if (pSquare.getPiece() != null) {
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
-						pRook.setPos(pSquare.getId());  
+						pRook.setPos(pSquare.getId());
 						if (pRook.isFirstMove())
 							pRook.setFirstMove(false);
-						Generator.setEnpassantFalse(chess);
+						Generator.setEnpassantFalse(pChess);
 					}
 
 				});

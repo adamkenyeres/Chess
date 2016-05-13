@@ -2,6 +2,7 @@ package chess.queries;
 
 import chess.queries.WhitePawnMovesMatch;
 import chess.queries.util.WhitePawnMovesQuerySpecification;
+import chessdiagram.Chess;
 import chessdiagram.Pawn;
 import chessdiagram.Square;
 import java.util.Collection;
@@ -27,11 +28,13 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern whitePawnMoves(piece : Pawn, square : Square) {
+ * White Pawn moves 
+ * pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
  * 	Pawn.colour(piece, ::White);
  * 	find squareForPiece(piece, squarePiece);
  * 	find N(squarePiece, square);
  * 	neg find pieceOnSquaree(square);
+ * 	Chess(chess);
  * } or {
  * 	Pawn.colour(piece, ::White); //Two steps
  * 	find squareForPiece(piece, squarePiece);
@@ -41,16 +44,19 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	neg find pieceOnSquaree(square);
  * 	Pawn.firstMove(piece, bool);
  * 	check(bool == true);
+ * 	Chess(chess);
  * } or {
  * 	Pawn.colour(piece, ::White);
  * 	find squareForPiece(piece, squarePiece);
  * 	find NW(squarePiece, square);
  * 	find squareContainsBlackPiece(square);
+ * 	Chess(chess);
  * } or {
  * 	Pawn.colour(piece, ::White);
  * 	find squareForPiece(piece, squarePiece);
  * 	find NE(squarePiece, square);
  * 	find squareContainsBlackPiece(square);
+ * 	Chess(chess);
  * } or {
  * 	Pawn.colour(piece, ::White);
  * 	find squareForPiece(piece, pieceSquare);
@@ -60,6 +66,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Pawn.enPassantEnabled(atackingPawn, bool);
  * 	check(bool == true);
  * 	find N(atackingSquare, square);
+ * 	Chess(chess);
  * } or {
  * 	Pawn.colour(piece, ::White);
  * 	find squareForPiece(piece, pieceSquare);
@@ -69,6 +76,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Pawn.enPassantEnabled(atackingPawn, bool);
  * 	check(bool == true);
  * 	find N(atackingSquare, square);
+ * 	Chess(chess);
  * }
  * </pre></code>
  * 
@@ -101,6 +109,8 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
   
   private final static int POSITION_SQUARE = 1;
   
+  private final static int POSITION_CHESS = 2;
+  
   private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(WhitePawnMovesMatcher.class);
   
   /**
@@ -119,11 +129,12 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return matches represented as a WhitePawnMovesMatch object.
    * 
    */
-  public Collection<WhitePawnMovesMatch> getAllMatches(final Pawn pPiece, final Square pSquare) {
-    return rawGetAllMatches(new Object[]{pPiece, pSquare});
+  public Collection<WhitePawnMovesMatch> getAllMatches(final Pawn pPiece, final Square pSquare, final Chess pChess) {
+    return rawGetAllMatches(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
@@ -131,11 +142,12 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return a match represented as a WhitePawnMovesMatch object, or null if no match is found.
    * 
    */
-  public WhitePawnMovesMatch getOneArbitraryMatch(final Pawn pPiece, final Square pSquare) {
-    return rawGetOneArbitraryMatch(new Object[]{pPiece, pSquare});
+  public WhitePawnMovesMatch getOneArbitraryMatch(final Pawn pPiece, final Square pSquare, final Chess pChess) {
+    return rawGetOneArbitraryMatch(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
@@ -143,33 +155,36 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * under any possible substitution of the unspecified parameters (if any).
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final Pawn pPiece, final Square pSquare) {
-    return rawHasMatch(new Object[]{pPiece, pSquare});
+  public boolean hasMatch(final Pawn pPiece, final Square pSquare, final Chess pChess) {
+    return rawHasMatch(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
    * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final Pawn pPiece, final Square pSquare) {
-    return rawCountMatches(new Object[]{pPiece, pSquare});
+  public int countMatches(final Pawn pPiece, final Square pSquare, final Chess pChess) {
+    return rawCountMatches(new Object[]{pPiece, pSquare, pChess});
   }
   
   /**
    * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final Pawn pPiece, final Square pSquare, final IMatchProcessor<? super WhitePawnMovesMatch> processor) {
-    rawForEachMatch(new Object[]{pPiece, pSquare}, processor);
+  public void forEachMatch(final Pawn pPiece, final Square pSquare, final Chess pChess, final IMatchProcessor<? super WhitePawnMovesMatch> processor) {
+    rawForEachMatch(new Object[]{pPiece, pSquare, pChess}, processor);
   }
   
   /**
@@ -177,12 +192,13 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @param processor the action that will process the selected match.
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final Pawn pPiece, final Square pSquare, final IMatchProcessor<? super WhitePawnMovesMatch> processor) {
-    return rawForOneArbitraryMatch(new Object[]{pPiece, pSquare}, processor);
+  public boolean forOneArbitraryMatch(final Pawn pPiece, final Square pSquare, final Chess pChess, final IMatchProcessor<? super WhitePawnMovesMatch> processor) {
+    return rawForOneArbitraryMatch(new Object[]{pPiece, pSquare, pChess}, processor);
   }
   
   /**
@@ -191,11 +207,12 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
    * @param pPiece the fixed value of pattern parameter piece, or null if not bound.
    * @param pSquare the fixed value of pattern parameter square, or null if not bound.
+   * @param pChess the fixed value of pattern parameter chess, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public WhitePawnMovesMatch newMatch(final Pawn pPiece, final Square pSquare) {
-    return WhitePawnMovesMatch.newMatch(pPiece, pSquare);
+  public WhitePawnMovesMatch newMatch(final Pawn pPiece, final Square pSquare, final Chess pChess) {
+    return WhitePawnMovesMatch.newMatch(pPiece, pSquare, pChess);
   }
   
   /**
@@ -232,10 +249,11 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Pawn> getAllValuesOfpiece(final Square pSquare) {
+  public Set<Pawn> getAllValuesOfpiece(final Square pSquare, final Chess pChess) {
     return rawAccumulateAllValuesOfpiece(new Object[]{
     null, 
-    pSquare
+    pSquare, 
+    pChess
     });
   }
   
@@ -273,9 +291,52 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
    * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
    * 
    */
-  public Set<Square> getAllValuesOfsquare(final Pawn pPiece) {
+  public Set<Square> getAllValuesOfsquare(final Pawn pPiece, final Chess pChess) {
     return rawAccumulateAllValuesOfsquare(new Object[]{
     pPiece, 
+    null, 
+    pChess
+    });
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  protected Set<Chess> rawAccumulateAllValuesOfchess(final Object[] parameters) {
+    Set<Chess> results = new HashSet<Chess>();
+    rawAccumulateAllValues(POSITION_CHESS, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess() {
+    return rawAccumulateAllValuesOfchess(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final WhitePawnMovesMatch partialMatch) {
+    return rawAccumulateAllValuesOfchess(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for chess.
+   * @return the Set of all values, null if no parameter with the given name exists, empty set if there are no matches
+   * 
+   */
+  public Set<Chess> getAllValuesOfchess(final Pawn pPiece, final Square pSquare) {
+    return rawAccumulateAllValuesOfchess(new Object[]{
+    pPiece, 
+    pSquare, 
     null
     });
   }
@@ -283,7 +344,7 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
   @Override
   protected WhitePawnMovesMatch tupleToMatch(final Tuple t) {
     try {
-    	return WhitePawnMovesMatch.newMatch((Pawn) t.get(POSITION_PIECE), (Square) t.get(POSITION_SQUARE));
+    	return WhitePawnMovesMatch.newMatch((Pawn) t.get(POSITION_PIECE), (Square) t.get(POSITION_SQUARE), (Chess) t.get(POSITION_CHESS));
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in tuple not properly typed!",e);
     	return null;
@@ -293,7 +354,7 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
   @Override
   protected WhitePawnMovesMatch arrayToMatch(final Object[] match) {
     try {
-    	return WhitePawnMovesMatch.newMatch((Pawn) match[POSITION_PIECE], (Square) match[POSITION_SQUARE]);
+    	return WhitePawnMovesMatch.newMatch((Pawn) match[POSITION_PIECE], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;
@@ -303,7 +364,7 @@ public class WhitePawnMovesMatcher extends BaseMatcher<WhitePawnMovesMatch> {
   @Override
   protected WhitePawnMovesMatch arrayToMatchMutable(final Object[] match) {
     try {
-    	return WhitePawnMovesMatch.newMutableMatch((Pawn) match[POSITION_PIECE], (Square) match[POSITION_SQUARE]);
+    	return WhitePawnMovesMatch.newMutableMatch((Pawn) match[POSITION_PIECE], (Square) match[POSITION_SQUARE], (Chess) match[POSITION_CHESS]);
     } catch(ClassCastException e) {
     	LOGGER.error("Element(s) in array not properly typed!",e);
     	return null;

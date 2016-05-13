@@ -186,7 +186,7 @@ public class ModelTransformation {
   private DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> whitePawnMovesRule = new Function0<DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher>>() {
     public DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> apply() {
       try {
-        DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> _whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> _whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule();
         return _whitePawnMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -197,7 +197,7 @@ public class ModelTransformation {
   private DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> blackPawnMovesRule = new Function0<DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher>>() {
     public DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> apply() {
       try {
-        DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> _blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> _blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule();
         return _blackPawnMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -208,7 +208,7 @@ public class ModelTransformation {
   private DSETransformationRule<RookMovesMatch, RookMovesMatcher> rookMovesRule = new Function0<DSETransformationRule<RookMovesMatch, RookMovesMatcher>>() {
     public DSETransformationRule<RookMovesMatch, RookMovesMatcher> apply() {
       try {
-        DSETransformationRule<RookMovesMatch, RookMovesMatcher> _rookMovesRule = RookMovesRule.getRookMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<RookMovesMatch, RookMovesMatcher> _rookMovesRule = RookMovesRule.getRookMovesRule();
         return _rookMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -219,7 +219,7 @@ public class ModelTransformation {
   private DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> whiteKnightMovesRule = new Function0<DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher>>() {
     public DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> apply() {
       try {
-        DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> _whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> _whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule();
         return _whiteKnightMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -230,7 +230,7 @@ public class ModelTransformation {
   private DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> blackKnightMovesRule = new Function0<DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher>>() {
     public DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> apply() {
       try {
-        DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> _blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> _blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule();
         return _blackKnightMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -241,7 +241,7 @@ public class ModelTransformation {
   private DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> bishopMovesRule = new Function0<DSETransformationRule<BishopMovesMatch, BishopMovesMatcher>>() {
     public DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> apply() {
       try {
-        DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> _bishopMovesRule = BishopMovesRule.getBishopMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> _bishopMovesRule = BishopMovesRule.getBishopMovesRule();
         return _bishopMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -252,7 +252,7 @@ public class ModelTransformation {
   private DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> queenMovesRule = new Function0<DSETransformationRule<QueenMovesMatch, QueenMovesMatcher>>() {
     public DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> apply() {
       try {
-        DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> _queenMovesRule = QueenMovesRule.getQueenMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> _queenMovesRule = QueenMovesRule.getQueenMovesRule();
         return _queenMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -263,7 +263,7 @@ public class ModelTransformation {
   private DSETransformationRule<KingMovesMatch, KingMovesMatcher> kingMovesRule = new Function0<DSETransformationRule<KingMovesMatch, KingMovesMatcher>>() {
     public DSETransformationRule<KingMovesMatch, KingMovesMatcher> apply() {
       try {
-        DSETransformationRule<KingMovesMatch, KingMovesMatcher> _kingMovesRule = KingMovesRule.getKingMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<KingMovesMatch, KingMovesMatcher> _kingMovesRule = KingMovesRule.getKingMovesRule();
         return _kingMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -274,7 +274,7 @@ public class ModelTransformation {
   private DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> blackBishopMovesRule = new Function0<DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher>>() {
     public DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> apply() {
       try {
-        DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> _blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule(ModelTransformation.this.chess);
+        DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> _blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule();
         return _blackBishopMovesRule;
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
@@ -512,7 +512,7 @@ public class ModelTransformation {
           case PAWN:
             Pawn pawn = ((Pawn) p);
             BlackPawnMovesMatcher matcher = BlackPawnMovesMatcher.on(this.engine);
-            final BlackPawnMovesMatch match = matcher.getOneArbitraryMatch(pawn, null);
+            final BlackPawnMovesMatch match = matcher.getOneArbitraryMatch(pawn, null, null);
             boolean _notEquals = (!Objects.equal(match, null));
             if (_notEquals) {
               Pair<String, Object> _pair = new Pair<String, Object>("piece", p);
@@ -524,7 +524,7 @@ public class ModelTransformation {
           case ROOK:
             Rook rook = ((Rook) p);
             RookMovesMatcher matcher_1 = RookMovesMatcher.on(this.engine);
-            final RookMovesMatch match_1 = matcher_1.getOneArbitraryMatch(rook, null);
+            final RookMovesMatch match_1 = matcher_1.getOneArbitraryMatch(rook, null, null);
             boolean _notEquals_1 = (!Objects.equal(match_1, null));
             if (_notEquals_1) {
               Pair<String, Object> _pair_2 = new Pair<String, Object>("rook", rook);
@@ -536,7 +536,7 @@ public class ModelTransformation {
           case KNIGHT:
             Knight knight = ((Knight) p);
             BlackKnightMovesMatcher matcher_2 = BlackKnightMovesMatcher.on(this.engine);
-            BlackKnightMovesMatch match_2 = matcher_2.getOneArbitraryMatch(knight, null);
+            BlackKnightMovesMatch match_2 = matcher_2.getOneArbitraryMatch(knight, null, null);
             boolean _notEquals_2 = (!Objects.equal(match_2, null));
             if (_notEquals_2) {
               Pair<String, Object> _pair_4 = new Pair<String, Object>("piece", knight);
@@ -548,7 +548,7 @@ public class ModelTransformation {
           case BISHOP:
             Bishop bishop = ((Bishop) p);
             BishopMovesMatcher matcher_3 = BishopMovesMatcher.on(this.engine);
-            BishopMovesMatch match_3 = matcher_3.getOneArbitraryMatch(bishop, null);
+            BishopMovesMatch match_3 = matcher_3.getOneArbitraryMatch(bishop, null, null);
             boolean _notEquals_3 = (!Objects.equal(match_3, null));
             if (_notEquals_3) {
               Pair<String, Object> _pair_6 = new Pair<String, Object>("piece", bishop);
@@ -560,7 +560,7 @@ public class ModelTransformation {
           case QUEEN:
             Queen queen = ((Queen) p);
             QueenMovesMatcher matcher_4 = QueenMovesMatcher.on(this.engine);
-            QueenMovesMatch match_4 = matcher_4.getOneArbitraryMatch(queen, null);
+            QueenMovesMatch match_4 = matcher_4.getOneArbitraryMatch(queen, null, null);
             boolean _notEquals_4 = (!Objects.equal(match_4, null));
             if (_notEquals_4) {
               Pair<String, Object> _pair_8 = new Pair<String, Object>("queen", queen);
@@ -572,7 +572,7 @@ public class ModelTransformation {
           case KING:
             King king = ((King) p);
             KingMovesMatcher matcher_5 = KingMovesMatcher.on(this.engine);
-            KingMovesMatch match_5 = matcher_5.getOneArbitraryMatch(king, null);
+            KingMovesMatch match_5 = matcher_5.getOneArbitraryMatch(king, null, null);
             boolean _notEquals_5 = (!Objects.equal(match_5, null));
             if (_notEquals_5) {
               Pair<String, Object> _pair_10 = new Pair<String, Object>("king", king);
@@ -652,24 +652,6 @@ public class ModelTransformation {
       this.engine = _on;
       this.clickedSquare = null;
       this.chess = chess;
-      DSETransformationRule<WhitePawnMovesMatch, WhitePawnMovesMatcher> _whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule(chess);
-      this.whitePawnMovesRule = _whitePawnMovesRule;
-      DSETransformationRule<BlackPawnMovesMatch, BlackPawnMovesMatcher> _blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule(chess);
-      this.blackPawnMovesRule = _blackPawnMovesRule;
-      DSETransformationRule<RookMovesMatch, RookMovesMatcher> _rookMovesRule = RookMovesRule.getRookMovesRule(chess);
-      this.rookMovesRule = _rookMovesRule;
-      DSETransformationRule<WhiteKnightMovesMatch, WhiteKnightMovesMatcher> _whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule(chess);
-      this.whiteKnightMovesRule = _whiteKnightMovesRule;
-      DSETransformationRule<BlackKnightMovesMatch, BlackKnightMovesMatcher> _blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule(chess);
-      this.blackKnightMovesRule = _blackKnightMovesRule;
-      DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> _bishopMovesRule = BishopMovesRule.getBishopMovesRule(chess);
-      this.bishopMovesRule = _bishopMovesRule;
-      DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> _queenMovesRule = QueenMovesRule.getQueenMovesRule(chess);
-      this.queenMovesRule = _queenMovesRule;
-      DSETransformationRule<KingMovesMatch, KingMovesMatcher> _kingMovesRule = KingMovesRule.getKingMovesRule(chess);
-      this.kingMovesRule = _kingMovesRule;
-      DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> _blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule(chess);
-      this.blackBishopMovesRule = _blackBishopMovesRule;
       this.ruleGroups.add(this.blackPawnMovesRule);
       this.ruleGroups.add(this.blackKnightMovesRule);
       this.ruleGroup.add(this.blackKnightMovesRule);

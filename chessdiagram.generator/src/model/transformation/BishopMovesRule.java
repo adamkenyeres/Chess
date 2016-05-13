@@ -25,7 +25,7 @@ public class BishopMovesRule {
 				BishopMovesQuerySpecification.instance(), new BishopMovesProcessor() {
 
 					@Override
-					public void process(Bishop pBishop, Square pSquare) {
+					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						pSquare.setColour(Colour.RED);
 					}
@@ -33,40 +33,38 @@ public class BishopMovesRule {
 		return rule;
 	}
 
-	public static DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> getBishopMovesRule(Chess chess)
+	public static DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> getBishopMovesRule()
 			throws ViatraQueryException {
 		DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> rule = new DSETransformationRule<BishopMovesMatch, BishopMovesMatcher>(
 				BishopMovesQuerySpecification.instance(), new BishopMovesProcessor() {
 
 					@Override
-					public void process(Bishop pBishop, Square pSquare) {
+					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
-						pBishop.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(chess);
-
+						pPiece.setPos(pSquare.getId());
+						Generator.setEnpassantFalse(pChess);
 					}
 				});
 		return rule;
 	}
-	
+
 	/* Black bishop moves */
-	public static DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> getBlackBishopMovesRule(Chess chess)
+	public static DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> getBlackBishopMovesRule()
 			throws ViatraQueryException {
 		DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> rule = new DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher>(
 				BlackBishopMovesQuerySpecification.instance(), new BlackBishopMovesProcessor() {
 
 					@Override
-					public void process(Bishop pBishop, Square pSquare) {
+					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
 						if (pSquare.getPiece() != null) {
-							Generator.removePiece(chess, pSquare.getPiece());
+							Generator.removePiece(pChess, pSquare.getPiece());
 						}
-						pBishop.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(chess);
-
+						pPiece.setPos(pSquare.getId());
+						Generator.setEnpassantFalse(pChess);
 					}
 				});
 		return rule;

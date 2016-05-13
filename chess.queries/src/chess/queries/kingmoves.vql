@@ -1,78 +1,94 @@
 package chess.queries
 import "http://example.com/chessdiagram"
 
-pattern kingMoves(king : King, square : Square){
+pattern kingMoves(king : King, square : Square, chess : Chess){
 	find square(king, kingSquare);
 	find N(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find NE(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find E(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find SE(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find S(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find SW(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find W(kingSquare, square);
 	neg find pieceOnSquaree(square);
+	Chess(chess);
 }or{
 	find square(king, kingSquare);
 	find NW(kingSquare, square);
 	neg find pieceOnSquaree(square);
-}or{///////////////
+	Chess(chess);
+}or{
 	find square(king, queenSquare); //South East moves atacking
 	find N(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find NE(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find E(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find SE(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find S(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find SW(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find W(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	find square(king, queenSquare); //South East moves atacking
 	find NW(queenSquare, square);
 	find pieceOnSquare(square, piece);
 	find canAttack(king, piece);
+	Chess(chess);
 }or{
 	King.firstMove(king, firsMoveKing);	//Casting All for possible ways
 	check(firsMoveKing == true);
@@ -82,6 +98,7 @@ pattern kingMoves(king : King, square : Square){
 	find movesWest(kingSquare, _, square);
 	Rook.firstMove(rook, firstRookMove);
 	check(firstRookMove == true);
+	Chess(chess);
 }or{
 	King.firstMove(king, firsMoveKing);
 	check(firsMoveKing == true);
@@ -91,6 +108,7 @@ pattern kingMoves(king : King, square : Square){
 	find movesEast(kingSquare, _, square);
 	Rook.firstMove(rook, firstRookMove);
 	check(firstRookMove == true);
+	Chess(chess);
 }or{
 	King.firstMove(king, firsMoveKing);	//Casting for black king
 	check(firsMoveKing == true);
@@ -100,6 +118,7 @@ pattern kingMoves(king : King, square : Square){
 	find movesWest(kingSquare, _, square);
 	Rook.firstMove(rook, firstRookMove);
 	check(firstRookMove == true);
+	Chess(chess);
 }or{
 	King.firstMove(king, firsMoveKing);	
 	check(firsMoveKing == true);
@@ -109,4 +128,5 @@ pattern kingMoves(king : King, square : Square){
 	find movesEast(kingSquare, _, square);
 	Rook.firstMove(rook, firstRookMove);
 	check(firstRookMove == true);
+	Chess(chess);
 }
