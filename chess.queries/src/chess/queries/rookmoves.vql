@@ -53,3 +53,11 @@ pattern rookMoves(rook : Rook, square : Square, chess : Chess){
 	find horizontalRookMoves(rook, square);
 	Chess(chess);
 }
+pattern blackRookMoves(rook : Rook, square : Square, chess : Chess){
+	Rook.colour(rook, ::Black);
+	find rookMoves(rook, square, chess);
+}
+pattern whiteRookMoves(rook : Rook, square : Square, chess : Chess){
+	Rook.colour(rook, ::White);
+	find rookMoves(rook, square, chess);
+}

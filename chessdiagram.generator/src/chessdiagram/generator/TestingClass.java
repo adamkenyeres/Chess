@@ -18,6 +18,7 @@ import org.eclipse.viatra.dse.api.SolutionTrajectory;
 import org.eclipse.viatra.dse.api.Strategies;
 import org.eclipse.viatra.dse.base.DesignSpaceManager;
 import org.eclipse.viatra.dse.objectives.impl.ConstraintsObjective;
+import org.eclipse.viatra.dse.solutionstore.SolutionStore;
 import org.eclipse.viatra.dse.statecoding.simple.SimpleStateCoderFactory;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.junit.Test;
@@ -36,9 +37,14 @@ import chessdiagram.Pawn;
 import chessdiagram.PieceType;
 import chessdiagram.Queen;
 import chessdiagram.Square;
+import dse.ChessEngine;
 import dse.ChessStateCoderFactory;
+import model.transformation.BishopMovesRule;
+import model.transformation.BlackKnightRule;
 import model.transformation.BlackPawnMovesRule;
+import model.transformation.KingMovesRule;
 import model.transformation.QueenMovesRule;
+import model.transformation.RookMovesRule;
 import model.transformation.WhitePawnMovesRule;
 
 public class TestingClass {
@@ -97,18 +103,29 @@ public class TestingClass {
 	public void test() throws ViatraQueryException, IOException, ExecutionException {
 		initialize();
 		board.refresh();
-		
-		
+//		ChessEngine engine = new ChessEngine(chess);
+//		engine.startExploaring();
+//		if(!engine.solutionsIsEmpty()){
+//			engine.doNextStep();
+//			board.refresh();
+//		}
+		/*
 		DesignSpaceExplorer dse = new DesignSpaceExplorer();
 		dse.setInitialModel(chess);
-		DSETransformationRule<?, ?> blackPawnRule = BlackPawnMovesRule.getBlackPawnMovesRule();
-		dse.addTransformationRule(blackPawnRule);
+		dse.addTransformationRule(BlackPawnMovesRule.getBlackPawnMovesRule());
+		dse.addTransformationRule(BlackKnightRule.getBlackKnightMovesRule());
+		dse.addTransformationRule(RookMovesRule.getBlackRookMovesRule());
+		dse.addTransformationRule(BishopMovesRule.getBlackBishopMovesRule());
+		dse.addTransformationRule(QueenMovesRule.getBlackQueenMovesRule());
+		dse.addTransformationRule(KingMovesRule.getBlackKingMovesRule());
+		
 		dse.addObjective(new ConstraintsObjective("MyHardObjective")
 				.withHardConstraint(InChessWhiteQuerySpecification.instance()));
 		dse.addMetaModelPackage(ChessdiagramPackage.eINSTANCE);
 		dse.setStateCoderFactory(new SimpleStateCoderFactory(dse.getMetaModelPackages()));
 //		dse.setStateCoderFactory(new ChessStateCoderFactory());
-		dse.startExploration(Strategies.createBfsStrategy(4));
+		dse.setSolutionStore(new SolutionStore(1));
+		dse.startExploration(Strategies.createBfsStrategy(3));
 		Collection<Solution> solutions = dse.getSolutions();
 		System.out.println("size: "+solutions.size());
 		if (!solutions.isEmpty()) {
@@ -118,6 +135,8 @@ public class TestingClass {
 			tra.setModel(chess);
 			startTimer();
 		}
+		
+		*/
 		System.in.read();
 	}
 

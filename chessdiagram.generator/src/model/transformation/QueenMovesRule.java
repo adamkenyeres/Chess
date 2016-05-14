@@ -3,8 +3,12 @@ package model.transformation;
 import org.eclipse.viatra.dse.api.DSETransformationRule;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
+import chess.queries.BlackQueenMovesMatch;
+import chess.queries.BlackQueenMovesMatcher;
 import chess.queries.QueenMovesMatch;
 import chess.queries.QueenMovesMatcher;
+import chess.queries.util.BlackQueenMovesProcessor;
+import chess.queries.util.BlackQueenMovesQuerySpecification;
 import chess.queries.util.QueenMovesProcessor;
 import chess.queries.util.QueenMovesQuerySpecification;
 import chessdiagram.Chess;
@@ -42,6 +46,26 @@ public class QueenMovesRule {
 						}
 						pQueen.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+					}
+				});
+		return rule;
+	}
+	
+	public static DSETransformationRule<?, ?> getBlackQueenMovesRule()
+			throws ViatraQueryException {
+		DSETransformationRule<BlackQueenMovesMatch, BlackQueenMovesMatcher> rule = new DSETransformationRule<BlackQueenMovesMatch, BlackQueenMovesMatcher>(
+				BlackQueenMovesQuerySpecification.instance(), new BlackQueenMovesProcessor() {
+
+					@Override
+					public void process(Queen pQueen, Square pSquare, Chess pChess) {
+						// TODO Auto-generated method stub
+						if (pSquare.getPiece() != null) {
+							Generator.removePiece(pChess, pSquare.getPiece());
+						}
+						pQueen.setPos(pSquare.getId());
+						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 				});
 		return rule;

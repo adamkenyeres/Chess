@@ -18,15 +18,13 @@ import chessdiagram.PieceType
 import chessdiagram.Queen
 import chessdiagram.Rook
 import chessdiagram.Square
-import java.util.ArrayList
+import dse.ChessEngine
 import java.util.Random
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.viatra.dse.api.DesignSpaceExplorer
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine
 import org.eclipse.viatra.query.runtime.emf.EMFScope
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.IModelManipulations
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.SimpleModelManipulations
-import org.eclipse.viatra.transformation.runtime.emf.rules.BatchTransformationRuleGroup
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformation
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformationStatements
 
@@ -45,7 +43,6 @@ class ModelTransformation {
 	protected Square clickedSquare
 	public Chess chess
 	protected ChessdiagramFactory factory
-	protected DesignSpaceExplorer dse
 	/*Coloring the possible move squares */
 	val whitePawnMovesColourRule = WhitePawnMovesRule.getWhitePawnMovesColourRule(chess)
 	val blackPawnMovesColourRule = BlackPawnMovesRule.getBlackPawnMovesColourRule()
@@ -64,9 +61,6 @@ class ModelTransformation {
 	var bishopMovesRule = BishopMovesRule.getBishopMovesRule()
 	var queenMovesRule = QueenMovesRule.getQueenMovesRule()
 	var kingMovesRule = KingMovesRule.getKingMovesRule()
-	var blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule();
-	var ruleGroup = new ArrayList
-	var ruleGroups = new BatchTransformationRuleGroup
 
 	public def colourWhitePieceMoves(Piece p) {
 
@@ -141,7 +135,6 @@ class ModelTransformation {
 
 	public def moveWhitePiece(Square destinationSquare) {
 		val p = clickedSquare.piece
-		val oldPos = p.pos; // The position before moving
 		switch (p.pieceType) {
 			case PieceType.PAWN: {
 				whitePawnMovesRule.fireAllCurrent(new Pair("piece", p), new Pair("square", destinationSquare))
@@ -165,14 +158,11 @@ class ModelTransformation {
 				println("Error")
 			}
 		}
-		if (oldPos != p.pos) { // If the old position!=piece position -> We moved -> the other opponents turn
-			chess.whitePlayerTurn = !chess.whitePlayerTurn;
-		}
+
 	}
 
 	def moveBlackPiece(Square destinationSquare) {
 		val p = clickedSquare.piece
-		val oldPos = p.pos; // The position before moving
 		switch (p.pieceType) {
 			case PieceType.PAWN: {
 				blackPawnMovesRule.fireAllCurrent(new Pair("piece", p), new Pair("square", destinationSquare))
@@ -196,14 +186,10 @@ class ModelTransformation {
 				println("Error")
 			}
 		}
-		if (oldPos != p.pos) { // If the old position!=piece position -> We moved -> the other opponents turn
-			chess.whitePlayerTurn = !chess.whitePlayerTurn;
-		}
+
 	}
 
 	def moveBlackPieceRandomly(Piece p) {
-		val oldPos = p.pos;
-
 		switch (p.pieceType) {
 			case PieceType.PAWN: {
 				var pawn = p as Pawn
@@ -255,9 +241,6 @@ class ModelTransformation {
 				println("Error")
 			}
 		}
-		if (oldPos != p.pos) { // If the old position!=piece position -> We moved -> the other opponents turn
-			chess.whitePlayerTurn = !chess.whitePlayerTurn;
-		}
 	}
 
 	public def movePiece(Square destinationSquare) {
@@ -265,7 +248,6 @@ class ModelTransformation {
 			case Colour.WHITE: {
 				if (chess.whitePlayerTurn) {
 					moveWhitePiece(destinationSquare)
-				// chess.whitePlayerTurn = !chess.whitePlayerTurn;
 				}
 
 			}
@@ -295,34 +277,25 @@ class ModelTransformation {
 		engine = ViatraQueryEngine.on(scope);
 		clickedSquare = null
 		this.chess = chess
-//
-//		whitePawnMovesRule = WhitePawnMovesRule.getWhitePawnMovesRule(chess)
-//		blackPawnMovesRule = BlackPawnMovesRule.getBlackPawnMovesRule(chess)
-//		rookMovesRule = RookMovesRule.getRookMovesRule(chess)
-//		whiteKnightMovesRule = WhiteKnightRule.getWhiteKnightMovesRule(chess)
-//		blackKnightMovesRule = BlackKnightRule.getBlackKnightMovesRule(chess)
-//		bishopMovesRule = BishopMovesRule.getBishopMovesRule(chess)
-//		queenMovesRule = QueenMovesRule.getQueenMovesRule(chess)
-//		kingMovesRule = KingMovesRule.getKingMovesRule(chess)
-//		blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule(chess);
-		ruleGroups.add(blackPawnMovesRule)
-		ruleGroups.add(blackKnightMovesRule)
-
-		ruleGroup.add(blackKnightMovesRule)
-		ruleGroup.add(blackPawnMovesRule)
-
 		createTransformation
-
 	}
 
 	public def moveBlackPlayer() {
-		while (!chess.isWhitePlayerTurn && chess.blackPlayer.piece!=null) {
-			var rand = new Random()
-			var index = rand.nextInt(chess.blackPlayer.piece.size)
-			var piece = chess.blackPlayer.piece.get(index)
-			moveBlackPieceRandomly(piece)
+//		blackPlayer.startExploaring
+		var dse = new ChessEngine(chess)
+		dse.startExploaring
+		if (!dse.solutionsIsEmpty) {
+			dse.doNextStep
+		} else {
+			while (!chess.isWhitePlayerTurn && chess.blackPlayer.piece != null) {
+				var rand = new Random()
+				var index = rand.nextInt(chess.blackPlayer.piece.size)
+				var piece = chess.blackPlayer.piece.get(index)
+				moveBlackPieceRandomly(piece)
+			}
+
 		}
-	
+
 	}
 
 	public def execute(Square square) {
@@ -335,6 +308,7 @@ class ModelTransformation {
 				}
 			}
 		} else {
+
 			movePiece(square)
 			if (!chess.isWhitePlayerTurn) {
 				clickedSquare = null
@@ -348,7 +322,6 @@ class ModelTransformation {
 		}
 	}
 
-// allMovesRule.fireAllCurrent(new MatchParameterFilter(new Pair("piece", clickedSquare.piece)))
 	private def createTransformation() {
 		// Create VIATRA model manipulations
 		this.manipulation = new SimpleModelManipulations(engine)

@@ -145,7 +145,7 @@ public final class BlackPawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	//Stepping one ahead	Pawn.colour(piece, ::Black)
+      		// //Stepping one ahead	Pawn.colour(piece, ::Black)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new ConstantValue(body, var__virtual_0_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
@@ -302,7 +302,7 @@ public final class BlackPawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	/*En passant if there is a pawn on the left to be hit */	Pawn.colour(piece, ::Black)
+      		// /*En passant if there is a pawn on the left to be hit */	Pawn.colour(piece, ::Black)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new ConstantValue(body, var__virtual_0_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
@@ -364,7 +364,7 @@ public final class BlackPawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	/*En passan if there is a pawn on the right to be hit */	Pawn.colour(piece, ::Black)
+      		// /*En passant if there is a pawn on the right to be hit */	Pawn.colour(piece, ::Black)
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new ConstantValue(body, var__virtual_0_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));

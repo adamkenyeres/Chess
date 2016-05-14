@@ -10,3 +10,13 @@ pattern queenMoves(queen : Queen, square : Square, chess : Chess){
 	find horizontalOrVerticalMoves(queen, square);
 	Chess(chess);
 }
+
+pattern blackQueenMoves(queen : Queen, square : Square, chess : Chess){
+	Queen.colour(queen,::Black);
+	find queenMoves(queen,square,chess);
+}
+
+pattern whiteQueenMoves(queen : Queen, square : Square, chess : Chess){
+	Queen.colour(queen,::White);
+	find queenMoves(queen,square,chess);
+}

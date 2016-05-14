@@ -42,6 +42,7 @@ public class WhiteKnightRule {
 						}
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 
 				});

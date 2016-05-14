@@ -42,6 +42,7 @@ public class BlackKnightRule {
 						}
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 				});
 		return rule;

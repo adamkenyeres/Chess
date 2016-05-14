@@ -130,3 +130,14 @@ pattern kingMoves(king : King, square : Square, chess : Chess){
 	check(firstRookMove == true);
 	Chess(chess);
 }
+
+pattern blackKingMoves(king : King, square : Square, chess : Chess){
+	King.colour(king, ::Black);
+	find kingMoves(king,square,chess);
+}
+
+pattern whiteKingMoves(king : King, square : Square, chess : Chess){
+	King.colour(king, ::White);
+	find kingMoves(king,square,chess);
+}
+

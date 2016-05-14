@@ -30,7 +30,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <code><pre>
  * Black Pawn moves 
  * pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
- * 	//Stepping one ahead
+ * //Stepping one ahead
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, squarePiece);
  * 	find S(squarePiece, square);
@@ -59,7 +59,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find squareContainsWhitePiece(square);
  * 	Chess(chess);
  * } or {
- * 	En passant if there is a pawn on the left to be hit 
+ * En passant if there is a pawn on the left to be hit 
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, pieceSquare);
  * 	find W(pieceSquare, atackingSquare);
@@ -70,7 +70,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find S(atackingSquare, square);
  * 	Chess(chess);
  * } or {
- * 	En passan if there is a pawn on the right to be hit 
+ * En passant if there is a pawn on the right to be hit 
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, pieceSquare);
  * 	find E(pieceSquare, atackingSquare);

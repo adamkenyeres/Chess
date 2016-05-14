@@ -2,8 +2,6 @@ package model.transformation;
 
 import chess.queries.BishopMovesMatch;
 import chess.queries.BishopMovesMatcher;
-import chess.queries.BlackBishopMovesMatch;
-import chess.queries.BlackBishopMovesMatcher;
 import chess.queries.BlackKnightMovesMatch;
 import chess.queries.BlackKnightMovesMatcher;
 import chess.queries.BlackPawnMovesMatch;
@@ -32,7 +30,7 @@ import chessdiagram.Queen;
 import chessdiagram.Rook;
 import chessdiagram.Square;
 import com.google.common.base.Objects;
-import java.util.ArrayList;
+import dse.ChessEngine;
 import java.util.Random;
 import model.transformation.BishopMovesRule;
 import model.transformation.BlackKnightRule;
@@ -45,13 +43,11 @@ import model.transformation.WhitePawnMovesRule;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.viatra.dse.api.DSETransformationRule;
-import org.eclipse.viatra.dse.api.DesignSpaceExplorer;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.transformation.evm.api.RuleEngine;
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.IModelManipulations;
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.SimpleModelManipulations;
-import org.eclipse.viatra.transformation.runtime.emf.rules.BatchTransformationRuleGroup;
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformation;
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformationStatements;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -86,8 +82,6 @@ public class ModelTransformation {
   public Chess chess;
   
   protected ChessdiagramFactory factory;
-  
-  protected DesignSpaceExplorer dse;
   
   /**
    * Coloring the possible move squares
@@ -271,21 +265,6 @@ public class ModelTransformation {
     }
   }.apply();
   
-  private DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> blackBishopMovesRule = new Function0<DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher>>() {
-    public DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> apply() {
-      try {
-        DSETransformationRule<BlackBishopMovesMatch, BlackBishopMovesMatcher> _blackBishopMovesRule = BishopMovesRule.getBlackBishopMovesRule();
-        return _blackBishopMovesRule;
-      } catch (Throwable _e) {
-        throw Exceptions.sneakyThrow(_e);
-      }
-    }
-  }.apply();
-  
-  private ArrayList<Object> ruleGroup = new ArrayList<Object>();
-  
-  private BatchTransformationRuleGroup ruleGroups = new BatchTransformationRuleGroup();
-  
   public String colourWhitePieceMoves(final Piece p) {
     String _switchResult = null;
     PieceType _pieceType = p.getPieceType();
@@ -399,113 +378,109 @@ public class ModelTransformation {
     return _switchResult;
   }
   
-  public void moveWhitePiece(final Square destinationSquare) {
-    final Piece p = this.clickedSquare.getPiece();
-    final int oldPos = p.getPos();
-    PieceType _pieceType = p.getPieceType();
-    if (_pieceType != null) {
-      switch (_pieceType) {
-        case PAWN:
-          Pair<String, Object> _pair = new Pair<String, Object>("piece", p);
-          Pair<String, Object> _pair_1 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<WhitePawnMovesMatch>fireAllCurrent(this.whitePawnMovesRule, _pair, _pair_1);
-          break;
-        case ROOK:
-          Pair<String, Object> _pair_2 = new Pair<String, Object>("rook", p);
-          Pair<String, Object> _pair_3 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<RookMovesMatch>fireAllCurrent(this.rookMovesRule, _pair_2, _pair_3);
-          break;
-        case KNIGHT:
-          Pair<String, Object> _pair_4 = new Pair<String, Object>("piece", p);
-          Pair<String, Object> _pair_5 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<WhiteKnightMovesMatch>fireAllCurrent(this.whiteKnightMovesRule, _pair_4, _pair_5);
-          break;
-        case BISHOP:
-          Pair<String, Object> _pair_6 = new Pair<String, Object>("bishop", p);
-          Pair<String, Object> _pair_7 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesRule, _pair_6, _pair_7);
-          break;
-        case QUEEN:
-          Pair<String, Object> _pair_8 = new Pair<String, Object>("queen", p);
-          Pair<String, Object> _pair_9 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<QueenMovesMatch>fireAllCurrent(this.queenMovesRule, _pair_8, _pair_9);
-          break;
-        case KING:
-          Pair<String, Object> _pair_10 = new Pair<String, Object>("king", p);
-          Pair<String, Object> _pair_11 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<KingMovesMatch>fireAllCurrent(this.kingMovesRule, _pair_10, _pair_11);
-          break;
-        default:
-          InputOutput.<String>println("Error");
-          break;
+  public String moveWhitePiece(final Square destinationSquare) {
+    String _xblockexpression = null;
+    {
+      final Piece p = this.clickedSquare.getPiece();
+      String _switchResult = null;
+      PieceType _pieceType = p.getPieceType();
+      if (_pieceType != null) {
+        switch (_pieceType) {
+          case PAWN:
+            Pair<String, Object> _pair = new Pair<String, Object>("piece", p);
+            Pair<String, Object> _pair_1 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<WhitePawnMovesMatch>fireAllCurrent(this.whitePawnMovesRule, _pair, _pair_1);
+            break;
+          case ROOK:
+            Pair<String, Object> _pair_2 = new Pair<String, Object>("rook", p);
+            Pair<String, Object> _pair_3 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<RookMovesMatch>fireAllCurrent(this.rookMovesRule, _pair_2, _pair_3);
+            break;
+          case KNIGHT:
+            Pair<String, Object> _pair_4 = new Pair<String, Object>("piece", p);
+            Pair<String, Object> _pair_5 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<WhiteKnightMovesMatch>fireAllCurrent(this.whiteKnightMovesRule, _pair_4, _pair_5);
+            break;
+          case BISHOP:
+            Pair<String, Object> _pair_6 = new Pair<String, Object>("bishop", p);
+            Pair<String, Object> _pair_7 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesRule, _pair_6, _pair_7);
+            break;
+          case QUEEN:
+            Pair<String, Object> _pair_8 = new Pair<String, Object>("queen", p);
+            Pair<String, Object> _pair_9 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<QueenMovesMatch>fireAllCurrent(this.queenMovesRule, _pair_8, _pair_9);
+            break;
+          case KING:
+            Pair<String, Object> _pair_10 = new Pair<String, Object>("king", p);
+            Pair<String, Object> _pair_11 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<KingMovesMatch>fireAllCurrent(this.kingMovesRule, _pair_10, _pair_11);
+            break;
+          default:
+            _switchResult = InputOutput.<String>println("Error");
+            break;
+        }
+      } else {
+        _switchResult = InputOutput.<String>println("Error");
       }
-    } else {
-      InputOutput.<String>println("Error");
+      _xblockexpression = _switchResult;
     }
-    int _pos = p.getPos();
-    boolean _notEquals = (oldPos != _pos);
-    if (_notEquals) {
-      boolean _isWhitePlayerTurn = this.chess.isWhitePlayerTurn();
-      boolean _not = (!_isWhitePlayerTurn);
-      this.chess.setWhitePlayerTurn(_not);
-    }
+    return _xblockexpression;
   }
   
-  public void moveBlackPiece(final Square destinationSquare) {
-    final Piece p = this.clickedSquare.getPiece();
-    final int oldPos = p.getPos();
-    PieceType _pieceType = p.getPieceType();
-    if (_pieceType != null) {
-      switch (_pieceType) {
-        case PAWN:
-          Pair<String, Object> _pair = new Pair<String, Object>("piece", p);
-          Pair<String, Object> _pair_1 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<BlackPawnMovesMatch>fireAllCurrent(this.blackPawnMovesRule, _pair, _pair_1);
-          break;
-        case ROOK:
-          Pair<String, Object> _pair_2 = new Pair<String, Object>("rook", p);
-          Pair<String, Object> _pair_3 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<RookMovesMatch>fireAllCurrent(this.rookMovesRule, _pair_2, _pair_3);
-          break;
-        case KNIGHT:
-          Pair<String, Object> _pair_4 = new Pair<String, Object>("piece", p);
-          Pair<String, Object> _pair_5 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<BlackKnightMovesMatch>fireAllCurrent(this.blackKnightMovesRule, _pair_4, _pair_5);
-          break;
-        case BISHOP:
-          Pair<String, Object> _pair_6 = new Pair<String, Object>("bishop", p);
-          Pair<String, Object> _pair_7 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesRule, _pair_6, _pair_7);
-          break;
-        case QUEEN:
-          Pair<String, Object> _pair_8 = new Pair<String, Object>("queen", p);
-          Pair<String, Object> _pair_9 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<QueenMovesMatch>fireAllCurrent(this.queenMovesRule, _pair_8, _pair_9);
-          break;
-        case KING:
-          Pair<String, Object> _pair_10 = new Pair<String, Object>("king", p);
-          Pair<String, Object> _pair_11 = new Pair<String, Object>("square", destinationSquare);
-          this.statements.<KingMovesMatch>fireAllCurrent(this.kingMovesRule, _pair_10, _pair_11);
-          break;
-        default:
-          InputOutput.<String>println("Error");
-          break;
+  public String moveBlackPiece(final Square destinationSquare) {
+    String _xblockexpression = null;
+    {
+      final Piece p = this.clickedSquare.getPiece();
+      String _switchResult = null;
+      PieceType _pieceType = p.getPieceType();
+      if (_pieceType != null) {
+        switch (_pieceType) {
+          case PAWN:
+            Pair<String, Object> _pair = new Pair<String, Object>("piece", p);
+            Pair<String, Object> _pair_1 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<BlackPawnMovesMatch>fireAllCurrent(this.blackPawnMovesRule, _pair, _pair_1);
+            break;
+          case ROOK:
+            Pair<String, Object> _pair_2 = new Pair<String, Object>("rook", p);
+            Pair<String, Object> _pair_3 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<RookMovesMatch>fireAllCurrent(this.rookMovesRule, _pair_2, _pair_3);
+            break;
+          case KNIGHT:
+            Pair<String, Object> _pair_4 = new Pair<String, Object>("piece", p);
+            Pair<String, Object> _pair_5 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<BlackKnightMovesMatch>fireAllCurrent(this.blackKnightMovesRule, _pair_4, _pair_5);
+            break;
+          case BISHOP:
+            Pair<String, Object> _pair_6 = new Pair<String, Object>("bishop", p);
+            Pair<String, Object> _pair_7 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesRule, _pair_6, _pair_7);
+            break;
+          case QUEEN:
+            Pair<String, Object> _pair_8 = new Pair<String, Object>("queen", p);
+            Pair<String, Object> _pair_9 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<QueenMovesMatch>fireAllCurrent(this.queenMovesRule, _pair_8, _pair_9);
+            break;
+          case KING:
+            Pair<String, Object> _pair_10 = new Pair<String, Object>("king", p);
+            Pair<String, Object> _pair_11 = new Pair<String, Object>("square", destinationSquare);
+            this.statements.<KingMovesMatch>fireAllCurrent(this.kingMovesRule, _pair_10, _pair_11);
+            break;
+          default:
+            _switchResult = InputOutput.<String>println("Error");
+            break;
+        }
+      } else {
+        _switchResult = InputOutput.<String>println("Error");
       }
-    } else {
-      InputOutput.<String>println("Error");
+      _xblockexpression = _switchResult;
     }
-    int _pos = p.getPos();
-    boolean _notEquals = (oldPos != _pos);
-    if (_notEquals) {
-      boolean _isWhitePlayerTurn = this.chess.isWhitePlayerTurn();
-      boolean _not = (!_isWhitePlayerTurn);
-      this.chess.setWhitePlayerTurn(_not);
-    }
+    return _xblockexpression;
   }
   
-  public void moveBlackPieceRandomly(final Piece p) {
+  public String moveBlackPieceRandomly(final Piece p) {
     try {
-      final int oldPos = p.getPos();
+      String _switchResult = null;
       PieceType _pieceType = p.getPieceType();
       if (_pieceType != null) {
         switch (_pieceType) {
@@ -582,44 +557,40 @@ public class ModelTransformation {
             }
             break;
           default:
-            InputOutput.<String>println("Error");
+            _switchResult = InputOutput.<String>println("Error");
             break;
         }
       } else {
-        InputOutput.<String>println("Error");
+        _switchResult = InputOutput.<String>println("Error");
       }
-      int _pos = p.getPos();
-      boolean _notEquals_6 = (oldPos != _pos);
-      if (_notEquals_6) {
-        boolean _isWhitePlayerTurn = this.chess.isWhitePlayerTurn();
-        boolean _not = (!_isWhitePlayerTurn);
-        this.chess.setWhitePlayerTurn(_not);
-      }
+      return _switchResult;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public Object movePiece(final Square destinationSquare) {
-    Object _switchResult = null;
+  public String movePiece(final Square destinationSquare) {
+    String _switchResult = null;
     Piece _piece = this.clickedSquare.getPiece();
     Colour _colour = _piece.getColour();
     if (_colour != null) {
       switch (_colour) {
         case WHITE:
+          String _xifexpression = null;
           boolean _isWhitePlayerTurn = this.chess.isWhitePlayerTurn();
           if (_isWhitePlayerTurn) {
-            this.moveWhitePiece(destinationSquare);
+            _xifexpression = this.moveWhitePiece(destinationSquare);
           }
+          _switchResult = _xifexpression;
           break;
         case BLACK:
-          Object _xifexpression = null;
+          Object _xifexpression_1 = null;
           boolean _isWhitePlayerTurn_1 = this.chess.isWhitePlayerTurn();
           boolean _not = (!_isWhitePlayerTurn_1);
           if (_not) {
-            _xifexpression = null;
+            _xifexpression_1 = null;
           }
-          _switchResult = _xifexpression;
+          _switchResult = ((String)_xifexpression_1);
           break;
         default:
           _switchResult = null;
@@ -652,10 +623,6 @@ public class ModelTransformation {
       this.engine = _on;
       this.clickedSquare = null;
       this.chess = chess;
-      this.ruleGroups.add(this.blackPawnMovesRule);
-      this.ruleGroups.add(this.blackKnightMovesRule);
-      this.ruleGroup.add(this.blackKnightMovesRule);
-      this.ruleGroup.add(this.blackPawnMovesRule);
       this.createTransformation();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -663,18 +630,30 @@ public class ModelTransformation {
   }
   
   public void moveBlackPlayer() {
-    while (((!this.chess.isWhitePlayerTurn()) && (!Objects.equal(this.chess.getBlackPlayer().getPiece(), null)))) {
-      {
-        Random rand = new Random();
-        Player _blackPlayer = this.chess.getBlackPlayer();
-        EList<Piece> _piece = _blackPlayer.getPiece();
-        int _size = _piece.size();
-        int index = rand.nextInt(_size);
-        Player _blackPlayer_1 = this.chess.getBlackPlayer();
-        EList<Piece> _piece_1 = _blackPlayer_1.getPiece();
-        Piece piece = _piece_1.get(index);
-        this.moveBlackPieceRandomly(piece);
+    try {
+      ChessEngine dse = new ChessEngine(this.chess);
+      dse.startExploaring();
+      boolean _solutionsIsEmpty = dse.solutionsIsEmpty();
+      boolean _not = (!_solutionsIsEmpty);
+      if (_not) {
+        dse.doNextStep();
+      } else {
+        while (((!this.chess.isWhitePlayerTurn()) && (!Objects.equal(this.chess.getBlackPlayer().getPiece(), null)))) {
+          {
+            Random rand = new Random();
+            Player _blackPlayer = this.chess.getBlackPlayer();
+            EList<Piece> _piece = _blackPlayer.getPiece();
+            int _size = _piece.size();
+            int index = rand.nextInt(_size);
+            Player _blackPlayer_1 = this.chess.getBlackPlayer();
+            EList<Piece> _piece_1 = _blackPlayer_1.getPiece();
+            Piece piece = _piece_1.get(index);
+            this.moveBlackPieceRandomly(piece);
+          }
+        }
       }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
   }
   

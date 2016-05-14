@@ -1,7 +1,11 @@
 package chess.queries;
 
+import chess.queries.BlackKingMovesMatcher;
 import chess.queries.KingMovesMatcher;
+import chess.queries.WhiteKingMovesMatcher;
+import chess.queries.util.BlackKingMovesQuerySpecification;
 import chess.queries.util.KingMovesQuerySpecification;
+import chess.queries.util.WhiteKingMovesQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
@@ -15,6 +19,8 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * 
  * <p> From package chess.queries, the group contains the definition of the following patterns: <ul>
  * <li>kingMoves</li>
+ * <li>blackKingMoves</li>
+ * <li>whiteKingMoves</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -40,6 +46,8 @@ public final class Kingmoves extends BaseGeneratedPatternGroup {
   
   private Kingmoves() throws ViatraQueryException {
     querySpecifications.add(KingMovesQuerySpecification.instance());
+    querySpecifications.add(BlackKingMovesQuerySpecification.instance());
+    querySpecifications.add(WhiteKingMovesQuerySpecification.instance());
   }
   
   public KingMovesQuerySpecification getKingMoves() throws ViatraQueryException {
@@ -48,5 +56,21 @@ public final class Kingmoves extends BaseGeneratedPatternGroup {
   
   public KingMovesMatcher getKingMoves(final ViatraQueryEngine engine) throws ViatraQueryException {
     return KingMovesMatcher.on(engine);
+  }
+  
+  public BlackKingMovesQuerySpecification getBlackKingMoves() throws ViatraQueryException {
+    return BlackKingMovesQuerySpecification.instance();
+  }
+  
+  public BlackKingMovesMatcher getBlackKingMoves(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackKingMovesMatcher.on(engine);
+  }
+  
+  public WhiteKingMovesQuerySpecification getWhiteKingMoves() throws ViatraQueryException {
+    return WhiteKingMovesQuerySpecification.instance();
+  }
+  
+  public WhiteKingMovesMatcher getWhiteKingMoves(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteKingMovesMatcher.on(engine);
   }
 }

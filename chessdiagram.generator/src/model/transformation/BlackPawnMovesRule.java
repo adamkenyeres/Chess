@@ -53,9 +53,7 @@ public class BlackPawnMovesRule {
 								Generator.removePiece(pChess, pSquare.getN().getPiece());
 						}
 						Generator.setEnpassantFalse(pChess);
-						System.out.println("pos: " + pPiece.getPos() + " square: " + pSquare.getId());
 						if ((Math.abs(pPiece.getPos() / 8 - pSquare.getId() / 8) == 2)) {
-							System.out.println("Enpassant is enabled");
 							pPiece.setEnPassantEnabled(true);
 						}
 						pPiece.setPos(pSquare.getId());
@@ -70,6 +68,7 @@ public class BlackPawnMovesRule {
 							pChess.getBlackPlayer().getPiece().add(q);
 
 						}
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 
 				});

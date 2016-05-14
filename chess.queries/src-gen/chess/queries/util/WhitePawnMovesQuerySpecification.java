@@ -137,6 +137,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_square = body.getOrCreateVariableByName("square");
       		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -158,8 +159,31 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess(chess)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_2_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whitePawnMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_1_1(boolTurn);
+      		                                }
+      		
+      		                        },  null); 
       		bodies.add(body);
       	}
       	{
@@ -170,6 +194,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
       		PVariable var_squareNorth = body.getOrCreateVariableByName("squareNorth");
       		PVariable var_bool = body.getOrCreateVariableByName("bool");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -219,8 +244,31 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		                                    return evaluateExpression_2_1(bool);
       		                                }
       		
-      		                        },  null); // 	Chess(chess)
+      		                        },  null); // 	Chess.whitePlayerTurn(chess, boolTurn)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_3_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whitePawnMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_2_2(boolTurn);
+      		                                }
+      		
+      		                        },  null); 
       		bodies.add(body);
       	}
       	{
@@ -229,6 +277,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_square = body.getOrCreateVariableByName("square");
       		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -250,8 +299,31 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NWQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find squareContainsBlackPiece(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), SquareContainsBlackPieceQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess(chess)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_2_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whitePawnMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_3_1(boolTurn);
+      		                                }
+      		
+      		                        },  null); 
       		bodies.add(body);
       	}
       	{
@@ -260,6 +332,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_square = body.getOrCreateVariableByName("square");
       		PVariable var_chess = body.getOrCreateVariableByName("chess");
       		PVariable var_squarePiece = body.getOrCreateVariableByName("squarePiece");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -281,8 +354,31 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NEQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find squareContainsBlackPiece(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), SquareContainsBlackPieceQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess(chess)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_2_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whitePawnMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_4_1(boolTurn);
+      		                                }
+      		
+      		                        },  null); 
       		bodies.add(body);
       	}
       	{
@@ -294,6 +390,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_atackingSquare = body.getOrCreateVariableByName("atackingSquare");
       		PVariable var_atackingPawn = body.getOrCreateVariableByName("atackingPawn");
       		PVariable var_bool = body.getOrCreateVariableByName("bool");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -343,8 +440,31 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		
       		                        },  null); // 	find N(atackingSquare, square)
       		new PositivePatternCall(body, new FlatTuple(var_atackingSquare, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess(chess)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_3_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whitePawnMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_5_2(boolTurn);
+      		                                }
+      		
+      		                        },  null); 
       		bodies.add(body);
       	}
       	{
@@ -356,6 +476,7 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_atackingSquare = body.getOrCreateVariableByName("atackingSquare");
       		PVariable var_atackingPawn = body.getOrCreateVariableByName("atackingPawn");
       		PVariable var_bool = body.getOrCreateVariableByName("bool");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Pawn")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -405,8 +526,31 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		
       		                        },  null); // 	find N(atackingSquare, square)
       		new PositivePatternCall(body, new FlatTuple(var_atackingSquare, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess(chess)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_3_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whitePawnMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_6_2(boolTurn);
+      		                                }
+      		
+      		                        },  null); 
       		bodies.add(body);
       	}
       	// to silence compiler error
@@ -418,15 +562,39 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
     }
   }
   
+  private static boolean evaluateExpression_1_1(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
+  }
+  
   private static boolean evaluateExpression_2_1(final Boolean bool) {
     return ((bool).booleanValue() == true);
+  }
+  
+  private static boolean evaluateExpression_2_2(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
+  }
+  
+  private static boolean evaluateExpression_3_1(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
+  }
+  
+  private static boolean evaluateExpression_4_1(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
   }
   
   private static boolean evaluateExpression_5_1(final Boolean bool) {
     return ((bool).booleanValue() == true);
   }
   
+  private static boolean evaluateExpression_5_2(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
+  }
+  
   private static boolean evaluateExpression_6_1(final Boolean bool) {
     return ((bool).booleanValue() == true);
+  }
+  
+  private static boolean evaluateExpression_6_2(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
   }
 }

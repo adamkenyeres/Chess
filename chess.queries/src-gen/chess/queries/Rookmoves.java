@@ -1,13 +1,17 @@
 package chess.queries;
 
+import chess.queries.BlackRookMovesMatcher;
 import chess.queries.HorizontalOrVerticalMovesMatcher;
 import chess.queries.HorizontalRookMovesMatcher;
 import chess.queries.RookMovesMatcher;
 import chess.queries.VerticalRookMovesMatcher;
+import chess.queries.WhiteRookMovesMatcher;
+import chess.queries.util.BlackRookMovesQuerySpecification;
 import chess.queries.util.HorizontalOrVerticalMovesQuerySpecification;
 import chess.queries.util.HorizontalRookMovesQuerySpecification;
 import chess.queries.util.RookMovesQuerySpecification;
 import chess.queries.util.VerticalRookMovesQuerySpecification;
+import chess.queries.util.WhiteRookMovesQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
@@ -24,6 +28,8 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * <li>horizontalRookMoves</li>
  * <li>horizontalOrVerticalMoves</li>
  * <li>rookMoves</li>
+ * <li>blackRookMoves</li>
+ * <li>whiteRookMoves</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -52,6 +58,8 @@ public final class Rookmoves extends BaseGeneratedPatternGroup {
     querySpecifications.add(HorizontalRookMovesQuerySpecification.instance());
     querySpecifications.add(HorizontalOrVerticalMovesQuerySpecification.instance());
     querySpecifications.add(RookMovesQuerySpecification.instance());
+    querySpecifications.add(BlackRookMovesQuerySpecification.instance());
+    querySpecifications.add(WhiteRookMovesQuerySpecification.instance());
   }
   
   public VerticalRookMovesQuerySpecification getVerticalRookMoves() throws ViatraQueryException {
@@ -84,5 +92,21 @@ public final class Rookmoves extends BaseGeneratedPatternGroup {
   
   public RookMovesMatcher getRookMoves(final ViatraQueryEngine engine) throws ViatraQueryException {
     return RookMovesMatcher.on(engine);
+  }
+  
+  public BlackRookMovesQuerySpecification getBlackRookMoves() throws ViatraQueryException {
+    return BlackRookMovesQuerySpecification.instance();
+  }
+  
+  public BlackRookMovesMatcher getBlackRookMoves(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackRookMovesMatcher.on(engine);
+  }
+  
+  public WhiteRookMovesQuerySpecification getWhiteRookMoves() throws ViatraQueryException {
+    return WhiteRookMovesQuerySpecification.instance();
+  }
+  
+  public WhiteRookMovesMatcher getWhiteRookMoves(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteRookMovesMatcher.on(engine);
   }
 }

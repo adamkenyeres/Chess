@@ -84,28 +84,28 @@ public class Generator {
 			}
 		}
 
-//		for (int i = 0; i < 8; i++) {
-//			white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 6, i));
-//		}
-//		for (int i = 0; i < 8; i++) {
-//			white.getPiece().add(createPiece(factory, Start[i], Colour.WHITE, 7, i));
-//		}
-//
-//		for (int i = 0; i < 8; i++) {
-//			black.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.BLACK, 1, i));
-//		}
-//		for (int i = 0; i < 8; i++) {
-//			black.getPiece().add(createPiece(factory, Start[i], Colour.BLACK, 0, i));
-//		}
+		for (int i = 0; i < 8; i++) {
+			white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 6, i));
+		}
+		for (int i = 0; i < 8; i++) {
+			white.getPiece().add(createPiece(factory, Start[i], Colour.WHITE, 7, i));
+		}
 
-		black.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.BLACK, 1, 0));
-		//white.getPiece().add(createPiece(factory, PieceType.QUEEN, Colour.WHITE, 6, 3));
-		white.getPiece().add(createPiece(factory, PieceType.KING, Colour.WHITE, 6, 1));
-//		white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 5, 0));
-//		white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 5, 1));
-//		white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 5, 6));
-		// black.getPiece().add(createPiece(factory, PieceType.QUEEN,
-		// Colour.WHITE, 0, 0));
+		for (int i = 0; i < 8; i++) {
+			black.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.BLACK, 1, i));
+		}
+		for (int i = 0; i < 8; i++) {
+			black.getPiece().add(createPiece(factory, Start[i], Colour.BLACK, 0, i));
+		}
+
+////		black.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.BLACK, 1, 0));
+//		//white.getPiece().add(createPiece(factory, PieceType.QUEEN, Colour.WHITE, 6, 3));
+//		white.getPiece().add(createPiece(factory, PieceType.KING, Colour.WHITE, 6, 1));
+////		white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 5, 0));
+////		white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 5, 1));
+////		white.getPiece().add(createPiece(factory, PieceType.PAWN, Colour.WHITE, 5, 6));
+//		// black.getPiece().add(createPiece(factory, PieceType.QUEEN,
+//		// Colour.WHITE, 0, 0));
 		chess.setBlackPlayer(black);
 		chess.setWhitePlayer(white);
 

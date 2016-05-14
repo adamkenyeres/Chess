@@ -46,6 +46,7 @@ public class BishopMovesRule {
 						}
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 				});
 		return rule;
@@ -65,6 +66,7 @@ public class BishopMovesRule {
 						}
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 				});
 		return rule;

@@ -76,6 +76,7 @@ public class WhitePawnMovesRule {
 							pChess.getWhitePlayer().getPiece().add(q);
 
 						}
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
 					}
 
 				});
