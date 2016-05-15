@@ -159,11 +159,18 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		// 	Chess.whitePlayer.piece(chess,piece)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
-      		new Equality(body, var__virtual_2_, var_boolTurn);
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayer")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var__virtual_2_, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Player", "piece")));
+      		new Equality(body, var__virtual_3_, var_piece);
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_4_, var_boolTurn);
       		// 	check(boolTurn == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
@@ -244,11 +251,18 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		                                    return evaluateExpression_2_1(bool);
       		                                }
       		
-      		                        },  null); // 	Chess.whitePlayerTurn(chess, boolTurn)
+      		                        },  null); // 	Chess.whitePlayer.piece(chess,piece)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
-      		new Equality(body, var__virtual_3_, var_boolTurn);
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayer")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var__virtual_3_, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Player", "piece")));
+      		new Equality(body, var__virtual_4_, var_piece);
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_5_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_5_, var_boolTurn);
       		// 	check(boolTurn == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
@@ -299,11 +313,18 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NWQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find squareContainsBlackPiece(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), SquareContainsBlackPieceQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		// 	Chess.whitePlayer.piece(chess,piece)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
-      		new Equality(body, var__virtual_2_, var_boolTurn);
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayer")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var__virtual_2_, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Player", "piece")));
+      		new Equality(body, var__virtual_3_, var_piece);
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_4_, var_boolTurn);
       		// 	check(boolTurn == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
@@ -354,11 +375,18 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		new PositivePatternCall(body, new FlatTuple(var_squarePiece, var_square), NEQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find squareContainsBlackPiece(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), SquareContainsBlackPieceQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		// 	Chess.whitePlayer.piece(chess,piece)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
-      		new Equality(body, var__virtual_2_, var_boolTurn);
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayer")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var__virtual_2_, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Player", "piece")));
+      		new Equality(body, var__virtual_3_, var_piece);
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_4_, var_boolTurn);
       		// 	check(boolTurn == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
@@ -445,6 +473,13 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
       		new Equality(body, var__virtual_3_, var_boolTurn);
+      		// 	Chess.whitePlayer.piece(chess,piece)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayer")));
+      		PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
+      		new TypeConstraint(body, new FlatTuple(var__virtual_4_, var__virtual_5_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Player", "piece")));
+      		new Equality(body, var__virtual_5_, var_piece);
       		// 	check(boolTurn == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
@@ -526,11 +561,18 @@ public final class WhitePawnMovesQuerySpecification extends BaseGeneratedEMFQuer
       		
       		                        },  null); // 	find N(atackingSquare, square)
       		new PositivePatternCall(body, new FlatTuple(var_atackingSquare, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		// 	Chess.whitePlayer.piece(chess,piece)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
-      		new Equality(body, var__virtual_3_, var_boolTurn);
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayer")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var__virtual_3_, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Player", "piece")));
+      		new Equality(body, var__virtual_4_, var_piece);
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_5_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_5_, var_boolTurn);
       		// 	check(boolTurn == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            

@@ -4,11 +4,11 @@ import "http://example.com/chessdiagram"
 pattern queenMoves(queen : Queen, square : Square, chess : Chess){
 	/*All the diagonal moves */
 	find diagonalMoves(queen, square);
-	Chess(chess);
+	Chess.square(chess,square);
 }or{
 	/*All the horizontal moves */
 	find horizontalOrVerticalMoves(queen, square);
-	Chess(chess);
+	Chess.square(chess,square);
 }
 
 pattern blackQueenMoves(queen : Queen, square : Square, chess : Chess){

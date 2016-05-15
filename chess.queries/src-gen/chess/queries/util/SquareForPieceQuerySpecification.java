@@ -124,7 +124,7 @@ public final class SquareForPieceQuerySpecification extends BaseGeneratedEMFQuer
       		   new ExportedParameter(body, var_piece, "piece"),
       		   new ExportedParameter(body, var_square, "square")
       		));
-      		// 	//Piece.colour(piece, _colour);	find square(piece, square)
+      		// //Piece.colour(piece, _colour);	find square(piece, square)
       		new PositivePatternCall(body, new FlatTuple(var_piece, var_square), SquareQuerySpecification.instance().getInternalQueryRepresentation());
       		bodies.add(body);
       	}

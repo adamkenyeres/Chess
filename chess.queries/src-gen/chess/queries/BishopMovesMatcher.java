@@ -30,7 +30,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <code><pre>
  * pattern bishopMoves(piece : Bishop, square : Square, chess : Chess){
  * 	find diagonalMoves(piece, square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }
  * </pre></code>
  * 

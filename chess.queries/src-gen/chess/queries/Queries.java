@@ -1,5 +1,12 @@
 package chess.queries;
 
+import chess.queries.BlackBishopsMatcher;
+import chess.queries.BlackKingsMatcher;
+import chess.queries.BlackKnightsMatcher;
+import chess.queries.BlackPawnsMatcher;
+import chess.queries.BlackPlayerTurnMatcher;
+import chess.queries.BlackQueensMatcher;
+import chess.queries.BlackRooksMatcher;
 import chess.queries.CanAttackMatcher;
 import chess.queries.PieceOnSquareeMatcher;
 import chess.queries.PiecesOfBlackPlayerMatcher;
@@ -9,6 +16,20 @@ import chess.queries.SameColorPieceMatcher;
 import chess.queries.SquareContainsBlackPieceMatcher;
 import chess.queries.SquareContainsWhitePieceMatcher;
 import chess.queries.SquareForPieceMatcher;
+import chess.queries.WhiteBishopsMatcher;
+import chess.queries.WhiteKingsMatcher;
+import chess.queries.WhiteKnightsMatcher;
+import chess.queries.WhitePawnsMatcher;
+import chess.queries.WhitePlayerTurnMatcher;
+import chess.queries.WhiteQueensMatcher;
+import chess.queries.WhiteRooksMatcher;
+import chess.queries.util.BlackBishopsQuerySpecification;
+import chess.queries.util.BlackKingsQuerySpecification;
+import chess.queries.util.BlackKnightsQuerySpecification;
+import chess.queries.util.BlackPawnsQuerySpecification;
+import chess.queries.util.BlackPlayerTurnQuerySpecification;
+import chess.queries.util.BlackQueensQuerySpecification;
+import chess.queries.util.BlackRooksQuerySpecification;
 import chess.queries.util.CanAttackQuerySpecification;
 import chess.queries.util.PieceOnSquareeQuerySpecification;
 import chess.queries.util.PiecesOfBlackPlayerQuerySpecification;
@@ -18,6 +39,13 @@ import chess.queries.util.SameColorPieceQuerySpecification;
 import chess.queries.util.SquareContainsBlackPieceQuerySpecification;
 import chess.queries.util.SquareContainsWhitePieceQuerySpecification;
 import chess.queries.util.SquareForPieceQuerySpecification;
+import chess.queries.util.WhiteBishopsQuerySpecification;
+import chess.queries.util.WhiteKingsQuerySpecification;
+import chess.queries.util.WhiteKnightsQuerySpecification;
+import chess.queries.util.WhitePawnsQuerySpecification;
+import chess.queries.util.WhitePlayerTurnQuerySpecification;
+import chess.queries.util.WhiteQueensQuerySpecification;
+import chess.queries.util.WhiteRooksQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
@@ -39,6 +67,20 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * <li>squareContainsWhitePiece</li>
  * <li>squareContainsBlackPiece</li>
  * <li>squareForPiece</li>
+ * <li>whitePlayerTurn</li>
+ * <li>blackPlayerTurn</li>
+ * <li>whitePawns</li>
+ * <li>whiteRooks</li>
+ * <li>whiteKnights</li>
+ * <li>whiteBishops</li>
+ * <li>whiteQueens</li>
+ * <li>whiteKings</li>
+ * <li>blackPawns</li>
+ * <li>blackRooks</li>
+ * <li>blackKnights</li>
+ * <li>blackBishops</li>
+ * <li>blackQueens</li>
+ * <li>blackKings</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -72,6 +114,20 @@ public final class Queries extends BaseGeneratedPatternGroup {
     querySpecifications.add(SquareContainsWhitePieceQuerySpecification.instance());
     querySpecifications.add(SquareContainsBlackPieceQuerySpecification.instance());
     querySpecifications.add(SquareForPieceQuerySpecification.instance());
+    querySpecifications.add(WhitePlayerTurnQuerySpecification.instance());
+    querySpecifications.add(BlackPlayerTurnQuerySpecification.instance());
+    querySpecifications.add(WhitePawnsQuerySpecification.instance());
+    querySpecifications.add(WhiteRooksQuerySpecification.instance());
+    querySpecifications.add(WhiteKnightsQuerySpecification.instance());
+    querySpecifications.add(WhiteBishopsQuerySpecification.instance());
+    querySpecifications.add(WhiteQueensQuerySpecification.instance());
+    querySpecifications.add(WhiteKingsQuerySpecification.instance());
+    querySpecifications.add(BlackPawnsQuerySpecification.instance());
+    querySpecifications.add(BlackRooksQuerySpecification.instance());
+    querySpecifications.add(BlackKnightsQuerySpecification.instance());
+    querySpecifications.add(BlackBishopsQuerySpecification.instance());
+    querySpecifications.add(BlackQueensQuerySpecification.instance());
+    querySpecifications.add(BlackKingsQuerySpecification.instance());
   }
   
   public PieceOnSquareeQuerySpecification getPieceOnSquaree() throws ViatraQueryException {
@@ -144,5 +200,117 @@ public final class Queries extends BaseGeneratedPatternGroup {
   
   public SquareForPieceMatcher getSquareForPiece(final ViatraQueryEngine engine) throws ViatraQueryException {
     return SquareForPieceMatcher.on(engine);
+  }
+  
+  public WhitePlayerTurnQuerySpecification getWhitePlayerTurn() throws ViatraQueryException {
+    return WhitePlayerTurnQuerySpecification.instance();
+  }
+  
+  public WhitePlayerTurnMatcher getWhitePlayerTurn(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhitePlayerTurnMatcher.on(engine);
+  }
+  
+  public BlackPlayerTurnQuerySpecification getBlackPlayerTurn() throws ViatraQueryException {
+    return BlackPlayerTurnQuerySpecification.instance();
+  }
+  
+  public BlackPlayerTurnMatcher getBlackPlayerTurn(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackPlayerTurnMatcher.on(engine);
+  }
+  
+  public WhitePawnsQuerySpecification getWhitePawns() throws ViatraQueryException {
+    return WhitePawnsQuerySpecification.instance();
+  }
+  
+  public WhitePawnsMatcher getWhitePawns(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhitePawnsMatcher.on(engine);
+  }
+  
+  public WhiteRooksQuerySpecification getWhiteRooks() throws ViatraQueryException {
+    return WhiteRooksQuerySpecification.instance();
+  }
+  
+  public WhiteRooksMatcher getWhiteRooks(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteRooksMatcher.on(engine);
+  }
+  
+  public WhiteKnightsQuerySpecification getWhiteKnights() throws ViatraQueryException {
+    return WhiteKnightsQuerySpecification.instance();
+  }
+  
+  public WhiteKnightsMatcher getWhiteKnights(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteKnightsMatcher.on(engine);
+  }
+  
+  public WhiteBishopsQuerySpecification getWhiteBishops() throws ViatraQueryException {
+    return WhiteBishopsQuerySpecification.instance();
+  }
+  
+  public WhiteBishopsMatcher getWhiteBishops(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteBishopsMatcher.on(engine);
+  }
+  
+  public WhiteQueensQuerySpecification getWhiteQueens() throws ViatraQueryException {
+    return WhiteQueensQuerySpecification.instance();
+  }
+  
+  public WhiteQueensMatcher getWhiteQueens(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteQueensMatcher.on(engine);
+  }
+  
+  public WhiteKingsQuerySpecification getWhiteKings() throws ViatraQueryException {
+    return WhiteKingsQuerySpecification.instance();
+  }
+  
+  public WhiteKingsMatcher getWhiteKings(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return WhiteKingsMatcher.on(engine);
+  }
+  
+  public BlackPawnsQuerySpecification getBlackPawns() throws ViatraQueryException {
+    return BlackPawnsQuerySpecification.instance();
+  }
+  
+  public BlackPawnsMatcher getBlackPawns(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackPawnsMatcher.on(engine);
+  }
+  
+  public BlackRooksQuerySpecification getBlackRooks() throws ViatraQueryException {
+    return BlackRooksQuerySpecification.instance();
+  }
+  
+  public BlackRooksMatcher getBlackRooks(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackRooksMatcher.on(engine);
+  }
+  
+  public BlackKnightsQuerySpecification getBlackKnights() throws ViatraQueryException {
+    return BlackKnightsQuerySpecification.instance();
+  }
+  
+  public BlackKnightsMatcher getBlackKnights(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackKnightsMatcher.on(engine);
+  }
+  
+  public BlackBishopsQuerySpecification getBlackBishops() throws ViatraQueryException {
+    return BlackBishopsQuerySpecification.instance();
+  }
+  
+  public BlackBishopsMatcher getBlackBishops(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackBishopsMatcher.on(engine);
+  }
+  
+  public BlackQueensQuerySpecification getBlackQueens() throws ViatraQueryException {
+    return BlackQueensQuerySpecification.instance();
+  }
+  
+  public BlackQueensMatcher getBlackQueens(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackQueensMatcher.on(engine);
+  }
+  
+  public BlackKingsQuerySpecification getBlackKings() throws ViatraQueryException {
+    return BlackKingsQuerySpecification.instance();
+  }
+  
+  public BlackKingsMatcher getBlackKings(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return BlackKingsMatcher.on(engine);
   }
 }

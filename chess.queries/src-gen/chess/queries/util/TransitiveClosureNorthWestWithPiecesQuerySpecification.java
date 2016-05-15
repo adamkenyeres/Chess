@@ -131,6 +131,8 @@ public final class TransitiveClosureNorthWestWithPiecesQuerySpecification extend
       		PVariable var_startId = body.getOrCreateVariableByName("startId");
       		PVariable var_endId = body.getOrCreateVariableByName("endId");
       		PVariable var_squareId = body.getOrCreateVariableByName("squareId");
+      		PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
+      		PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
       		new TypeConstraint(body, new FlatTuple(var_start), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_end), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -218,6 +220,16 @@ public final class TransitiveClosureNorthWestWithPiecesQuerySpecification extend
       		
       		                        },  null); // 	find pieceOnSquaree(square)
       		new PositivePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
+      		// 	Chess.square(_,square)
+      		new TypeConstraint(body, new FlatTuple(var___0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+      		new TypeConstraint(body, new FlatTuple(var___0_, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
+      		new Equality(body, var__virtual_3_, var_square);
+      		// 	Chess.square(_,end)
+      		new TypeConstraint(body, new FlatTuple(var___1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
+      		new TypeConstraint(body, new FlatTuple(var___1_, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
+      		new Equality(body, var__virtual_4_, var_end);
       		bodies.add(body);
       	}
       	                {

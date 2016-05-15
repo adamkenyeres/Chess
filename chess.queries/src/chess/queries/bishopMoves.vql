@@ -52,7 +52,7 @@ pattern diagonalMoves(piece : Piece, square : Square){
 
 pattern bishopMoves(piece : Bishop, square : Square, chess : Chess){
 	find diagonalMoves(piece, square);
-	Chess(chess);
+	Chess.square(chess,square);
 }
 
 pattern whiteBishopMoves(piece : Bishop, square : Square, chess : Chess){

@@ -28,7 +28,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  * <code><pre>
  * pattern squareForPiece(piece : Piece, square : Square) {
- * 	//Piece.colour(piece, _colour);
+ * //Piece.colour(piece, _colour);
  * 	find square(piece, square);
  * }
  * </pre></code>

@@ -32,90 +32,90 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find square(king, kingSquare);
  * 	find N(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find NE(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find E(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find SE(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find S(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find SW(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find W(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, kingSquare);
  * 	find NW(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find N(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find NE(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find E(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find SE(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find S(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find SW(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find W(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find NW(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	King.firstMove(king, firsMoveKing);	//Casting All for possible ways
  * 	check(firsMoveKing == true);
@@ -125,7 +125,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesWest(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	King.firstMove(king, firsMoveKing);
  * 	check(firsMoveKing == true);
@@ -135,7 +135,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesEast(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	King.firstMove(king, firsMoveKing);	//Casting for black king
  * 	check(firsMoveKing == true);
@@ -145,7 +145,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesWest(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	King.firstMove(king, firsMoveKing);	
  * 	check(firsMoveKing == true);
@@ -155,7 +155,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find movesEast(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }
  * </pre></code>
  * 

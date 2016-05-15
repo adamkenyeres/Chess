@@ -31,11 +31,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * pattern queenMoves(queen : Queen, square : Square, chess : Chess){
  * 	All the diagonal moves 
  * 	find diagonalMoves(queen, square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	All the horizontal moves 
  * 	find horizontalOrVerticalMoves(queen, square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }
  * </pre></code>
  * 

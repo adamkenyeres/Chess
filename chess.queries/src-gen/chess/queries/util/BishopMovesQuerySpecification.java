@@ -12,9 +12,11 @@ import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
@@ -130,8 +132,11 @@ public final class BishopMovesQuerySpecification extends BaseGeneratedEMFQuerySp
       		));
       		// 	find diagonalMoves(piece, square)
       		new PositivePatternCall(body, new FlatTuple(var_piece, var_square), DiagonalMovesQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess(chess)
+      		// 	Chess.square(chess,square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
+      		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
+      		new Equality(body, var__virtual_0_, var_square);
       		bodies.add(body);
       	}
       	// to silence compiler error

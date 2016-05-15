@@ -28,10 +28,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <code><pre>
  * pattern canAttack(piece1 : Piece, piece2 : Piece) {
  * 	neg find sameColorPiece(piece1, piece2);
- * 	
- * 	Piece.colour(piece1, colour1);
- * 	Piece.colour(piece2, colour2);
- * 	check(colour1 != colour2);
+ * 
  * }
  * </pre></code>
  * 

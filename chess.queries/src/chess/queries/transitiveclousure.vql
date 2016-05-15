@@ -45,6 +45,7 @@ transitiveClosureNorthWestWithPieces(start : Square, end : Square, square : Squa
 	check(squareId > endId);
 	check(startId > endId);
 	find pieceOnSquaree(square);
+
 }
 
 @QueryExplorer(checked = false)

@@ -48,10 +48,10 @@ pattern horizontalOrVerticalMoves(piece : Piece, square : Square){
 
 pattern rookMoves(rook : Rook, square : Square, chess : Chess){
 	find verticalRookMoves(rook, square);
-	Chess(chess);
+	Chess.square(chess,square);
 }or{
 	find horizontalRookMoves(rook, square);
-	Chess(chess);
+	Chess.square(chess,square);
 }
 pattern blackRookMoves(rook : Rook, square : Square, chess : Chess){
 	Rook.colour(rook, ::Black);

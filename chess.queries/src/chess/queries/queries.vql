@@ -5,16 +5,15 @@ import "http://example.com/chessdiagram"
 pattern pieceOnSquaree(square : Square) {
 	find pieceOnSquare(square, _p);
 }
-pattern sameColorPiece(piece1 : Piece, piece2 : Piece){
+
+pattern sameColorPiece(piece1 : Piece, piece2 : Piece) {
 	Piece.colour(piece1, colour);
 	Piece.colour(piece2, colour);
 }
+
 pattern canAttack(piece1 : Piece, piece2 : Piece) {
 	neg find sameColorPiece(piece1, piece2);
-	
-	/*Piece.colour(piece1, colour1);
-	Piece.colour(piece2, colour2);
-	check(colour1 != colour2);*/
+
 }
 
 pattern piecesOnBoard(piece : Piece) {
@@ -40,10 +39,67 @@ pattern squareContainsBlackPiece(square : Square) {
 }
 
 pattern squareForPiece(piece : Piece, square : Square) {
-	//Piece.colour(piece, _colour);
+//Piece.colour(piece, _colour);
 	find square(piece, square);
 }
 
+pattern whitePlayerTurn(chess : Chess) {
+	Chess.whitePlayerTurn(chess, bool);
+	check(bool == true);
+}
+
+pattern blackPlayerTurn(chess : Chess) {
+	Chess.whitePlayerTurn(chess, bool);
+	check(bool == false);
+}
+
+pattern whitePawns(pawn : Pawn) {
+	Pawn.colour(pawn, ::White);
+}
+
+pattern whiteRooks(rook : Rook) {
+	Rook.colour(rook, ::White);
+}
+
+pattern whiteKnights(knight : Knight) {
+	Knight.colour(knight, ::White);
+}
+
+pattern whiteBishops(bishop : Bishop) {
+	Bishop.colour(bishop, ::White);
+}
+
+pattern whiteQueens(queen : Queen) {
+	Queen.colour(queen, ::White);
+}
+
+pattern whiteKings(king : King) {
+	King.colour(king, ::White);
+}
+
+pattern blackPawns(pawn : Pawn) {
+	Pawn.colour(pawn, ::Black);
+}
+
+pattern blackRooks(rook : Rook) {
+	Rook.colour(rook, ::Black);
+}
+
+pattern blackKnights(knight : Knight) {
+	Knight.colour(knight, ::Black);
+}
+
+pattern blackBishops(bishop : Bishop) {
+	Bishop.colour(bishop, ::Black);
+}
+
+pattern blackQueens(queen : Queen) {
+	Queen.colour(queen, ::Black);
+}
+
+pattern blackKings(king : King) {
+	King.colour(king, ::Black);
+}
 /*
 @QueryExplorer(checked = false)
 pattern getStartIdEndId(start : Square, end : Square,startId, endId){

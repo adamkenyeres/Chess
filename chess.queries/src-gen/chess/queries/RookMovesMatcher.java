@@ -30,10 +30,10 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <code><pre>
  * pattern rookMoves(rook : Rook, square : Square, chess : Chess){
  * 	find verticalRookMoves(rook, square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }or{
  * 	find horizontalRookMoves(rook, square);
- * 	Chess(chess);
+ * 	Chess.square(chess,square);
  * }
  * </pre></code>
  * 

@@ -35,7 +35,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find squareForPiece(piece, squarePiece);
  * 	find S(squarePiece, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess(chess);
+ * 	//This is needed so there wont be isolated constraints
+ * 	Chess.blackPlayer.piece(chess, piece);
+ * 
  * } or {
  * 	Pawn.colour(piece, ::Black); //Two steps 
  * 	find squareForPiece(piece, squarePiece);
@@ -45,19 +47,19 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	neg find pieceOnSquaree(square);
  * 	Pawn.firstMove(piece, bool);
  * 	check(bool == true);
- * 	Chess(chess);
+ * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, squarePiece);
  * 	find SW(squarePiece, square);
  * 	find squareContainsWhitePiece(square);
- * 	Chess(chess);
+ * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, squarePiece);
  * 	find SE(squarePiece, square);
  * 	find squareContainsWhitePiece(square);
- * 	Chess(chess);
+ * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
  * En passant if there is a pawn on the left to be hit 
  * 	Pawn.colour(piece, ::Black);
@@ -68,7 +70,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Pawn.enPassantEnabled(atackingPawn, bool);
  * 	check(bool == true);
  * 	find S(atackingSquare, square);
- * 	Chess(chess);
+ * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
  * En passant if there is a pawn on the right to be hit 
  * 	Pawn.colour(piece, ::Black);
@@ -79,7 +81,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Pawn.enPassantEnabled(atackingPawn, bool);
  * 	check(bool == true);
  * 	find S(atackingSquare, square);
- * 	Chess(chess);
+ * 	Chess.blackPlayer.piece(chess, piece);
  * }
  * </pre></code>
  * 

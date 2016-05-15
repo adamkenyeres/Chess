@@ -26,7 +26,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern sameColorPiece(piece1 : Piece, piece2 : Piece){
+ * pattern sameColorPiece(piece1 : Piece, piece2 : Piece) {
  * 	Piece.colour(piece1, colour);
  * 	Piece.colour(piece2, colour);
  * }
