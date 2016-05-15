@@ -28,9 +28,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern blackKingMoves(king : King, square : Square, chess : Chess){
+ * pattern blackKingMoves(king : King, square : Square, chess : Chess) {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	King.colour(king, ::Black);
- * 	find kingMoves(king,square,chess);
+ * 	find kingMoves(king, square, chess);
  * }
  * </pre></code>
  * 

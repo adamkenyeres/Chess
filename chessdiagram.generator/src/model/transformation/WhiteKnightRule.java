@@ -43,6 +43,8 @@ public class WhiteKnightRule {
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
 					}
 
 				});

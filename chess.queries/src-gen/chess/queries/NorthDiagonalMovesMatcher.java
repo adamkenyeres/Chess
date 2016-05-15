@@ -37,11 +37,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find pieceOnSquaree(square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(bishop, piece);
- * }or{
+ * } or {
  * 	find square(bishop, bishopSquare); //NorthWest moves
  * 	find movesNorthWest(bishopSquare, _sq, square);
  * 	neg find pieceOnSquaree(square);
- * }or{
+ * } or {
  * 	find square(bishop, bishopSquare); //NorthEst moves
  * 	find movesNorthWest(bishopSquare, _sq, square);
  * 	find pieceOnSquaree(square);

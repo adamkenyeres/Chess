@@ -57,6 +57,12 @@ pattern whitePawns(pawn : Pawn) {
 	Pawn.colour(pawn, ::White);
 }
 
+pattern numberOfStepsEqualsThree(chess : Chess) {
+	Chess.stepsBeforeExlpoaring(chess,stepsBefore);
+	Chess.numberOfSteps(chess, numberOfSteps);
+	check(numberOfSteps % 2 != 0 && numberOfSteps != stepsBefore);
+}
+
 pattern whiteRooks(rook : Rook) {
 	Rook.colour(rook, ::White);
 }

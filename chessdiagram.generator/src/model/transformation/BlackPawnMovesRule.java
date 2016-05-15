@@ -69,6 +69,8 @@ public class BlackPawnMovesRule {
 
 						}
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
 					}
 
 				});

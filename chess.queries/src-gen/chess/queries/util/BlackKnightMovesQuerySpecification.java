@@ -16,10 +16,13 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
@@ -126,6 +129,7 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
       		PVariable var_chess = body.getOrCreateVariableByName("chess");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		PVariable var_atackingPiece = body.getOrCreateVariableByName("atackingPiece");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -135,13 +139,37 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	Knight.colour(piece, ::Black)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-      		new ConstantValue(body, var__virtual_0_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
-      		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_0_, var_boolTurn);
+      		// 	check(boolTurn == false)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern blackKnightMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_1_1(boolTurn);
+      		                                }
+      		
+      		                        },  null); // 	Knight.colour(piece, ::Black)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-      		new TypeConstraint(body, new FlatTuple(var_piece, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
-      		new Equality(body, var__virtual_1_, var__virtual_0_);
+      		new ConstantValue(body, var__virtual_1_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
+      		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
+      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+      		new TypeConstraint(body, new FlatTuple(var_piece, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
+      		new Equality(body, var__virtual_2_, var__virtual_1_);
       		// 	find knightMoves(piece, square, chess)
       		new PositivePatternCall(body, new FlatTuple(var_piece, var_square, var_chess), KnightMovesQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find pieceOnSquare(square, atackingPiece)
@@ -155,6 +183,7 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		PVariable var_piece = body.getOrCreateVariableByName("piece");
       		PVariable var_square = body.getOrCreateVariableByName("square");
       		PVariable var_chess = body.getOrCreateVariableByName("chess");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
       		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -164,13 +193,37 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	Knight.colour(piece, ::Black)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-      		new ConstantValue(body, var__virtual_0_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
-      		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_0_, var_boolTurn);
+      		// 	check(boolTurn == false)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern blackKnightMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_2_1(boolTurn);
+      		                                }
+      		
+      		                        },  null); // 	Knight.colour(piece, ::Black)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-      		new TypeConstraint(body, new FlatTuple(var_piece, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
-      		new Equality(body, var__virtual_1_, var__virtual_0_);
+      		new ConstantValue(body, var__virtual_1_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "Black").getInstance());
+      		new TypeConstraint(body, new FlatTuple(var_piece), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Knight")));
+      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+      		new TypeConstraint(body, new FlatTuple(var_piece, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
+      		new Equality(body, var__virtual_2_, var__virtual_1_);
       		// 	find knightMoves(piece, square, chess)
       		new PositivePatternCall(body, new FlatTuple(var_piece, var_square, var_chess), KnightMovesQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquare(square, _)
@@ -184,5 +237,13 @@ public final class BlackKnightMovesQuerySpecification extends BaseGeneratedEMFQu
       }
       return bodies;
     }
+  }
+  
+  private static boolean evaluateExpression_1_1(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == false);
+  }
+  
+  private static boolean evaluateExpression_2_1(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == false);
   }
 }

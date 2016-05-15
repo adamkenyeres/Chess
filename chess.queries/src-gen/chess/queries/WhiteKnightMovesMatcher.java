@@ -29,11 +29,15 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  * <code><pre>
  * pattern whiteKnightMoves(piece : Knight, square : Square, chess : Chess) {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == true);
  * 	Knight.colour(piece, ::White);
  * 	find knightMoves(piece, square, chess);
  * 	find pieceOnSquare(square, atackingPiece);
  * 	find canAttack(piece, atackingPiece);
  * } or {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == true);
  * 	Knight.colour(piece, ::White);
  * 	find knightMoves(piece, square, chess);
  * 	neg find pieceOnSquare(square, _);

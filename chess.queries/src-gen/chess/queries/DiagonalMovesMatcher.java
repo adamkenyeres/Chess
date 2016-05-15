@@ -27,9 +27,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern diagonalMoves(piece : Piece, square : Square){
+ * pattern diagonalMoves(piece : Piece, square : Square) {
  * 	find northDiagonalMoves(piece, square);
- * }or{
+ * } or {
  * 	find southDiagonalMoves(piece, square);
  * }
  * </pre></code>

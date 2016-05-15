@@ -29,6 +29,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  * <code><pre>
  * pattern whiteRookMoves(rook : Rook, square : Square, chess : Chess){
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == true);
  * 	Rook.colour(rook, ::White);
  * 	find rookMoves(rook, square, chess);
  * }

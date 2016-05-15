@@ -1,22 +1,27 @@
 package chess.queries
+
 import "http://example.com/chessdiagram"
 
-pattern queenMoves(queen : Queen, square : Square, chess : Chess){
-	/*All the diagonal moves */
+pattern queenMoves(queen : Queen, square : Square, chess : Chess) {
+/*All the diagonal moves */
 	find diagonalMoves(queen, square);
-	Chess.square(chess,square);
-}or{
-	/*All the horizontal moves */
+	Chess.square(chess, square);
+} or {
+/*All the horizontal moves */
 	find horizontalOrVerticalMoves(queen, square);
-	Chess.square(chess,square);
+	Chess.square(chess, square);
 }
 
-pattern blackQueenMoves(queen : Queen, square : Square, chess : Chess){
-	Queen.colour(queen,::Black);
-	find queenMoves(queen,square,chess);
+pattern blackQueenMoves(queen : Queen, square : Square, chess : Chess) {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
+	Queen.colour(queen, ::Black);
+	find queenMoves(queen, square, chess);
 }
 
-pattern whiteQueenMoves(queen : Queen, square : Square, chess : Chess){
-	Queen.colour(queen,::White);
-	find queenMoves(queen,square,chess);
+pattern whiteQueenMoves(queen : Queen, square : Square, chess : Chess) {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == true);
+	Queen.colour(queen, ::White);
+	find queenMoves(queen, square, chess);
 }

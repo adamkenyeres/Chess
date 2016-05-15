@@ -32,6 +32,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link chessdiagram.impl.ChessImpl#getBlackPlayer <em>Black Player</em>}</li>
  *   <li>{@link chessdiagram.impl.ChessImpl#getSquare <em>Square</em>}</li>
  *   <li>{@link chessdiagram.impl.ChessImpl#isWhitePlayerTurn <em>White Player Turn</em>}</li>
+ *   <li>{@link chessdiagram.impl.ChessImpl#getNumberOfSteps <em>Number Of Steps</em>}</li>
+ *   <li>{@link chessdiagram.impl.ChessImpl#getStepsBeforeExlpoaring <em>Steps Before Exlpoaring</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,6 +88,46 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 	 * @ordered
 	 */
 	protected boolean whitePlayerTurn = WHITE_PLAYER_TURN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNumberOfSteps() <em>Number Of Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumberOfSteps()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int NUMBER_OF_STEPS_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getNumberOfSteps() <em>Number Of Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumberOfSteps()
+	 * @generated
+	 * @ordered
+	 */
+	protected int numberOfSteps = NUMBER_OF_STEPS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStepsBeforeExlpoaring() <em>Steps Before Exlpoaring</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStepsBeforeExlpoaring()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int STEPS_BEFORE_EXLPOARING_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getStepsBeforeExlpoaring() <em>Steps Before Exlpoaring</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStepsBeforeExlpoaring()
+	 * @generated
+	 * @ordered
+	 */
+	protected int stepsBeforeExlpoaring = STEPS_BEFORE_EXLPOARING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,6 +272,48 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getNumberOfSteps() {
+		return numberOfSteps;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNumberOfSteps(int newNumberOfSteps) {
+		int oldNumberOfSteps = numberOfSteps;
+		numberOfSteps = newNumberOfSteps;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChessdiagramPackage.CHESS__NUMBER_OF_STEPS, oldNumberOfSteps, numberOfSteps));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getStepsBeforeExlpoaring() {
+		return stepsBeforeExlpoaring;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStepsBeforeExlpoaring(int newStepsBeforeExlpoaring) {
+		int oldStepsBeforeExlpoaring = stepsBeforeExlpoaring;
+		stepsBeforeExlpoaring = newStepsBeforeExlpoaring;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChessdiagramPackage.CHESS__STEPS_BEFORE_EXLPOARING, oldStepsBeforeExlpoaring, stepsBeforeExlpoaring));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -259,6 +343,10 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 				return getSquare();
 			case ChessdiagramPackage.CHESS__WHITE_PLAYER_TURN:
 				return isWhitePlayerTurn();
+			case ChessdiagramPackage.CHESS__NUMBER_OF_STEPS:
+				return getNumberOfSteps();
+			case ChessdiagramPackage.CHESS__STEPS_BEFORE_EXLPOARING:
+				return getStepsBeforeExlpoaring();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -285,6 +373,12 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 			case ChessdiagramPackage.CHESS__WHITE_PLAYER_TURN:
 				setWhitePlayerTurn((Boolean)newValue);
 				return;
+			case ChessdiagramPackage.CHESS__NUMBER_OF_STEPS:
+				setNumberOfSteps((Integer)newValue);
+				return;
+			case ChessdiagramPackage.CHESS__STEPS_BEFORE_EXLPOARING:
+				setStepsBeforeExlpoaring((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -309,6 +403,12 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 			case ChessdiagramPackage.CHESS__WHITE_PLAYER_TURN:
 				setWhitePlayerTurn(WHITE_PLAYER_TURN_EDEFAULT);
 				return;
+			case ChessdiagramPackage.CHESS__NUMBER_OF_STEPS:
+				setNumberOfSteps(NUMBER_OF_STEPS_EDEFAULT);
+				return;
+			case ChessdiagramPackage.CHESS__STEPS_BEFORE_EXLPOARING:
+				setStepsBeforeExlpoaring(STEPS_BEFORE_EXLPOARING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -329,6 +429,10 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 				return square != null && !square.isEmpty();
 			case ChessdiagramPackage.CHESS__WHITE_PLAYER_TURN:
 				return whitePlayerTurn != WHITE_PLAYER_TURN_EDEFAULT;
+			case ChessdiagramPackage.CHESS__NUMBER_OF_STEPS:
+				return numberOfSteps != NUMBER_OF_STEPS_EDEFAULT;
+			case ChessdiagramPackage.CHESS__STEPS_BEFORE_EXLPOARING:
+				return stepsBeforeExlpoaring != STEPS_BEFORE_EXLPOARING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -345,6 +449,10 @@ public class ChessImpl extends MinimalEObjectImpl.Container implements Chess {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (whitePlayerTurn: ");
 		result.append(whitePlayerTurn);
+		result.append(", numberOfSteps: ");
+		result.append(numberOfSteps);
+		result.append(", stepsBeforeExlpoaring: ");
+		result.append(stepsBeforeExlpoaring);
 		result.append(')');
 		return result.toString();
 	}

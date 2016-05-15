@@ -7,10 +7,14 @@ import chess.queries.BishopMovesMatch;
 import chess.queries.BishopMovesMatcher;
 import chess.queries.BlackBishopMovesMatch;
 import chess.queries.BlackBishopMovesMatcher;
+import chess.queries.WhiteBishopMovesMatch;
+import chess.queries.WhiteBishopMovesMatcher;
 import chess.queries.util.BishopMovesProcessor;
 import chess.queries.util.BishopMovesQuerySpecification;
 import chess.queries.util.BlackBishopMovesProcessor;
 import chess.queries.util.BlackBishopMovesQuerySpecification;
+import chess.queries.util.WhiteBishopMovesProcessor;
+import chess.queries.util.WhiteBishopMovesQuerySpecification;
 import chessdiagram.Bishop;
 import chessdiagram.Chess;
 import chessdiagram.Colour;
@@ -47,6 +51,8 @@ public class BishopMovesRule {
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
 					}
 				});
 		return rule;
@@ -67,6 +73,29 @@ public class BishopMovesRule {
 						pPiece.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+					}
+				});
+		return rule;
+	}
+	
+	public static DSETransformationRule<?, ?> getWhiteBishopMovesRule()
+			throws ViatraQueryException {
+		DSETransformationRule<?, ?> rule = new DSETransformationRule<WhiteBishopMovesMatch, WhiteBishopMovesMatcher>(
+				WhiteBishopMovesQuerySpecification.instance(), new WhiteBishopMovesProcessor() {
+
+					@Override
+					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
+						// TODO Auto-generated method stub
+						if (pSquare.getPiece() != null) {
+							Generator.removePiece(pChess, pSquare.getPiece());
+						}
+						pPiece.setPos(pSquare.getId());
+						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
 					}
 				});
 		return rule;

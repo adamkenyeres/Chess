@@ -14,10 +14,13 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
@@ -123,6 +126,7 @@ public final class WhiteRookMovesQuerySpecification extends BaseGeneratedEMFQuer
       		PVariable var_rook = body.getOrCreateVariableByName("rook");
       		PVariable var_square = body.getOrCreateVariableByName("square");
       		PVariable var_chess = body.getOrCreateVariableByName("chess");
+      		PVariable var_boolTurn = body.getOrCreateVariableByName("boolTurn");
       		new TypeConstraint(body, new FlatTuple(var_rook), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Rook")));
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
@@ -131,13 +135,37 @@ public final class WhiteRookMovesQuerySpecification extends BaseGeneratedEMFQuer
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	Rook.colour(rook, ::White)
+      		// 	Chess.whitePlayerTurn(chess, boolTurn)
+      		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-      		new ConstantValue(body, var__virtual_0_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "White").getInstance());
-      		new TypeConstraint(body, new FlatTuple(var_rook), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Rook")));
+      		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "whitePlayerTurn")));
+      		new Equality(body, var__virtual_0_, var_boolTurn);
+      		// 	check(boolTurn == true)
+      		new ExpressionEvaluation(body, new IExpressionEvaluator() {
+      		                            
+      		                            @Override
+      		                            public String getShortDescription() {
+      		                                return "Expression evaluation from pattern whiteRookMoves";
+      		                            }
+      		
+      		                            @Override
+      		                            public Iterable<String> getInputParameterNames() {
+      		                                return Arrays.asList("boolTurn");
+      		                            }
+      		
+      		                            @Override
+      		                            public Object evaluateExpression(IValueProvider provider) throws Exception {
+      		                                    java.lang.Boolean boolTurn = (java.lang.Boolean) provider.getValue("boolTurn");
+      		                                    return evaluateExpression_1_1(boolTurn);
+      		                                }
+      		
+      		                        },  null); // 	Rook.colour(rook, ::White)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-      		new TypeConstraint(body, new FlatTuple(var_rook, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
-      		new Equality(body, var__virtual_1_, var__virtual_0_);
+      		new ConstantValue(body, var__virtual_1_, getEnumLiteral("http://example.com/chessdiagram", "Colour", "White").getInstance());
+      		new TypeConstraint(body, new FlatTuple(var_rook), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Rook")));
+      		PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+      		new TypeConstraint(body, new FlatTuple(var_rook, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Piece", "colour")));
+      		new Equality(body, var__virtual_2_, var__virtual_1_);
       		// 	find rookMoves(rook, square, chess)
       		new PositivePatternCall(body, new FlatTuple(var_rook, var_square, var_chess), RookMovesQuerySpecification.instance().getInternalQueryRepresentation());
       		bodies.add(body);
@@ -149,5 +177,9 @@ public final class WhiteRookMovesQuerySpecification extends BaseGeneratedEMFQuer
       }
       return bodies;
     }
+  }
+  
+  private static boolean evaluateExpression_1_1(final Boolean boolTurn) {
+    return ((boolTurn).booleanValue() == true);
   }
 }

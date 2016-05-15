@@ -5,6 +5,8 @@ import "http://example.com/chessdiagram"
 /*Black Pawn moves */
 pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
 //Stepping one ahead
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
 	Pawn.colour(piece, ::Black);
 	find squareForPiece(piece, squarePiece);
 	find S(squarePiece, square);
@@ -13,6 +15,9 @@ pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	Chess.blackPlayer.piece(chess, piece);
 
 } or {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
+
 	Pawn.colour(piece, ::Black); //Two steps 
 	find squareForPiece(piece, squarePiece);
 	find S(squarePiece, squareNorth);
@@ -23,12 +28,16 @@ pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	check(bool == true);
 	Chess.blackPlayer.piece(chess, piece);
 } or {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
 	Pawn.colour(piece, ::Black);
 	find squareForPiece(piece, squarePiece);
 	find SW(squarePiece, square);
 	find squareContainsWhitePiece(square);
 	Chess.blackPlayer.piece(chess, piece);
 } or {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
 	Pawn.colour(piece, ::Black);
 	find squareForPiece(piece, squarePiece);
 	find SE(squarePiece, square);
@@ -36,6 +45,8 @@ pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	Chess.blackPlayer.piece(chess, piece);
 } or {
 /*En passant if there is a pawn on the left to be hit */
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
 	Pawn.colour(piece, ::Black);
 	find squareForPiece(piece, pieceSquare);
 	find W(pieceSquare, atackingSquare);
@@ -47,6 +58,8 @@ pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	Chess.blackPlayer.piece(chess, piece);
 } or {
 /*En passant if there is a pawn on the right to be hit */
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
 	Pawn.colour(piece, ::Black);
 	find squareForPiece(piece, pieceSquare);
 	find E(pieceSquare, atackingSquare);
@@ -63,11 +76,10 @@ pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	find squareForPiece(piece, squarePiece);
 	find N(squarePiece, square);
 	neg find pieceOnSquaree(square);
-	Chess.whitePlayer.piece(chess,piece);
+	Chess.whitePlayer.piece(chess, piece);
 	Chess.whitePlayerTurn(chess, boolTurn);
 	check(boolTurn == true);
-	
-	
+
 } or {
 	Pawn.colour(piece, ::White); //Two steps
 	find squareForPiece(piece, squarePiece);
@@ -77,7 +89,7 @@ pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	neg find pieceOnSquaree(square);
 	Pawn.firstMove(piece, bool);
 	check(bool == true);
-	Chess.whitePlayer.piece(chess,piece);
+	Chess.whitePlayer.piece(chess, piece);
 	Chess.whitePlayerTurn(chess, boolTurn);
 	check(boolTurn == true);
 } or {
@@ -85,7 +97,7 @@ pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	find squareForPiece(piece, squarePiece);
 	find NW(squarePiece, square);
 	find squareContainsBlackPiece(square);
-	Chess.whitePlayer.piece(chess,piece);
+	Chess.whitePlayer.piece(chess, piece);
 	Chess.whitePlayerTurn(chess, boolTurn);
 	check(boolTurn == true);
 } or {
@@ -93,7 +105,7 @@ pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	find squareForPiece(piece, squarePiece);
 	find NE(squarePiece, square);
 	find squareContainsBlackPiece(square);
-	Chess.whitePlayer.piece(chess,piece);
+	Chess.whitePlayer.piece(chess, piece);
 	Chess.whitePlayerTurn(chess, boolTurn);
 	check(boolTurn == true);
 } or {
@@ -106,7 +118,7 @@ pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	check(bool == true);
 	find N(atackingSquare, square);
 	Chess.whitePlayerTurn(chess, boolTurn);
-	Chess.whitePlayer.piece(chess,piece);
+	Chess.whitePlayer.piece(chess, piece);
 	check(boolTurn == true);
 } or {
 	Pawn.colour(piece, ::White);
@@ -117,7 +129,7 @@ pattern whitePawnMoves(piece : Pawn, square : Square, chess : Chess) {
 	Pawn.enPassantEnabled(atackingPawn, bool);
 	check(bool == true);
 	find N(atackingSquare, square);
-	Chess.whitePlayer.piece(chess,piece);
+	Chess.whitePlayer.piece(chess, piece);
 	Chess.whitePlayerTurn(chess, boolTurn);
 	check(boolTurn == true);
 }

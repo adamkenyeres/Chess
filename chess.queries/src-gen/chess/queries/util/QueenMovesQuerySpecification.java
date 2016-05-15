@@ -131,9 +131,9 @@ public final class QueenMovesQuerySpecification extends BaseGeneratedEMFQuerySpe
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	/*All the diagonal moves */	find diagonalMoves(queen, square)
+      		// /*All the diagonal moves */	find diagonalMoves(queen, square)
       		new PositivePatternCall(body, new FlatTuple(var_queen, var_square), DiagonalMovesQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -153,9 +153,9 @@ public final class QueenMovesQuerySpecification extends BaseGeneratedEMFQuerySpe
       		   new ExportedParameter(body, var_square, "square"),
       		   new ExportedParameter(body, var_chess, "chess")
       		));
-      		// 	/*All the horizontal moves */	find horizontalOrVerticalMoves(queen, square)
+      		// /*All the horizontal moves */	find horizontalOrVerticalMoves(queen, square)
       		new PositivePatternCall(body, new FlatTuple(var_queen, var_square), HorizontalOrVerticalMovesQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));

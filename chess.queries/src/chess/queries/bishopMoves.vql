@@ -32,11 +32,11 @@ pattern northDiagonalMoves(bishop : Piece, square : Square) {
 	find pieceOnSquaree(square);
 	find pieceOnSquare(square, piece);
 	find canAttack(bishop, piece);
-}or{
+} or {
 	find square(bishop, bishopSquare); //NorthWest moves
 	find movesNorthWest(bishopSquare, _sq, square);
 	neg find pieceOnSquaree(square);
-}or{
+} or {
 	find square(bishop, bishopSquare); //NorthEst moves
 	find movesNorthWest(bishopSquare, _sq, square);
 	find pieceOnSquaree(square);
@@ -44,23 +44,27 @@ pattern northDiagonalMoves(bishop : Piece, square : Square) {
 	find canAttack(bishop, piece);
 }
 
-pattern diagonalMoves(piece : Piece, square : Square){
+pattern diagonalMoves(piece : Piece, square : Square) {
 	find northDiagonalMoves(piece, square);
-}or{
+} or {
 	find southDiagonalMoves(piece, square);
 }
 
-pattern bishopMoves(piece : Bishop, square : Square, chess : Chess){
+pattern bishopMoves(piece : Bishop, square : Square, chess : Chess) {
 	find diagonalMoves(piece, square);
-	Chess.square(chess,square);
+	Chess.square(chess, square);
 }
 
-pattern whiteBishopMoves(piece : Bishop, square : Square, chess : Chess){
+pattern whiteBishopMoves(piece : Bishop, square : Square, chess : Chess) {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == true);
 	Bishop.colour(piece, ::White);
 	find bishopMoves(piece, square, chess);
 }
 
-pattern blackBishopMoves(piece : Bishop, square : Square, chess : Chess){
+pattern blackBishopMoves(piece : Bishop, square : Square, chess : Chess) {
+	Chess.whitePlayerTurn(chess, boolTurn);
+	check(boolTurn == false);
 	Bishop.colour(piece, ::Black);
 	find bishopMoves(piece, square, chess);
 }

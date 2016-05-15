@@ -227,6 +227,24 @@ public class ChessdiagramPackageImpl extends EPackageImpl implements Chessdiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getChess_NumberOfSteps() {
+		return (EAttribute)chessEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getChess_StepsBeforeExlpoaring() {
+		return (EAttribute)chessEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPlayer() {
 		return playerEClass;
 	}
@@ -543,6 +561,8 @@ public class ChessdiagramPackageImpl extends EPackageImpl implements Chessdiagra
 		createEReference(chessEClass, CHESS__BLACK_PLAYER);
 		createEReference(chessEClass, CHESS__SQUARE);
 		createEAttribute(chessEClass, CHESS__WHITE_PLAYER_TURN);
+		createEAttribute(chessEClass, CHESS__NUMBER_OF_STEPS);
+		createEAttribute(chessEClass, CHESS__STEPS_BEFORE_EXLPOARING);
 
 		playerEClass = createEClass(PLAYER);
 		createEReference(playerEClass, PLAYER__PIECE);
@@ -629,6 +649,8 @@ public class ChessdiagramPackageImpl extends EPackageImpl implements Chessdiagra
 		initEReference(getChess_BlackPlayer(), this.getPlayer(), null, "blackPlayer", null, 1, 1, Chess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getChess_Square(), this.getSquare(), null, "square", null, 64, 64, Chess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getChess_WhitePlayerTurn(), ecorePackage.getEBoolean(), "whitePlayerTurn", "true", 0, 1, Chess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getChess_NumberOfSteps(), ecorePackage.getEInt(), "numberOfSteps", "0", 0, 1, Chess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getChess_StepsBeforeExlpoaring(), ecorePackage.getEInt(), "stepsBeforeExlpoaring", "0", 0, 1, Chess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(playerEClass, Player.class, "Player", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPlayer_Piece(), this.getPiece(), null, "piece", null, 0, 16, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

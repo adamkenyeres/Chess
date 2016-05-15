@@ -28,134 +28,134 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern kingMoves(king : King, square : Square, chess : Chess){
+ * pattern kingMoves(king : King, square : Square, chess : Chess) {
  * 	find square(king, kingSquare);
  * 	find N(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find NE(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find E(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find SE(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find S(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find SW(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find W(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, kingSquare);
  * 	find NW(kingSquare, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find N(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find NE(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find E(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find SE(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find S(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find SW(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find W(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	find square(king, queenSquare); //South East moves atacking
  * 	find NW(queenSquare, square);
  * 	find pieceOnSquare(square, piece);
  * 	find canAttack(king, piece);
- * 	Chess.square(chess,square);
- * }or{
- * 	King.firstMove(king, firsMoveKing);	//Casting All for possible ways
+ * 	Chess.square(chess, square);
+ * } or {
+ * 	King.firstMove(king, firsMoveKing); //Casting All for possible ways
  * 	check(firsMoveKing == true);
  * 	find square(king, kingSquare);
- * 	Square.id(square,56);
+ * 	Square.id(square, 56);
  * 	find pieceOnSquare(square, rook);
  * 	find movesWest(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess.square(chess,square);
- * }or{
+ * 	Chess.square(chess, square);
+ * } or {
  * 	King.firstMove(king, firsMoveKing);
  * 	check(firsMoveKing == true);
  * 	find square(king, kingSquare);
- * 	Square.id(square,63);
+ * 	Square.id(square, 63);
  * 	find pieceOnSquare(square, rook);
  * 	find movesEast(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess.square(chess,square);
- * }or{
- * 	King.firstMove(king, firsMoveKing);	//Casting for black king
+ * 	Chess.square(chess, square);
+ * } or {
+ * 	King.firstMove(king, firsMoveKing); //Casting for black king
  * 	check(firsMoveKing == true);
  * 	find square(king, kingSquare);
- * 	Square.id(square,0);
+ * 	Square.id(square, 0);
  * 	find pieceOnSquare(square, rook);
  * 	find movesWest(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess.square(chess,square);
- * }or{
- * 	King.firstMove(king, firsMoveKing);	
+ * 	Chess.square(chess, square);
+ * } or {
+ * 	King.firstMove(king, firsMoveKing);
  * 	check(firsMoveKing == true);
  * 	find square(king, kingSquare);
- * 	Square.id(square,7);
+ * 	Square.id(square, 7);
  * 	find pieceOnSquare(square, rook);
  * 	find movesEast(kingSquare, _, square);
  * 	Rook.firstMove(rook, firstRookMove);
  * 	check(firstRookMove == true);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * }
  * </pre></code>
  * 

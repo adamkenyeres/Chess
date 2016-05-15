@@ -33,50 +33,50 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find N(knightSquare, N1);
  * 	find N(N1, N2);
  * 	find W(N2, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * } or {
  * 	find square(knight, knightSquare);
  * 	find N(knightSquare, N1);
  * 	find N(N1, N2);
  * 	find E(N2, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * } or {
  * 	find square(knight, knightSquare);
  * 	find N(knightSquare, N1);
  * 	find W(N1, W1);
  * 	find W(W1, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * } or {
  * 	find square(knight, knightSquare);
  * 	find N(knightSquare, N1);
  * 	find E(N1, E1);
  * 	find E(E1, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * } or {
  * 	find square(knight, knightSquare);
  * 	find S(knightSquare, S1);
  * 	find S(S1, S2);
  * 	find W(S2, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * 
  * } or {
  * 	find square(knight, knightSquare);
  * 	find S(knightSquare, S1);
  * 	find S(S1, S2);
  * 	find E(S2, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * } or {
  * 	find square(knight, knightSquare);
  * 	find S(knightSquare, S1);
  * 	find W(S1, W1);
  * 	find W(W1, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * } or {
  * 	find square(knight, knightSquare);
  * 	find S(knightSquare, S1);
  * 	find E(S1, E1);
  * 	find E(E1, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * }
  * </pre></code>
  * 

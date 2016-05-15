@@ -28,14 +28,14 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern queenMoves(queen : Queen, square : Square, chess : Chess){
- * 	All the diagonal moves 
+ * pattern queenMoves(queen : Queen, square : Square, chess : Chess) {
+ * All the diagonal moves 
  * 	find diagonalMoves(queen, square);
- * 	Chess.square(chess,square);
- * }or{
- * 	All the horizontal moves 
+ * 	Chess.square(chess, square);
+ * } or {
+ * All the horizontal moves 
  * 	find horizontalOrVerticalMoves(queen, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * }
  * </pre></code>
  * 

@@ -155,7 +155,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), NQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -182,7 +182,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), NEQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -209,7 +209,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), EQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -236,7 +236,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), SEQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -263,7 +263,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), SQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -290,7 +290,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), SWQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -317,7 +317,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), WQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -344,7 +344,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_kingSquare, var_square), NWQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	neg find pieceOnSquaree(square)
       		new NegativePatternCall(body, new FlatTuple(var_square), PieceOnSquareeQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -374,7 +374,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -404,7 +404,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -434,7 +434,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -464,7 +464,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -494,7 +494,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -524,7 +524,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -554,7 +554,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -584,7 +584,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		new PositivePatternCall(body, new FlatTuple(var_square, var_piece), PieceOnSquareQuerySpecification.instance().getInternalQueryRepresentation());
       		// 	find canAttack(king, piece)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_piece), CanAttackQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Chess.square(chess,square)
+      		// 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -614,7 +614,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_king, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "King", "firstMove")));
       		new Equality(body, var__virtual_0_, var_firsMoveKing);
-      		// 	//Casting All for possible ways	check(firsMoveKing == true)
+      		//  //Casting All for possible ways	check(firsMoveKing == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
       		                            @Override
@@ -635,7 +635,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		
       		                        },  null); // 	find square(king, kingSquare)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_kingSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Square.id(square,56)
+      		// 	Square.id(square, 56)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
       		new ConstantValue(body, var__virtual_1_, 56);
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -670,7 +670,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		                                    return evaluateExpression_17_2(firstRookMove);
       		                                }
       		
-      		                        },  null); // 	Chess.square(chess,square)
+      		                        },  null); // 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -721,7 +721,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		
       		                        },  null); // 	find square(king, kingSquare)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_kingSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Square.id(square,63)
+      		// 	Square.id(square, 63)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
       		new ConstantValue(body, var__virtual_1_, 63);
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -756,7 +756,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		                                    return evaluateExpression_18_2(firstRookMove);
       		                                }
       		
-      		                        },  null); // 	Chess.square(chess,square)
+      		                        },  null); // 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -786,7 +786,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_king, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "King", "firstMove")));
       		new Equality(body, var__virtual_0_, var_firsMoveKing);
-      		// 	//Casting for black king	check(firsMoveKing == true)
+      		//  //Casting for black king	check(firsMoveKing == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
       		                            @Override
@@ -807,7 +807,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		
       		                        },  null); // 	find square(king, kingSquare)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_kingSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Square.id(square,0)
+      		// 	Square.id(square, 0)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
       		new ConstantValue(body, var__virtual_1_, 0);
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -842,7 +842,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		                                    return evaluateExpression_19_2(firstRookMove);
       		                                }
       		
-      		                        },  null); // 	Chess.square(chess,square)
+      		                        },  null); // 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));
@@ -872,7 +872,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
       		new TypeConstraint(body, new FlatTuple(var_king, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "King", "firstMove")));
       		new Equality(body, var__virtual_0_, var_firsMoveKing);
-      		// 		check(firsMoveKing == true)
+      		// 	check(firsMoveKing == true)
       		new ExpressionEvaluation(body, new IExpressionEvaluator() {
       		                            
       		                            @Override
@@ -893,7 +893,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		
       		                        },  null); // 	find square(king, kingSquare)
       		new PositivePatternCall(body, new FlatTuple(var_king, var_kingSquare), SquareQuerySpecification.instance().getInternalQueryRepresentation());
-      		// 	Square.id(square,7)
+      		// 	Square.id(square, 7)
       		PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
       		new ConstantValue(body, var__virtual_1_, 7);
       		new TypeConstraint(body, new FlatTuple(var_square), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Square")));
@@ -928,7 +928,7 @@ public final class KingMovesQuerySpecification extends BaseGeneratedEMFQuerySpec
       		                                    return evaluateExpression_20_2(firstRookMove);
       		                                }
       		
-      		                        },  null); // 	Chess.square(chess,square)
+      		                        },  null); // 	Chess.square(chess, square)
       		new TypeConstraint(body, new FlatTuple(var_chess), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://example.com/chessdiagram", "Chess")));
       		PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
       		new TypeConstraint(body, new FlatTuple(var_chess, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://example.com/chessdiagram", "Chess", "square")));

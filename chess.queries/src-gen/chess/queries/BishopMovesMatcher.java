@@ -28,9 +28,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern bishopMoves(piece : Bishop, square : Square, chess : Chess){
+ * pattern bishopMoves(piece : Bishop, square : Square, chess : Chess) {
  * 	find diagonalMoves(piece, square);
- * 	Chess.square(chess,square);
+ * 	Chess.square(chess, square);
  * }
  * </pre></code>
  * 

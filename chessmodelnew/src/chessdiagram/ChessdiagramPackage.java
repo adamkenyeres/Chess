@@ -105,13 +105,31 @@ public interface ChessdiagramPackage extends EPackage {
 	int CHESS__WHITE_PLAYER_TURN = 3;
 
 	/**
+	 * The feature id for the '<em><b>Number Of Steps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHESS__NUMBER_OF_STEPS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Steps Before Exlpoaring</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHESS__STEPS_BEFORE_EXLPOARING = 5;
+
+	/**
 	 * The number of structural features of the '<em>Chess</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHESS_FEATURE_COUNT = 4;
+	int CHESS_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Chess</em>' class.
@@ -857,6 +875,28 @@ public interface ChessdiagramPackage extends EPackage {
 	EAttribute getChess_WhitePlayerTurn();
 
 	/**
+	 * Returns the meta object for the attribute '{@link chessdiagram.Chess#getNumberOfSteps <em>Number Of Steps</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Steps</em>'.
+	 * @see chessdiagram.Chess#getNumberOfSteps()
+	 * @see #getChess()
+	 * @generated
+	 */
+	EAttribute getChess_NumberOfSteps();
+
+	/**
+	 * Returns the meta object for the attribute '{@link chessdiagram.Chess#getStepsBeforeExlpoaring <em>Steps Before Exlpoaring</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Steps Before Exlpoaring</em>'.
+	 * @see chessdiagram.Chess#getStepsBeforeExlpoaring()
+	 * @see #getChess()
+	 * @generated
+	 */
+	EAttribute getChess_StepsBeforeExlpoaring();
+
+	/**
 	 * Returns the meta object for class '{@link chessdiagram.Player <em>Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1261,6 +1301,22 @@ public interface ChessdiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHESS__WHITE_PLAYER_TURN = eINSTANCE.getChess_WhitePlayerTurn();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Steps</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHESS__NUMBER_OF_STEPS = eINSTANCE.getChess_NumberOfSteps();
+
+		/**
+		 * The meta object literal for the '<em><b>Steps Before Exlpoaring</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHESS__STEPS_BEFORE_EXLPOARING = eINSTANCE.getChess_StepsBeforeExlpoaring();
 
 		/**
 		 * The meta object literal for the '{@link chessdiagram.impl.PlayerImpl <em>Player</em>}' class.

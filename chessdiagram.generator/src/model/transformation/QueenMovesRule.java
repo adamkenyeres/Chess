@@ -7,10 +7,14 @@ import chess.queries.BlackQueenMovesMatch;
 import chess.queries.BlackQueenMovesMatcher;
 import chess.queries.QueenMovesMatch;
 import chess.queries.QueenMovesMatcher;
+import chess.queries.WhiteQueenMovesMatch;
+import chess.queries.WhiteQueenMovesMatcher;
 import chess.queries.util.BlackQueenMovesProcessor;
 import chess.queries.util.BlackQueenMovesQuerySpecification;
 import chess.queries.util.QueenMovesProcessor;
 import chess.queries.util.QueenMovesQuerySpecification;
+import chess.queries.util.WhiteQueenMovesProcessor;
+import chess.queries.util.WhiteQueenMovesQuerySpecification;
 import chessdiagram.Chess;
 import chessdiagram.Colour;
 import chessdiagram.Queen;
@@ -47,6 +51,8 @@ public class QueenMovesRule {
 						pQueen.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
 					}
 				});
 		return rule;
@@ -66,6 +72,29 @@ public class QueenMovesRule {
 						pQueen.setPos(pSquare.getId());
 						Generator.setEnpassantFalse(pChess);
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+					}
+				});
+		return rule;
+	}
+	
+	public static DSETransformationRule<?, ?> getWhiteQueenMovesRule()
+			throws ViatraQueryException {
+		DSETransformationRule<WhiteQueenMovesMatch, WhiteQueenMovesMatcher> rule = new DSETransformationRule<WhiteQueenMovesMatch, WhiteQueenMovesMatcher>(
+				WhiteQueenMovesQuerySpecification.instance(), new WhiteQueenMovesProcessor() {
+
+					@Override
+					public void process(Queen pQueen, Square pSquare, Chess pChess) {
+						// TODO Auto-generated method stub
+						if (pSquare.getPiece() != null) {
+							Generator.removePiece(pChess, pSquare.getPiece());
+						}
+						pQueen.setPos(pSquare.getId());
+						Generator.setEnpassantFalse(pChess);
+						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						//This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
 					}
 				});
 		return rule;

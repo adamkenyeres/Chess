@@ -28,7 +28,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern blackBishopMoves(piece : Bishop, square : Square, chess : Chess){
+ * pattern blackBishopMoves(piece : Bishop, square : Square, chess : Chess) {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	Bishop.colour(piece, ::Black);
  * 	find bishopMoves(piece, square, chess);
  * }

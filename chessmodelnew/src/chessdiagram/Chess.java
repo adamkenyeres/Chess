@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link chessdiagram.Chess#getBlackPlayer <em>Black Player</em>}</li>
  *   <li>{@link chessdiagram.Chess#getSquare <em>Square</em>}</li>
  *   <li>{@link chessdiagram.Chess#isWhitePlayerTurn <em>White Player Turn</em>}</li>
+ *   <li>{@link chessdiagram.Chess#getNumberOfSteps <em>Number Of Steps</em>}</li>
+ *   <li>{@link chessdiagram.Chess#getStepsBeforeExlpoaring <em>Steps Before Exlpoaring</em>}</li>
  * </ul>
  *
  * @see chessdiagram.ChessdiagramPackage#getChess()
@@ -119,5 +121,59 @@ public interface Chess extends EObject {
 	 * @generated
 	 */
 	void setWhitePlayerTurn(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Number Of Steps</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Number Of Steps</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Number Of Steps</em>' attribute.
+	 * @see #setNumberOfSteps(int)
+	 * @see chessdiagram.ChessdiagramPackage#getChess_NumberOfSteps()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getNumberOfSteps();
+
+	/**
+	 * Sets the value of the '{@link chessdiagram.Chess#getNumberOfSteps <em>Number Of Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Number Of Steps</em>' attribute.
+	 * @see #getNumberOfSteps()
+	 * @generated
+	 */
+	void setNumberOfSteps(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Steps Before Exlpoaring</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Steps Before Exlpoaring</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Steps Before Exlpoaring</em>' attribute.
+	 * @see #setStepsBeforeExlpoaring(int)
+	 * @see chessdiagram.ChessdiagramPackage#getChess_StepsBeforeExlpoaring()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getStepsBeforeExlpoaring();
+
+	/**
+	 * Sets the value of the '{@link chessdiagram.Chess#getStepsBeforeExlpoaring <em>Steps Before Exlpoaring</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Steps Before Exlpoaring</em>' attribute.
+	 * @see #getStepsBeforeExlpoaring()
+	 * @generated
+	 */
+	void setStepsBeforeExlpoaring(int value);
 
 } // Chess

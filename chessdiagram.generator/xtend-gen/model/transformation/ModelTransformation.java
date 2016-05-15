@@ -29,6 +29,7 @@ import chessdiagram.Player;
 import chessdiagram.Queen;
 import chessdiagram.Rook;
 import chessdiagram.Square;
+import chessdiagram.generator.BoardVisualizer;
 import com.google.common.base.Objects;
 import dse.ChessEngine;
 import java.util.Random;
@@ -79,9 +80,11 @@ public class ModelTransformation {
   
   protected Square clickedSquare;
   
-  public Chess chess;
+  protected Chess chess;
   
   protected ChessdiagramFactory factory;
+  
+  protected BoardVisualizer visualizer;
   
   /**
    * Coloring the possible move squares
@@ -283,7 +286,7 @@ public class ModelTransformation {
           this.statements.<WhiteKnightMovesMatch>fireAllCurrent(this.whiteKnightMovesColourRule, _pair_2);
           break;
         case BISHOP:
-          Pair<String, Object> _pair_3 = new Pair<String, Object>("bishop", p);
+          Pair<String, Object> _pair_3 = new Pair<String, Object>("piece", p);
           this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesColourRule, _pair_3);
           break;
         case QUEEN:
@@ -322,7 +325,7 @@ public class ModelTransformation {
           this.statements.<BlackKnightMovesMatch>fireAllCurrent(this.blackKnightMovesColourRule, _pair_2);
           break;
         case BISHOP:
-          Pair<String, Object> _pair_3 = new Pair<String, Object>("bishop", p);
+          Pair<String, Object> _pair_3 = new Pair<String, Object>("piece", p);
           this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesColourRule, _pair_3);
           break;
         case QUEEN:
@@ -402,7 +405,7 @@ public class ModelTransformation {
             this.statements.<WhiteKnightMovesMatch>fireAllCurrent(this.whiteKnightMovesRule, _pair_4, _pair_5);
             break;
           case BISHOP:
-            Pair<String, Object> _pair_6 = new Pair<String, Object>("bishop", p);
+            Pair<String, Object> _pair_6 = new Pair<String, Object>("piece", p);
             Pair<String, Object> _pair_7 = new Pair<String, Object>("square", destinationSquare);
             this.statements.<BishopMovesMatch>fireAllCurrent(this.bishopMovesRule, _pair_6, _pair_7);
             break;
@@ -615,7 +618,7 @@ public class ModelTransformation {
     }
   }
   
-  public ModelTransformation(final Resource resource, final Chess chess) {
+  public ModelTransformation(final Resource resource, final Chess chess, final BoardVisualizer visualizer) {
     try {
       this.resource = resource;
       final EMFScope scope = new EMFScope(resource);
@@ -623,6 +626,7 @@ public class ModelTransformation {
       this.engine = _on;
       this.clickedSquare = null;
       this.chess = chess;
+      this.visualizer = visualizer;
       this.createTransformation();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -631,13 +635,14 @@ public class ModelTransformation {
   
   public void moveBlackPlayer() {
     try {
-      ChessEngine dse = new ChessEngine(this.chess);
+      ChessEngine dse = new ChessEngine(this.chess, this);
       dse.startExploaring();
       boolean _solutionsIsEmpty = dse.solutionsIsEmpty();
       boolean _not = (!_solutionsIsEmpty);
       if (_not) {
         dse.doNextStep();
       } else {
+        InputOutput.<String>println("Random move");
         while (((!this.chess.isWhitePlayerTurn()) && (!Objects.equal(this.chess.getBlackPlayer().getPiece(), null)))) {
           {
             Random rand = new Random();
@@ -657,7 +662,7 @@ public class ModelTransformation {
     }
   }
   
-  public Square execute(final Square square) {
+  public Square execute(final Square square, final BoardVisualizer vis) {
     Square _xifexpression = null;
     boolean _equals = Objects.equal(this.clickedSquare, null);
     if (_equals) {
@@ -682,10 +687,13 @@ public class ModelTransformation {
     } else {
       Square _xblockexpression_1 = null;
       {
-        this.movePiece(square);
-        Square _xifexpression_3 = null;
         boolean _isWhitePlayerTurn = this.chess.isWhitePlayerTurn();
-        boolean _not = (!_isWhitePlayerTurn);
+        if (_isWhitePlayerTurn) {
+          this.movePiece(square);
+        }
+        Square _xifexpression_3 = null;
+        boolean _isWhitePlayerTurn_1 = this.chess.isWhitePlayerTurn();
+        boolean _not = (!_isWhitePlayerTurn_1);
         if (_not) {
           this.clickedSquare = null;
           this.moveBlackPlayer();

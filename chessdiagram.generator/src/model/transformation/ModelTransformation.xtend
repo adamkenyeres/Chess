@@ -27,6 +27,8 @@ import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.IModelMan
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.SimpleModelManipulations
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformation
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformationStatements
+import chessdiagram.Board
+import chessdiagram.generator.BoardVisualizer
 
 class ModelTransformation {
 
@@ -41,8 +43,10 @@ class ModelTransformation {
 	protected ViatraQueryEngine engine
 	protected Resource resource
 	protected Square clickedSquare
-	public Chess chess
+	protected Chess chess
 	protected ChessdiagramFactory factory
+
+	protected BoardVisualizer visualizer;
 	/*Coloring the possible move squares */
 	val whitePawnMovesColourRule = WhitePawnMovesRule.getWhitePawnMovesColourRule(chess)
 	val blackPawnMovesColourRule = BlackPawnMovesRule.getBlackPawnMovesColourRule()
@@ -76,7 +80,7 @@ class ModelTransformation {
 				whiteKnightMovesColourRule.fireAllCurrent(new Pair("piece", p))
 			}
 			case PieceType.BISHOP: {
-				bishopMovesColourRule.fireAllCurrent(new Pair("bishop", p))
+				bishopMovesColourRule.fireAllCurrent(new Pair("piece", p))
 			}
 			case PieceType.QUEEN: {
 				queenMovesColourRule.fireAllCurrent(new Pair("queen", p))
@@ -103,7 +107,7 @@ class ModelTransformation {
 				blackKnightMovesColourRule.fireAllCurrent(new Pair("piece", p))
 			}
 			case PieceType.BISHOP: {
-				bishopMovesColourRule.fireAllCurrent(new Pair("bishop", p))
+				bishopMovesColourRule.fireAllCurrent(new Pair("piece", p))
 			}
 			case PieceType.QUEEN: {
 				queenMovesColourRule.fireAllCurrent(new Pair("queen", p))
@@ -146,7 +150,7 @@ class ModelTransformation {
 				whiteKnightMovesRule.fireAllCurrent(new Pair("piece", p), new Pair("square", destinationSquare))
 			}
 			case PieceType.BISHOP: {
-				bishopMovesRule.fireAllCurrent(new Pair("bishop", p), new Pair("square", destinationSquare))
+				bishopMovesRule.fireAllCurrent(new Pair("piece", p), new Pair("square", destinationSquare))
 			}
 			case PieceType.QUEEN: {
 				queenMovesRule.fireAllCurrent(new Pair("queen", p), new Pair("square", destinationSquare))
@@ -270,23 +274,26 @@ class ModelTransformation {
 
 	}
 
-	new(Resource resource, Chess chess) {
+	new(Resource resource, Chess chess, BoardVisualizer visualizer) {
 		this.resource = resource
 		// Create EMF scope and EMF IncQuery engine based on the resource
 		val scope = new EMFScope(resource)
 		engine = ViatraQueryEngine.on(scope);
 		clickedSquare = null
 		this.chess = chess
+		this.visualizer = visualizer
 		createTransformation
 	}
 
 	public def moveBlackPlayer() {
-//		blackPlayer.startExploaring
-		var dse = new ChessEngine(chess)
+		/*Start exploring after white player's move */
+		var dse = new ChessEngine(chess, this)
+//		dse.start
 		dse.startExploaring
 		if (!dse.solutionsIsEmpty) {
 			dse.doNextStep
 		} else {
+			println("Random move")
 			while (!chess.isWhitePlayerTurn && chess.blackPlayer.piece != null) {
 				var rand = new Random()
 				var index = rand.nextInt(chess.blackPlayer.piece.size)
@@ -298,7 +305,7 @@ class ModelTransformation {
 
 	}
 
-	public def execute(Square square) {
+	public def execute(Square square, BoardVisualizer vis) {
 //      Fire the defined rules here
 		if (clickedSquare == null) {
 			if (square.piece != null) {
@@ -308,8 +315,10 @@ class ModelTransformation {
 				}
 			}
 		} else {
+			if (chess.isWhitePlayerTurn) {
+				movePiece(square)
 
-			movePiece(square)
+			}
 			if (!chess.isWhitePlayerTurn) {
 				clickedSquare = null
 				moveBlackPlayer

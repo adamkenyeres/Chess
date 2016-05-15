@@ -34,11 +34,10 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find squareForPiece(piece, squarePiece);
  * 	find N(squarePiece, square);
  * 	neg find pieceOnSquaree(square);
- * 	Chess.whitePlayer.piece(chess,piece);
+ * 	Chess.whitePlayer.piece(chess, piece);
  * 	Chess.whitePlayerTurn(chess, boolTurn);
  * 	check(boolTurn == true);
- * 	
- * 	
+ * 
  * } or {
  * 	Pawn.colour(piece, ::White); //Two steps
  * 	find squareForPiece(piece, squarePiece);
@@ -48,7 +47,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	neg find pieceOnSquaree(square);
  * 	Pawn.firstMove(piece, bool);
  * 	check(bool == true);
- * 	Chess.whitePlayer.piece(chess,piece);
+ * 	Chess.whitePlayer.piece(chess, piece);
  * 	Chess.whitePlayerTurn(chess, boolTurn);
  * 	check(boolTurn == true);
  * } or {
@@ -56,7 +55,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find squareForPiece(piece, squarePiece);
  * 	find NW(squarePiece, square);
  * 	find squareContainsBlackPiece(square);
- * 	Chess.whitePlayer.piece(chess,piece);
+ * 	Chess.whitePlayer.piece(chess, piece);
  * 	Chess.whitePlayerTurn(chess, boolTurn);
  * 	check(boolTurn == true);
  * } or {
@@ -64,7 +63,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	find squareForPiece(piece, squarePiece);
  * 	find NE(squarePiece, square);
  * 	find squareContainsBlackPiece(square);
- * 	Chess.whitePlayer.piece(chess,piece);
+ * 	Chess.whitePlayer.piece(chess, piece);
  * 	Chess.whitePlayerTurn(chess, boolTurn);
  * 	check(boolTurn == true);
  * } or {
@@ -77,7 +76,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	check(bool == true);
  * 	find N(atackingSquare, square);
  * 	Chess.whitePlayerTurn(chess, boolTurn);
- * 	Chess.whitePlayer.piece(chess,piece);
+ * 	Chess.whitePlayer.piece(chess, piece);
  * 	check(boolTurn == true);
  * } or {
  * 	Pawn.colour(piece, ::White);
@@ -88,7 +87,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Pawn.enPassantEnabled(atackingPawn, bool);
  * 	check(bool == true);
  * 	find N(atackingSquare, square);
- * 	Chess.whitePlayer.piece(chess,piece);
+ * 	Chess.whitePlayer.piece(chess, piece);
  * 	Chess.whitePlayerTurn(chess, boolTurn);
  * 	check(boolTurn == true);
  * }

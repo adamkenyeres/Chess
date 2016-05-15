@@ -58,14 +58,13 @@ public class WhitePawnMovesRule {
 						Generator.setEnpassantFalse(pChess);
 						// if we moved 2 en passant is true
 						if (Math.abs(pPiece.getPos() / 8 - pSquare.getId() / 8) == 2) {
-							// pPiece.setEnPassantEnabled(true);
-							System.out.println("En passant is true");
+
 							pPiece.setEnPassantEnabled(true);
 						}
 						pPiece.setPos(pSquare.getId());
 						if (pPiece.isFirstMove())
 							pPiece.setFirstMove(false);
-						System.out.println(pPiece.getPos());
+
 						if (pPiece.getPos() / 8 == 0) {
 							ChessdiagramFactory factory = ChessdiagramFactory.eINSTANCE;
 							Queen q = factory.createQueen();
@@ -77,6 +76,8 @@ public class WhitePawnMovesRule {
 
 						}
 						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+						// This is only temporally
+						pChess.setNumberOfSteps(pChess.getNumberOfSteps() + 1);
 					}
 
 				});

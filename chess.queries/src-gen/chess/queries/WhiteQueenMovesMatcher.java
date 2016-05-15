@@ -28,9 +28,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern whiteQueenMoves(queen : Queen, square : Square, chess : Chess){
- * 	Queen.colour(queen,::White);
- * 	find queenMoves(queen,square,chess);
+ * pattern whiteQueenMoves(queen : Queen, square : Square, chess : Chess) {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == true);
+ * 	Queen.colour(queen, ::White);
+ * 	find queenMoves(queen, square, chess);
  * }
  * </pre></code>
  * 

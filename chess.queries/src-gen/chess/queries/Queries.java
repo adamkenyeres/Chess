@@ -8,6 +8,7 @@ import chess.queries.BlackPlayerTurnMatcher;
 import chess.queries.BlackQueensMatcher;
 import chess.queries.BlackRooksMatcher;
 import chess.queries.CanAttackMatcher;
+import chess.queries.NumberOfStepsEqualsThreeMatcher;
 import chess.queries.PieceOnSquareeMatcher;
 import chess.queries.PiecesOfBlackPlayerMatcher;
 import chess.queries.PiecesOfWhitePlayerMatcher;
@@ -31,6 +32,7 @@ import chess.queries.util.BlackPlayerTurnQuerySpecification;
 import chess.queries.util.BlackQueensQuerySpecification;
 import chess.queries.util.BlackRooksQuerySpecification;
 import chess.queries.util.CanAttackQuerySpecification;
+import chess.queries.util.NumberOfStepsEqualsThreeQuerySpecification;
 import chess.queries.util.PieceOnSquareeQuerySpecification;
 import chess.queries.util.PiecesOfBlackPlayerQuerySpecification;
 import chess.queries.util.PiecesOfWhitePlayerQuerySpecification;
@@ -70,6 +72,7 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * <li>whitePlayerTurn</li>
  * <li>blackPlayerTurn</li>
  * <li>whitePawns</li>
+ * <li>numberOfStepsEqualsThree</li>
  * <li>whiteRooks</li>
  * <li>whiteKnights</li>
  * <li>whiteBishops</li>
@@ -117,6 +120,7 @@ public final class Queries extends BaseGeneratedPatternGroup {
     querySpecifications.add(WhitePlayerTurnQuerySpecification.instance());
     querySpecifications.add(BlackPlayerTurnQuerySpecification.instance());
     querySpecifications.add(WhitePawnsQuerySpecification.instance());
+    querySpecifications.add(NumberOfStepsEqualsThreeQuerySpecification.instance());
     querySpecifications.add(WhiteRooksQuerySpecification.instance());
     querySpecifications.add(WhiteKnightsQuerySpecification.instance());
     querySpecifications.add(WhiteBishopsQuerySpecification.instance());
@@ -224,6 +228,14 @@ public final class Queries extends BaseGeneratedPatternGroup {
   
   public WhitePawnsMatcher getWhitePawns(final ViatraQueryEngine engine) throws ViatraQueryException {
     return WhitePawnsMatcher.on(engine);
+  }
+  
+  public NumberOfStepsEqualsThreeQuerySpecification getNumberOfStepsEqualsThree() throws ViatraQueryException {
+    return NumberOfStepsEqualsThreeQuerySpecification.instance();
+  }
+  
+  public NumberOfStepsEqualsThreeMatcher getNumberOfStepsEqualsThree(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return NumberOfStepsEqualsThreeMatcher.on(engine);
   }
   
   public WhiteRooksQuerySpecification getWhiteRooks() throws ViatraQueryException {

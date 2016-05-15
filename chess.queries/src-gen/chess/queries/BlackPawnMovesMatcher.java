@@ -31,6 +31,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * Black Pawn moves 
  * pattern blackPawnMoves(piece : Pawn, square : Square, chess : Chess) {
  * //Stepping one ahead
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, squarePiece);
  * 	find S(squarePiece, square);
@@ -39,6 +41,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Chess.blackPlayer.piece(chess, piece);
  * 
  * } or {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
+ * 
  * 	Pawn.colour(piece, ::Black); //Two steps 
  * 	find squareForPiece(piece, squarePiece);
  * 	find S(squarePiece, squareNorth);
@@ -49,12 +54,16 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	check(bool == true);
  * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, squarePiece);
  * 	find SW(squarePiece, square);
  * 	find squareContainsWhitePiece(square);
  * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, squarePiece);
  * 	find SE(squarePiece, square);
@@ -62,6 +71,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
  * En passant if there is a pawn on the left to be hit 
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, pieceSquare);
  * 	find W(pieceSquare, atackingSquare);
@@ -73,6 +84,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	Chess.blackPlayer.piece(chess, piece);
  * } or {
  * En passant if there is a pawn on the right to be hit 
+ * 	Chess.whitePlayerTurn(chess, boolTurn);
+ * 	check(boolTurn == false);
  * 	Pawn.colour(piece, ::Black);
  * 	find squareForPiece(piece, pieceSquare);
  * 	find E(pieceSquare, atackingSquare);

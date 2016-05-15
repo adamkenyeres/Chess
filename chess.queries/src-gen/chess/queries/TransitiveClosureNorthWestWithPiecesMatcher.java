@@ -37,8 +37,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 	check(squareId {@literal >} endId);
  * 	check(startId {@literal >} endId);
  * 	find pieceOnSquaree(square);
- * 	Chess.square(_,square);
- * 	Chess.square(_,end);
+ * 
  * }
  * </pre></code>
  * 

@@ -47,6 +47,7 @@ import chess.queries.WhitePawnMovesMatcher;
 import chess.queries.util.AllMovessProcessor;
 import chess.queries.util.WhiteMovesProcessor;
 import chess.queries.util.WhitePawnMovesProcessor;
+import chessdiagram.Board;
 import chessdiagram.Chess;
 import chessdiagram.Colour;
 import chessdiagram.Pawn;
@@ -117,7 +118,7 @@ public class BoardVisualizer implements ActionListener {
 		engine = ViatraQueryEngine.on(new EMFScope(resource/* or resourceSet */));
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.resource = resource;
-		transformation = new ModelTransformation(resource, chess);
+		transformation = new ModelTransformation(resource, chess, this);
 		New.addActionListener(this);
 		exit.addActionListener(this);
 		clickedSquare = null;
@@ -273,7 +274,7 @@ public class BoardVisualizer implements ActionListener {
 		} else {
 			Square square = chess.getSquare().get(Integer.parseInt(name));
 			uncolourRedSquares();
-			transformation.execute(square);
+			transformation.execute(square, this);
 			colourRedSquares();
 			try {
 				refresh();
