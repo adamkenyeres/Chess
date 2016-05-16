@@ -2,15 +2,11 @@ package chessdiagram.generator;
 
 import java.io.IOException;
 import java.util.Collections;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
-import org.junit.Test;
-
 import chessdiagram.Chess;
 import chessdiagram.ChessdiagramFactory;
 import chessdiagram.ChessdiagramPackage;

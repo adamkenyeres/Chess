@@ -23,6 +23,16 @@ import chessdiagram.generator.Generator;
 
 public class QueenMovesRule {
 
+	public static void queenMoves(Queen pQueen, Square pSquare, Chess pChess){
+		if (pSquare.getPiece() != null) {
+			Generator.removePiece(pChess, pSquare.getPiece());
+		}
+		pQueen.setPos(pSquare.getId());
+		Generator.setEnpassantFalse(pChess);
+		pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+		//This is only temporally
+		pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+	}
 	public static DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> getQueenMovesColourRule()
 			throws ViatraQueryException {
 		DSETransformationRule<QueenMovesMatch, QueenMovesMatcher> rule = new DSETransformationRule<QueenMovesMatch, QueenMovesMatcher>(
@@ -45,14 +55,7 @@ public class QueenMovesRule {
 					@Override
 					public void process(Queen pQueen, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pQueen.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						queenMoves(pQueen, pSquare, pChess);
 					}
 				});
 		return rule;
@@ -66,14 +69,7 @@ public class QueenMovesRule {
 					@Override
 					public void process(Queen pQueen, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pQueen.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						queenMoves(pQueen, pSquare, pChess);
 					}
 				});
 		return rule;
@@ -87,14 +83,7 @@ public class QueenMovesRule {
 					@Override
 					public void process(Queen pQueen, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pQueen.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						queenMoves(pQueen, pSquare, pChess);
 					}
 				});
 		return rule;

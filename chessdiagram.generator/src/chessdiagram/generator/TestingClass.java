@@ -1,51 +1,17 @@
 package chessdiagram.generator;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.viatra.dse.api.DSETransformationRule;
-import org.eclipse.viatra.dse.api.DesignSpaceExplorer;
-import org.eclipse.viatra.dse.api.Solution;
 import org.eclipse.viatra.dse.api.SolutionTrajectory;
-import org.eclipse.viatra.dse.api.Strategies;
-import org.eclipse.viatra.dse.base.DesignSpaceManager;
-import org.eclipse.viatra.dse.objectives.impl.ConstraintsObjective;
-import org.eclipse.viatra.dse.solutionstore.SolutionStore;
-import org.eclipse.viatra.dse.statecoding.simple.SimpleStateCoderFactory;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.junit.Test;
 
-import chess.queries.WhitePawnMovesMatch;
-import chess.queries.WhitePawnMovesMatcher;
-import chess.queries.util.InChessBlackQuerySpecification;
-import chess.queries.util.InChessWhiteQuerySpecification;
-import chess.queries.util.WhitePawnMovesProcessor;
-import chess.queries.util.WhitePawnMovesQuerySpecification;
 import chessdiagram.Chess;
-import chessdiagram.ChessdiagramFactory;
-import chessdiagram.ChessdiagramPackage;
-import chessdiagram.Colour;
-import chessdiagram.Pawn;
-import chessdiagram.PieceType;
-import chessdiagram.Queen;
-import chessdiagram.Square;
-import dse.ChessEngine;
-import dse.ChessStateCoderFactory;
-import model.transformation.BishopMovesRule;
-import model.transformation.BlackKnightRule;
-import model.transformation.BlackPawnMovesRule;
-import model.transformation.KingMovesRule;
-import model.transformation.QueenMovesRule;
-import model.transformation.RookMovesRule;
-import model.transformation.WhitePawnMovesRule;
 
 public class TestingClass {
 	SolutionTrajectory tra;

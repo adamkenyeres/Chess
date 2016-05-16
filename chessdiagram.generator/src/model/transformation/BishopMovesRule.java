@@ -22,6 +22,17 @@ import chessdiagram.Square;
 import chessdiagram.generator.Generator;
 
 public class BishopMovesRule {
+	
+	public static void bishopMoves(Bishop pPiece, Square pSquare, Chess pChess) {
+		if (pSquare.getPiece() != null) {
+			Generator.removePiece(pChess, pSquare.getPiece());
+		}
+		pPiece.setPos(pSquare.getId());
+		Generator.setEnpassantFalse(pChess);
+		pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+		// This is only temporally
+		pChess.setNumberOfSteps(pChess.getNumberOfSteps() + 1);
+	}
 
 	public static DSETransformationRule<BishopMovesMatch, BishopMovesMatcher> getBishopMovesColourRule()
 			throws ViatraQueryException {
@@ -45,14 +56,7 @@ public class BishopMovesRule {
 					@Override
 					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pPiece.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						bishopMoves(pPiece, pSquare, pChess);
 					}
 				});
 		return rule;
@@ -67,35 +71,20 @@ public class BishopMovesRule {
 					@Override
 					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pPiece.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						bishopMoves(pPiece, pSquare, pChess);
 					}
 				});
 		return rule;
 	}
-	
-	public static DSETransformationRule<?, ?> getWhiteBishopMovesRule()
-			throws ViatraQueryException {
+
+	public static DSETransformationRule<?, ?> getWhiteBishopMovesRule() throws ViatraQueryException {
 		DSETransformationRule<?, ?> rule = new DSETransformationRule<WhiteBishopMovesMatch, WhiteBishopMovesMatcher>(
 				WhiteBishopMovesQuerySpecification.instance(), new WhiteBishopMovesProcessor() {
 
 					@Override
 					public void process(Bishop pPiece, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pPiece.setPos(pSquare.getId());
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						bishopMoves(pPiece, pSquare, pChess);
 					}
 				});
 		return rule;

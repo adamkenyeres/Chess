@@ -13,7 +13,6 @@ pattern sameColorPiece(piece1 : Piece, piece2 : Piece) {
 
 pattern canAttack(piece1 : Piece, piece2 : Piece) {
 	neg find sameColorPiece(piece1, piece2);
-
 }
 
 pattern piecesOnBoard(piece : Piece) {

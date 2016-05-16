@@ -7,7 +7,6 @@ import org.eclipse.viatra.dse.api.DSETransformationRule;
 import org.eclipse.viatra.dse.api.DesignSpaceExplorer;
 import org.eclipse.viatra.dse.api.Solution;
 import org.eclipse.viatra.dse.api.SolutionTrajectory;
-import org.eclipse.viatra.dse.api.Strategies;
 import org.eclipse.viatra.dse.objectives.Comparators;
 import org.eclipse.viatra.dse.objectives.impl.ConstraintsObjective;
 import org.eclipse.viatra.dse.statecoding.simple.SimpleStateCoderFactory;
@@ -25,6 +24,7 @@ import chess.queries.util.WhiteBishopsQuerySpecification;
 import chess.queries.util.WhiteKingsQuerySpecification;
 import chess.queries.util.WhiteKnightsQuerySpecification;
 import chess.queries.util.WhitePawnsQuerySpecification;
+import chess.queries.util.WhitePlayerTurnQuerySpecification;
 import chess.queries.util.WhiteQueensQuerySpecification;
 import chess.queries.util.WhiteRooksQuerySpecification;
 import chessdiagram.Chess;
@@ -89,10 +89,23 @@ public class ChessEngine extends Thread {
 		// dse.addObjective(new ConstraintsObjective("MyHardObjective")
 		// .withHardConstraint(InChessWhiteQuerySpecification.instance()));
 
-		// dse.addObjective(new ConstraintsObjective("HardObjective")
-		// .withHardConstraint(WhitePlayerTurnQuerySpecification.instance()));
-
-		dse.addObjective(new ConstraintsObjective("Hitting pieces")
+		dse.addObjective(new ConstraintsObjective("White Hitting pieces")
+				.withHardConstraint(WhitePlayerTurnQuerySpecification.instance())
+				.withSoftConstraint(WhitePawnsQuerySpecification.instance(), -1)
+				.withSoftConstraint(BlackPawnsQuerySpecification.instance(), 1)
+				.withSoftConstraint(WhiteRooksQuerySpecification.instance(), -5)
+				.withSoftConstraint(BlackRooksQuerySpecification.instance(), 5)
+				.withSoftConstraint(WhiteKnightsQuerySpecification.instance(), -3)
+				.withSoftConstraint(BlackKnightsQuerySpecification.instance(), 3)
+				.withSoftConstraint(WhiteBishopsQuerySpecification.instance(), -3)
+				.withSoftConstraint(BlackBishopsQuerySpecification.instance(), 3)
+				.withSoftConstraint(WhiteQueensQuerySpecification.instance(), -9)
+				.withSoftConstraint(BlackQueensQuerySpecification.instance(), 9)
+				.withSoftConstraint(WhiteKingsQuerySpecification.instance(), -200)
+				.withSoftConstraint(BlackKingsQuerySpecification.instance(), 200)
+				.withComparator(Comparators.LOWER_IS_BETTER));
+		
+		dse.addObjective(new ConstraintsObjective("Black Hitting pieces")
 				.withHardConstraint(BlackPlayerTurnQuerySpecification.instance())
 				.withHardConstraint(NumberOfStepsEqualsThreeQuerySpecification.instance())
 				.withSoftConstraint(WhitePawnsQuerySpecification.instance(), -1)
@@ -135,7 +148,7 @@ public class ChessEngine extends Thread {
 
 	public void startExploaring() throws ViatraQueryException {
 
-		dse.startExploration(Strategies.createDFSStrategy(2));
+//		dse.startExploration(Strategies.createDFSStrategy(2));
 		solutions = dse.getSolutions();
 		if (!solutions.isEmpty()) {
 			SolutionTrajectory bestTra = null;

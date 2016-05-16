@@ -10,14 +10,9 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.TransformAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,31 +21,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
-import org.eclipse.viatra.transformation.runtime.emf.rules.TransformationRuleGroup;
-import org.junit.Test;
-
-import chess.queries.AllMovessMatcher;
-import chess.queries.WhiteMovesMatch;
-import chess.queries.WhiteMovesMatcher;
-import chess.queries.WhitePawnMovesMatch;
-import chess.queries.WhitePawnMovesMatcher;
-
-import chess.queries.util.AllMovessProcessor;
-import chess.queries.util.WhiteMovesProcessor;
-import chess.queries.util.WhitePawnMovesProcessor;
-import chessdiagram.Board;
 import chessdiagram.Chess;
 import chessdiagram.Colour;
-import chessdiagram.Pawn;
 import chessdiagram.Piece;
 import chessdiagram.PieceType;
 import chessdiagram.Square;
@@ -59,7 +36,6 @@ import model.transformation.ModelTransformation;
 public class BoardVisualizer implements ActionListener {
 	ModelTransformation transformation;
 	private Chess chess;
-	private ViatraQueryEngine engine;
 	Resource resource;
 	private JPanel board;
 	private JFrame jf;
@@ -72,7 +48,7 @@ public class BoardVisualizer implements ActionListener {
 	Square clickedSquare;
 	public JButton btn[][];
 	private final String COLS = "ABCDEFGH";
-	private static final int Queen = 0, King = 1, Rook = 2, Knight = 3, Bishop = 4, Pawn = 5;
+	private static final int Queen = 0, King = 1, Rook = 2, Knight = 3, Bishop = 4;
 	public static final int[] Start = { Rook, Knight, Bishop, King, Queen, Bishop, Knight, Rook }; // Starting
 																									// order
 	public static final int Black = 0, White = 1;
@@ -115,7 +91,7 @@ public class BoardVisualizer implements ActionListener {
 		jp.add(back, c);
 		jf.getContentPane().add(jp, BorderLayout.WEST);
 		jf.getContentPane().add(board, BorderLayout.CENTER);
-		engine = ViatraQueryEngine.on(new EMFScope(resource/* or resourceSet */));
+		ViatraQueryEngine.on(new EMFScope(resource/* or resourceSet */));
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.resource = resource;
 		transformation = new ModelTransformation(resource, chess, this);

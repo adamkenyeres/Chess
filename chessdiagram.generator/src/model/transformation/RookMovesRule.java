@@ -22,6 +22,19 @@ import chessdiagram.Square;
 import chessdiagram.generator.Generator;
 
 public class RookMovesRule {
+	public static void rookMoves(Rook pRook, Square pSquare, Chess pChess) {
+		if (pSquare.getPiece() != null) {
+			Generator.removePiece(pChess, pSquare.getPiece());
+		}
+		pRook.setPos(pSquare.getId());
+		if (pRook.isFirstMove())
+			pRook.setFirstMove(false);
+		Generator.setEnpassantFalse(pChess);
+		pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
+		// This is only temporally
+		pChess.setNumberOfSteps(pChess.getNumberOfSteps() + 1);
+	}
+
 	public static DSETransformationRule<RookMovesMatch, RookMovesMatcher> getRookMovesColourRule()
 			throws ViatraQueryException {
 		DSETransformationRule<RookMovesMatch, RookMovesMatcher> rule = new DSETransformationRule<RookMovesMatch, RookMovesMatcher>(
@@ -45,64 +58,35 @@ public class RookMovesRule {
 					@Override
 					public void process(Rook pRook, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pRook.setPos(pSquare.getId());
-						if (pRook.isFirstMove())
-							pRook.setFirstMove(false);
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						rookMoves(pRook, pSquare, pChess);
 					}
 
 				});
 		return rule;
 	}
-	
-	public static DSETransformationRule<?, ?> getBlackRookMovesRule()
-			throws ViatraQueryException {
+
+	public static DSETransformationRule<?, ?> getBlackRookMovesRule() throws ViatraQueryException {
 		DSETransformationRule<BlackRookMovesMatch, BlackRookMovesMatcher> rule = new DSETransformationRule<BlackRookMovesMatch, BlackRookMovesMatcher>(
 				BlackRookMovesQuerySpecification.instance(), new BlackRookMovesProcessor() {
 
 					@Override
 					public void process(Rook pRook, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pRook.setPos(pSquare.getId());
-						if (pRook.isFirstMove())
-							pRook.setFirstMove(false);
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						rookMoves(pRook, pSquare, pChess);
 					}
 
 				});
 		return rule;
 	}
-	
-	public static DSETransformationRule<?, ?> getWhiteRookMovesRule()
-			throws ViatraQueryException {
+
+	public static DSETransformationRule<?, ?> getWhiteRookMovesRule() throws ViatraQueryException {
 		DSETransformationRule<WhiteRookMovesMatch, WhiteRookMovesMatcher> rule = new DSETransformationRule<WhiteRookMovesMatch, WhiteRookMovesMatcher>(
 				WhiteRookMovesQuerySpecification.instance(), new WhiteRookMovesProcessor() {
 
 					@Override
 					public void process(Rook pRook, Square pSquare, Chess pChess) {
 						// TODO Auto-generated method stub
-						if (pSquare.getPiece() != null) {
-							Generator.removePiece(pChess, pSquare.getPiece());
-						}
-						pRook.setPos(pSquare.getId());
-						if (pRook.isFirstMove())
-							pRook.setFirstMove(false);
-						Generator.setEnpassantFalse(pChess);
-						pChess.setWhitePlayerTurn(!pChess.isWhitePlayerTurn());
-						//This is only temporally
-						pChess.setNumberOfSteps(pChess.getNumberOfSteps()+1);
+						rookMoves(pRook, pSquare, pChess);
 					}
 
 				});

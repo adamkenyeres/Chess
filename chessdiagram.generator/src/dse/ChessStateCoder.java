@@ -28,7 +28,6 @@ import chessdiagram.King;
 import chessdiagram.Pawn;
 import chessdiagram.Piece;
 import chessdiagram.Rook;
-import model.transformation.WhitePawnMovesRule;
 
 public class ChessStateCoder implements IStateCoder {
 	Chess model;

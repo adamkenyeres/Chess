@@ -18,6 +18,7 @@ import chessdiagram.PieceType
 import chessdiagram.Queen
 import chessdiagram.Rook
 import chessdiagram.Square
+import chessdiagram.generator.BoardVisualizer
 import dse.ChessEngine
 import java.util.Random
 import org.eclipse.emf.ecore.resource.Resource
@@ -27,8 +28,6 @@ import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.IModelMan
 import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.SimpleModelManipulations
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformation
 import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformationStatements
-import chessdiagram.Board
-import chessdiagram.generator.BoardVisualizer
 
 class ModelTransformation {
 
